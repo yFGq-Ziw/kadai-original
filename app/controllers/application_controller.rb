@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   
   def counts(user)
-    @count_microposts = user.microposts.count
+    @count_fobitows = user.fobitows.count
     @count_followings = user.followings.count
     @count_followers = user.followers.count
   end
@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def counts(user)
-    @count_microposts = user.microposts.count
+    @count_fobitows = user.fobitows.count
   end
 end
