@@ -1,10 +1,14 @@
 class User < ApplicationRecord
   before_save { self.email.downcase! }
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 255 },
+  validates :name, presence: true, length: { maximum: 10 }
+  validates :email, presence: true, length: { maximum: 100 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
+
   has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  mount_uploader :image, ImageUploader
 
   has_many :fobitows
   has_many :relationships
@@ -12,6 +16,13 @@ class User < ApplicationRecord
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
 
+  has_many :favorites, dependent: :destroy
+  has_many :likes, through: :favorites, source: :fobitow
+  has_many :create_images
+  
+  #カラムの名前をmount_uploaderに指定
+  #mount_uploader :image, ImageUploader
+  
   def follow(other_user)
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -29,5 +40,27 @@ class User < ApplicationRecord
   
   def feed_fobitows
     Fobitow.where(user_id: self.following_ids + [self.id])
+  end
+  
+  def fav(fobitow)
+    favorites.find_or_create_by(fobitow_id: fobitow.id)
+  end
+  
+  def unfav(fobitow)
+    favorite = favorites.find_by(fobitow_id: fobitow.id)
+    favorite.destroy if favorite
+  end
+
+  def like(fobitow)
+    likes.find_or_create_by(fobitow_id: fobitow.id)
+  end
+  
+  def unlike(fobitow)
+    like = likes.find_by(fobitow_id: fobitow.id)
+    like.destroy if like
+  end
+
+  def likes?(fobitow)
+    likes.include?(fobitow)
   end
 end

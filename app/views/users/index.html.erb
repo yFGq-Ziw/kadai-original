@@ -1,1 +1,30 @@
-<%= render 'users', users: @users %>
+<div style="row padding-top:20px;">
+        <header>
+         
+            <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
+
+        </header> 
+
+        <!--ここからwrapperー-->
+        <div id="wrapper" class="clearfix">
+            <!--ここからメイン-->
+            <div id="main2">
+                <section id="point">
+                    <h2></h2>
+                    <section class="clearfix">
+                        <figure>
+                            <figcaption></figcaption>
+                        </figure>
+                        <h3>Users</h3>
+                        <p>
+                        
+                        <%= render 'users', users: @users %>
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <!--wrapperここまで-->
+        <!--ここからフッター-->
+
+        <!--フッターここまで--> 

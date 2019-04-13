@@ -1,0 +1,89 @@
+<div style="row padding-top:10px;">
+        <header>
+          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
+        </header> 
+        <!--ここからwrapperー-->
+        <div id="wrapper" class="clearfix">
+            <!--ここからメイン-->
+            <div id="main2">
+                <section id="point">
+                    <h2></h2>
+                    <section class="clearfix">
+                        <figure>
+                            <figcaption></figcaption>
+                        </figure>
+                        <h3><%= @user.name %> さんのプロフィール設定ページ</h3>
+                        <p>
+<hr>
+<%= form_for(@user) do |f| %>      
+  <div class="row">
+    <aside class="col-xs-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"></h3>
+          <div class="panel-body">
+            <% if @user.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h2>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+<!-- 追加箇所 開始 -->
+            <div class="thumbnail">  
+  
+              <% if @user.image? %>
+                <%= image_tag(@user.image.url, :size => "300x300") %>
+              <% else %>
+                <%= image_tag("panda.png", :size => "300x300") %>
+              <% end %>
+            </div>
+            <%= link_to 'Back', user_path(@user) %>
+          
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="col-xs-8">
+    <ul class="nav nav-tabs nav-justified">
+      <div class="field">
+        <%= f.label :image, 'プロフィール画像' %>
+        <br>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+      </div>
+      <div class="field">
+<!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+        <% if @user.persisted? && @user.image? %>
+          <label>
+            <%= f.check_box :remove_image %>
+            画像を削除
+          </label>
+        <% end %>
+      </div>
+      <br>
+<!-- 追加箇所 終了 -->
+      <div class="form-group">
+        <%= f.label :comment, '自己紹介コメント' %>
+        <%= f.text_area :comment, class: 'form-control', rows: 2 %>
+      </div>
+      <div class="actions">
+        <%= f.submit '保存する', class: 'btn btn-primary btn-md' %>
+      </div>
+    </ul>
+  </div>
+<% end %>
+
+
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <!--wrapperここまで-->
+        <!--ここからフッター-->
+        <!--フッターここまで--> 

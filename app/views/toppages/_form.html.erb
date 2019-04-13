@@ -1,0 +1,24 @@
+<div class="text-left">
+<h3> ブックマークを追加する</h3><hr>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@fobitow) do |f| %>
+        <% if @fobitow.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% fobitow.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+          <%= f.label :content, 'ブックマークするページのURLを入力' %>
+          <li class="mark-post"><%= f.text_area :content, :placeholder => "おすすめページのURLを入力して下さい https://...", class: 'form-control', rows: 1 %></li>
+          <li class="mark-post"><%= f.text_area :title, :placeholder => "ページについてなど、自由に入力して下さい (省略可)", class: 'form-control', rows: 3 %></li>
+          <li class="mark-post"><%= f.select :category, [["スキューバ"], ["ヨガ"], ["囲碁・将棋"], ["ダンス"], ["登山"], ["フットサル"], ["格闘技"], ["プラモデル"], ["カメラ"], ["そのた"] ], :prompt => "ジャンルを選択してください ※必須" , class: 'form-controlol' %></li>
+        
+          <%= f.submit 'Post Bookmark!', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>

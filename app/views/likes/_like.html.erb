@@ -1,0 +1,23 @@
+<% if logged_in? %>
+<%#  <% if current_user.likes?(fobitow) %>
+  <% if fobitow.like_user(current_user.id) %>
+    <%= button_to fobitow_like_path(like, fobitow_id: fobitow.id), method: :delete, id: "like-button", remote: true do %>
+      <%= image_tag("icon_red_heart.svg", :size => "30x30") %>
+      <span>
+        <%= fobitow.likes_count %>
+      </span>
+    <% end %>
+  <% else %>
+    <%= button_to fobitow_likes_path(fobitow), id: "like-button", remote: true do %>
+      <%= image_tag("icon_heart.svg", :size => "30x30") %>
+      <span>
+        <%= fobitow.likes_count %>
+      </span>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= image_tag("icon_heart.svg", :size => "30x30") %>
+    <span>
+      <%= fobitow.likes_count %>
+    </span>
+<% end %>

@@ -1,0 +1,72 @@
+<div style="row padding-top:10px;">
+        <header>
+          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
+        </header> 
+        <!--ここからwrapperー-->
+        <div id="wrapper" class="clearfix">
+            <!--ここからメイン-->
+            <div id="main2">
+                <section id="point">
+                    <h2></h2>
+                    <section class="clearfix">
+                        <figure>
+                            <figcaption></figcaption>
+                        </figure>
+                        <h3><%= @user.name %> さんのお気に入り</h3>
+                        <p>
+ 
+<div class="row">
+  <aside class="col-xs-4">
+    <div class="panel panel-default">
+
+      <div class="panel-body">
+        <p id="notice"><%= notice %></p>
+<!-- 画像 -->
+        <p>
+          <div class="thumbnail">
+            <% if @user.image? %>
+              <%= image_tag(@user.image.url, :size => "300x300") %>
+            <% else %>
+              <%= image_tag("panda.png", :size => "300x300") %>
+            <% end %>
+          </div>
+        </p>
+<!-- 画像 終了 -->
+<!-- 自己紹介コメント追加 -->
+      <div class="panel-heading">
+        <div class="pro-come">
+        
+          
+            <p><%= @user.comment %></p>
+          </div>
+        </div>
+      
+  </div>
+    <%= render 'relationships/follow_button', user: @user %>
+  </div>
+        <div class="pro-link">
+        <% if current_user = @user %>
+        <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
+        <% end %>
+        <%= link_to 'Top', root_path %>
+        </div>
+  </aside>
+  <div class="col-xs-8">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>Bookmarks <span class="badge"><%= @count_fobitows %></span><% end %></li>
+      <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <span class="badge"><%= @count_followings %></span><% end %></li>
+      <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
+      <li class="<%= 'active' if current_page?(likes_user_path(@user)) %>"><%= link_to likes_user_path(@user) do %>Favorites <span class="badge"><%= @count_likes %></span><% end %></li>
+    </ul>
+    <%= render 'fobitows/fobitows', fobitows: @fobitows %>
+  </div>
+</div>
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <!--wrapperここまで-->
+        <!--ここからフッター-->
+
+        <!--フッターここまで--> 

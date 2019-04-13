@@ -5,25 +5,25 @@ class FobitowsController < ApplicationController
   def create
     @fobitow = current_user.fobitows.build(fobitow_params)
     if @fobitow.save
-      flash[:success] = 'メッセージを投稿しました。'
-      redirect_to root_url
+      flash[:success] = 'ブックマークを投稿しました。'
+      redirect_to url_for(controller: 'categorys', action: 'show', category: @fobitow.category)
     else
       @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
-      render 'toppages/index'
+      flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     @fobitow.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    flash[:success] = 'ブックマークを削除しました。'
     redirect_back(fallback_location: root_path)
   end
 
   private
-
+# ストロング
   def fobitow_params
-    params.require(:fobitow).permit(:content)
+    params.require(:fobitow).permit(:content, :title, :category)
   end
 
   def correct_user

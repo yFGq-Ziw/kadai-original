@@ -10,14 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190407212025) do
+ActiveRecord::Schema.define(version: 20190413062346) do
 
-  create_table "fobitows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "content"
+  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
+    t.integer  "fobitow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["fobitow_id"], name: "index_favorites_on_fobitow_id", using: :btree
+    t.index ["user_id", "fobitow_id"], name: "index_favorites_on_user_id_and_fobitow_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
+  end
+
+  create_table "fobitows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",     limit: 65535
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "category"
+    t.string   "image"
+    t.integer  "likes_count"
     t.index ["user_id"], name: "index_fobitows_on_user_id", using: :btree
+  end
+
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "fobitow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -36,8 +57,12 @@ ActiveRecord::Schema.define(version: 20190407212025) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "image"
+    t.string   "comment"
   end
 
+  add_foreign_key "favorites", "fobitows"
+  add_foreign_key "favorites", "users"
   add_foreign_key "fobitows", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
