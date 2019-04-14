@@ -71,6 +71,7 @@ header h1 {
 
 .navbar-right {
     font-size: 12px;
+        margin-right: -35px;
 }
 
 #global_navi2 {
@@ -444,3 +445,8 @@ margin: 0px;
 .yokonarabi ul a{
     list-style: none;
 }
+
+.container {
+    width: 984px;
+    margin-right: auto;
+    margin-left: auto;}
