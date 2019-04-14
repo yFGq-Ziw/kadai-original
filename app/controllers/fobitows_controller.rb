@@ -11,6 +11,7 @@ class FobitowsController < ApplicationController
       @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
       redirect_back(fallback_location: root_path)
+      render toppages_bookmark_path
     end
   end
 

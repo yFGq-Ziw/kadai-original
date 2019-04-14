@@ -30,14 +30,14 @@
           <%# いいね %>
           <span class="right">
             <% if logged_in? %>
-              <% unless current_user == fobitow.user %>
+              <%#<% unless current_user == fobitow.user %>
                 <%= render partial: 'favorites/favorite_button', locals: { fobitow: fobitow } %>
                 <%#<%= render 'likes/like', locals: { fobitow: fobitow } %>
                 <%#<span id="like-of-<%= fobitow.id %><%#">
                   <%= render partial: "/likes/like", locals: { fobitow: fobitow, likes: @likes } %>
                 <%#</span>
 %>
-              <% end %>
+              <%#<% end %>
             <% end %>
           </span>
           

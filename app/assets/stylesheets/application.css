@@ -270,7 +270,7 @@ body {padding-top: 0px;}
 .nav > li> a {
     position: relative;
     display: block;
-     padding: 0px 10px; 
+    padding: 4px 8px; 
 }
 
 .logo2 a {
@@ -415,10 +415,32 @@ hr {
 
 .textOverflow {
 /*    overflow: hidden;
-    /* border: 1px solid #000000; */
-/*    padding: 0px;
-*/    width: 62%;
-/*    background: #f5f5f5;
+    /* border: 1px solid #000000;*/
+/*    padding: 0px;*/
+      max-width: 360px;
+    width: 62%;
+/*    background: #f5f5f5;*/
     line-height: 0;
-    white-space: nowrap;*/
+    /*white-space: nowrap;*/
+}
+.textOverflow2 {
+      height: 20px;
+      max-width: 360px;
+  overflow: hidden;
+}
+
+.textOverflow3 {
+      height: 20px;
+      max-width: 150px;
+  overflow: hidden;
+padding: 0px;
+margin: 0px;
+}
+
+.nav-tabs a{
+    padding: 5px 5px;
+    height: 30px;
+}
+.yokonarabi ul a{
+    list-style: none;
 }

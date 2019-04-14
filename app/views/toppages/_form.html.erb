@@ -3,13 +3,14 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= form_for(@fobitow) do |f| %>
-        <% if @fobitow.errors.any? %>
-          <div id="error_explanation">
+        <%= render 'layouts/error_messages', model: f.object %>
+<%#        <% if @fobitow.errors.any? %>
+<%#          <div id="error_explanation">
             <ul>
               <% fobitow.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
+<%#              <li><%= message %><%#</li>
+<%#              <% end %>
+<%#            </ul>
           </div>
         <% end %>
           <%= f.label :content, 'ブックマークするページのURLを入力' %>

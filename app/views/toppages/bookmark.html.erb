@@ -16,35 +16,30 @@
                         <p>
                           
 <hr>
+
 <div class="text-center">
   <h1>Bookmark</h1>
 </div>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
       <%= form_for(@fobitow) do |f| %>
-        <% if @fobitow.errors.any? %>
-          <div id="error_explanation">
-            <ul>
-              <% fobitow.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-      <div class="form-group">
-        <%= f.label :content, 'ページのURLを入力' %>
-        <li class="mark-post"><%= f.text_area :content, :placeholder => "おすすめページのURLを入力して下さい https://...", class: 'form-control', rows: 1 %></li>
-      </div>
-      <div class="form-group">
-        <%= f.label :title, 'Comment' %>
-        <li class="mark-post"><%= f.text_area :title, :placeholder => "ページについてなど、自由に入力して下さい", class: 'form-control', rows: 3 %></li>
-      </div>
-      <div class="form-group">
-        <%= f.label :category, 'Category' %>
+        
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <div class="form-group">
+          <%= f.label :content, 'ページのURLを入力' %>
+          <li class="mark-post"><%= f.text_area :content, :placeholder => "おすすめページのURLを入力して下さい https://...", class: 'form-control', rows: 1 %></li>
+        </div>
+        <div class="form-group">
+          <%= f.label :title, 'Comment' %>
+          <li class="mark-post"><%= f.text_area :title, :placeholder => "ページについてなど、自由に入力して下さい", class: 'form-control', rows: 3 %></li>
+        </div>
+        <div class="form-group">
+          <%= f.label :category, 'Category' %>
         <li class="mark-post"><%= f.select :category, [["スキューバ"], ["ヨガ"], ["囲碁・将棋"], ["ダンス"], ["登山"], ["フットサル"], ["格闘技"], ["プラモデル"], ["カメラ"], ["そのた"] ], :prompt => "ジャンルを選択してください ※必須" , class: 'form-controlol' %></li>
-      </div>
-      <%= f.submit 'Post Bookmark !', class: 'btn btn-primary btn-block' %>
-    <% end %>
+        </div>
+          <%= f.submit 'Post Bookmark !', class: 'btn btn-primary btn-block' %>
+      <% end %>
     <p><%= link_to '前のページに戻る', :back %></p>
     <%#<%= return_back %>
     

@@ -21,9 +21,9 @@ class ToppagesController < ApplicationController
     end
   end
   
-  private
+#  private
 
-  def set_fobitow
+#  def set_fobitow
 #      @fobitow = Fobitow.all
-  end
+#  end
 end  

@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   private
-
+  # 全てのｺﾝﾄﾛｰﾗでﾛｸﾞｲﾝを制御
   def require_user_logged_in
     unless logged_in?
       redirect_to login_url

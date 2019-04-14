@@ -1,4 +1,9 @@
-<div style="row padding-top:10px;">
+<%#<% unless current_user == @user %>
+<%#    <%= render root_path %>
+
+<%#<% else %>
+
+  <div style="row padding-top:10px;">
         <header>
           <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
         </header> 
@@ -14,7 +19,7 @@
                         </figure>
                         <h3><%= @user.name %> さんのプロフィール設定ページ</h3>
                         <p>
-<hr>
+  <hr>
 <%= form_for(@user) do |f| %>      
   <div class="row">
     <aside class="col-xs-4">
@@ -78,7 +83,6 @@
   </div>
 <% end %>
 
-
                         </p>
                     </section>
                 </section>
@@ -87,3 +91,4 @@
         <!--wrapperここまで-->
         <!--ここからフッター-->
         <!--フッターここまで--> 
+<%#<% end %>

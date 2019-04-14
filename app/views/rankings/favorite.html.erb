@@ -15,7 +15,7 @@
                         <figure>
                             <figcaption></figcaption>
                         </figure>
-                        <h3>お気に入りランキング</h3>
+                        <h3>いいね！ランキング</h3>
                         <p>
                         
 <div class="panel panel-default">
@@ -26,22 +26,82 @@
         <thead>
           <tr>
             <th>順位</th>
-            <th>コメント</th>
-            <th>URL</th>
-            <th>お気に入り数</th>
+            <th>コメント / 
+            URL</th>
+            <th>カテゴリ</th>
+            <th>投稿ユーザ</th>
+            <th></th>
+            <th>いいね数</th>
+            <th></th>
           </tr>
         </thead>
   
         <tbody>
           <% @fobitows.each_with_index do |fobitow, index| %>
             <tr>
+
+              <!-- 順位 -->
               <td><div class="text-center"><%= index+1 %> 位</div></td>
-              <td><%= fobitow.title %><br>
+
               <td>
-                <span class="glyphicon glyphicon-hand-right"></span>
-                <%= text_url_to_link(h(fobitow.content)).html_safe %>
+                   <!-- コメント -->
+                 <p class="textOverflow2">
+                  <%= fobitow.title %><br>
+                 </p>
+                  <%# URL %>
+                 <p class="textOverflow">
+                    <strong>
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    <%= text_url_to_link(h(fobitow.content)).html_safe %>
+                    </strong>
+                 </p>
               </td>
-              <td><div class="text-right"><%= @ranking_counts[fobitow.id] %></div></td>
+              <td>
+                <%# ジャンル %>
+                <span class="label label-info"><%= fobitow.category %></span>
+              </td>
+
+              <td>
+                <%# ユーザ名 %>
+                <div>
+                  <%= link_to fobitow.user.name, user_path(fobitow.user) %>
+                </div>
+                <p class="textOverflow3">
+                <%# 日付 %>
+                
+                  <span class="text-muted"> posted at: <%= fobitow.created_at %></span>
+                
+                </p>
+              </td>
+              <td>
+        <%# イメージ画像 %>
+        <div class="pro-img">
+        <% if fobitow.user.image? %>
+          <%= image_tag(fobitow.user.image.url, :size => "40x40") %>
+        <% else %>
+          <%= image_tag("panda.png", :size => "40x40") %>
+        <% end %>
+        </div>
+              </td>              
+              <!-- お気に入り数 -->
+              <td class="text-right">
+                <ul class="yokonarabi">
+                <li>
+                  <span class="badge">
+                    <%= @ranking_counts[fobitow.id] %>
+                  </span>
+                </li>
+              </td>
+              <td>
+                <%# いいね %>
+                <li>
+                  <% if logged_in? %>
+                    <%= render partial: 'favorites/favorite_button', locals: { fobitow: fobitow } %>
+                  <% end %>
+                </li>
+                <ul>
+              </td>
+
             </tr>
           <% end %>
         </tbody>
