@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_save { self.email.downcase! }
-  validates :name, presence: true, length: { maximum: 10 }
+  validates :name, presence: true, length: { maximum: 12 }
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
@@ -49,15 +49,6 @@ class User < ApplicationRecord
   def unfav(fobitow)
     favorite = favorites.find_by(fobitow_id: fobitow.id)
     favorite.destroy if favorite
-  end
-
-  def like(fobitow)
-    likes.find_or_create_by(fobitow_id: fobitow.id)
-  end
-  
-  def unlike(fobitow)
-    like = likes.find_by(fobitow_id: fobitow.id)
-    like.destroy if like
   end
 
   def likes?(fobitow)

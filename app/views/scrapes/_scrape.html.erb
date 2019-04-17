@@ -1,0 +1,38 @@
+<% charset = nil %>
+<% begin %>
+  <% html = open(fobitow.content) do |f| %>
+
+    <% charset = f.charset %>
+    <% f.read %>
+    <%#<%= f.last_modified %>
+  <% end %>
+    
+  <% doc = Nokogiri::HTML.parse(html, nil, charset) %>
+  <img src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
+  <%= doc.title %>
+
+  <% num = 0 %>
+  <% begin %>
+
+    <%#<% doc.xpath('html').each do |node| %>
+      <% num += 0 %>
+        <% puts num %>
+
+        <%#<%= image_tag node.css('img').attribute('src').value %>
+        <%#<%= node.css('h3').inner_text %>
+        <%#<%= image_tag node.css('a').attribute('href').value %>
+        <% if num == 0 then %>
+          <% break %>
+        <% end %>
+
+    <%#<% end %>
+
+  <% end while num < 0 %>
+
+  <% rescue => e %>
+    <% e  %>
+    <!-- 例外メッセージ表示 -->
+    <span style="color:#9C9689;">
+      Sorry, site can't be reached.
+    </span>
+<% end %>

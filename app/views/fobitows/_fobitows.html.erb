@@ -1,8 +1,15 @@
 <ul class="media-list">
   <% fobitows.each do |fobitow| %>
+
+<!-- open_uri,rescue分岐(重い..) -->
+<%#        <% begin %>
+<%#          <% html = open(fobitow.content) do |f| %>
+<%#        <% end %>
+
     <li class="media">
 
       <div class="media-right media-top">
+
         <%# イメージ画像 %>
         <div class="pro-img">
         <% if fobitow.user.image? %>
@@ -11,10 +18,12 @@
           <%= image_tag("panda.png", :size => "40x40") %>
         <% end %>
         </div>
-
+        <%= link_to 'Forum', user_path(fobitow.user) %>
       </div>
+      
 
       <div class="media-body">
+
           <%# ユーザ名 %>
           <div>
             <%= link_to fobitow.user.name, user_path(fobitow.user) %>
@@ -28,26 +37,33 @@
           </div>
 
           <%# いいね %>
-          <span class="right">
-            <% if logged_in? %>
-              <%#<% unless current_user == fobitow.user %>
-                <%= render partial: 'favorites/favorite_button', locals: { fobitow: fobitow } %>
-                <%#<%= render 'likes/like', locals: { fobitow: fobitow } %>
-                <%#<span id="like-of-<%= fobitow.id %><%#">
-                  <%= render partial: "/likes/like", locals: { fobitow: fobitow, likes: @likes } %>
-                <%#</span>
-%>
-              <%#<% end %>
-            <% end %>
+          <span class="right" id="ajax<%= fobitow.id %>">
+            <!-- ajax -->
+            <%= render partial: 'favorites/favorite', locals: { fobitow: fobitow, favorite: @favorite } %>
           </span>
-          
-          <div>
-            <p class="textOverflow">
-              <%# URL %>
-              <strong>
-                <span class="glyphicon glyphicon-hand-right"></span>
-                <%= text_url_to_link(h(fobitow.content)).html_safe %>
 
+          <div>
+                  <div class="box26">
+            <% unless fobitow.title == @empty %>
+
+                    <!-- url favicon, title -->          
+                    <img src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
+                    <%# scrape-title %>
+                    <%= fobitow.title %>
+                    <!-- スクレイピング -->
+                    <%#<%= render partial: "scrapes/scrape", locals: { fobitow: fobitow } %>
+            <% end %>
+                  </div>
+                  
+                  <p class="says textOverflow">
+                    <a href="<%= fobitow.content %>">
+                      <i class="glyphicon glyphicon-hand-right"></i>
+                    </a>
+                    <%# URL %>
+                    <strong>&nbsp;<%= text_url_to_link(h(fobitow.content)).html_safe %></strong>
+                  </p>
+          </div>
+              
               <%# ゴミ箱 %>
               <span class="right">
                 <% if logged_in? %>
@@ -59,16 +75,19 @@
                 <% end %>
               </span>
 
-              </strong>
-            </p>
-          </div>
+<%#        <% rescue => e %>
 
-          <%# コメント %>
-          <div class="says">
-            <div class="box26">
-              <p><%= fobitow.title %></p>
-            </div>
+<%#          <div>
+<%#            <%#<%= fobitow.title %>
+<%#          </div>
+          <div>
+            <i class="fas fa-ban"></i>
+            <!-- 例外メッセージ表示 -->
+            <span style="color:#9C9689;">
+            Sorry, site can't be reached. Server IP address could not be found.
+            </span>
           </div>
+      <% end %>
 
     </li>
   <% end %>

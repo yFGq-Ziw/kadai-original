@@ -18,10 +18,10 @@
 <hr>
 
 <div class="text-center">
-  <h1>Bookmark</h1>
+  <h1>Bookmark&nbsp;</h1>
 </div>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
       <%= form_for(@fobitow) do |f| %>
         
         <%= render 'layouts/error_messages', model: f.object %>
@@ -29,10 +29,6 @@
         <div class="form-group">
           <%= f.label :content, 'ページのURLを入力' %>
           <li class="mark-post"><%= f.text_area :content, :placeholder => "おすすめページのURLを入力して下さい https://...", class: 'form-control', rows: 1 %></li>
-        </div>
-        <div class="form-group">
-          <%= f.label :title, 'Comment' %>
-          <li class="mark-post"><%= f.text_area :title, :placeholder => "ページについてなど、自由に入力して下さい", class: 'form-control', rows: 3 %></li>
         </div>
         <div class="form-group">
           <%= f.label :category, 'Category' %>

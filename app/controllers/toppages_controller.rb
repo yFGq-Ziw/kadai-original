@@ -7,14 +7,14 @@ class ToppagesController < ApplicationController
 #      @fobitows = current_user.feed_fobitows.order('created_at DESC').page(params[:page])
 #    else
       @fobitow = Fobitow.all
-      @fobitows = Fobitow.all.order('created_at DESC').page(params[:page])
+      @fobitows = Fobitow.all.order('created_at DESC').page(params[:page]).per(10)
 #    end
   end
 
   def bookmark
     if logged_in?
       @fobitow = current_user.fobitows.build
-      @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
+#      @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page]).per(10)
 #    else
 #      @fobitow = Fobitow.all
 #      @fobitows = Fobitow.all.order('created_at DESC').page(params[:page]).per(10)

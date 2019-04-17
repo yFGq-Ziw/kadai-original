@@ -1,9 +1,7 @@
 <div style="row padding-top:20px;">
-        <header>
-         
-            <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
-
-        </header> 
+  <header>
+    <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
+  </header> 
 
         <!--ここからwrapperー-->
         <div id="wrapper" class="clearfix">
@@ -17,8 +15,11 @@
                         </figure>
                         <h3>Users</h3>
                         <p>
+                      
                                 <!-- _users呼び出し -->
                                 <%= render 'users', users: @users %>
+
+
                         </p>
                     </section>
                 </section>

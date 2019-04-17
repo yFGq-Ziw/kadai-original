@@ -1,9 +1,4 @@
-<%#<% unless current_user == @user %>
-<%#    <%= render root_path %>
-
-<%#<% else %>
-
-  <div style="row padding-top:10px;">
+<div style="row padding-top:10px;">
         <header>
           <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
         </header> 
@@ -25,7 +20,7 @@
     <aside class="col-xs-4">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"></h3>
+
           <div class="panel-body">
             <% if @user.errors.any? %>
               <div id="error_explanation">
@@ -48,10 +43,10 @@
             </div>
             <%= link_to 'Back', user_path(@user) %>
           
-        </div>
       </div>
     </div>
   </aside>
+  <br><br><br>
 
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
@@ -87,6 +82,7 @@
                     </section>
                 </section>
             </div>
+            
         </div>
         <!--wrapperここまで-->
         <!--ここからフッター-->

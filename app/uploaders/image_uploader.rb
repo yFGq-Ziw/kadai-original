@@ -50,6 +50,6 @@ end
   #   "something.jpg" if original_filename
   # end
   def size_range
-    1..1.megabytes
+    0..0.5.megabytes
   end
 end

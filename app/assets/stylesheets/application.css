@@ -256,6 +256,7 @@ ul { list-style: none;}
 #global_navi .drop a{ color: black;}
 
 .my-gray {color: gray}
+.fa-ban {color: #9C9689}
 
 /* universal */
 body {padding-top: 0px;}
@@ -266,6 +267,7 @@ body {padding-top: 0px;}
 
 .navbar-nav > li > a {
     padding-top: 4px !important;
+    line-height: 23px;
 }
 
 .nav > li> a {
@@ -282,13 +284,6 @@ body {padding-top: 0px;}
 
 li {list-style: none;}
 
-.follow-btn {
-    width: 80px;
-    height: 10px;    
-    position: relative; top: 10px; right: 5px; 
-    margin: 0px;
-    padding: 0px;
-}
 hr {
     height: 1px;
     border: none;
@@ -346,6 +341,7 @@ hr {
 
 }
 .pro-come {
+    vertical-align: middle;
   color: gray;
   font-size: 13px;
   margin: 0px;
@@ -371,13 +367,24 @@ hr {
   padding-left: 5px;
   padding-right: 5px;
   max-width: 88.5%;
-
   border-radius: 5px;
   background: linear-gradient(to right, #eeefea, #fff);
   /*border: 1px solid #956840; /* 枠線 */
 }
 
+.box26 {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.table>tbody>tr>th{
+    vertical-align: middle;
+}
 
+.follow-btn{
+     width: 80px; 
+     position: relative; 
+     right: 5px;}
+     
 .navbar-header a {
   font-size: 19px;
     margin-left: 0px;
@@ -418,8 +425,8 @@ hr {
 /*    overflow: hidden;
     /* border: 1px solid #000000;*/
 /*    padding: 0px;*/
-      max-width: 360px;
-    width: 62%;
+      max-width: 500px;
+    width: 80%;
 /*    background: #f5f5f5;*/
     line-height: 0;
     /*white-space: nowrap;*/

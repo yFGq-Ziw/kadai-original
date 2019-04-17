@@ -14,7 +14,7 @@
             <ul class="navbar-nav navbar-brand">
               <li class="logo <%= "current2" if current_page?(root_path) %>">
                 <%= link_to root_path do %>
-                <%= image_tag("logo2.png", :size => '28', :alt => "Fobitows") %> 
+                <%= image_tag("icon.png", :size => '28', :alt => "Fobitows") %> 
                   Fobitows
                 <% end %>
               </li>
@@ -25,11 +25,11 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
 
-            <li class="chuo <%= "current2" if current_page?(rankings_favorite_path) %>">
-              <%= link_to rankings_favorite_path do %>
-                <span class="glyphicon glyphicon-signal" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
+            <li class="chuo <%= "current2" if current_page?(rankings_follow_path) %>">
+              <%= link_to rankings_follow_path do %>
+                <span class="glyphicon glyphicon-user" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
                 </span>
-                Ranking
+                Users
               <% end %>
             </li>
 
@@ -41,14 +41,14 @@
               <% end %>
             </li>
           
-            <li class="chuo <%= "current2" if current_page?(users_path) %>">
+<%#            <li class="chuo <%= "current2" if current_page?(users_path) %><%#">
               <%= link_to users_path do %>
-                <span class="glyphicon glyphicon-user" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
+<%#                <span class="glyphicon glyphicon-user" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
                 </span>
                 Users
               <% end %>
-            </li>
-
+<%#            </li>
+%>
             <li class="dropdown <%= "current2" if current_page?(user_path(current_user)) %>">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               

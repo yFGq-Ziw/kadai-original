@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'users#new'
-  get 'rankings/favorite', to: 'rankings#favorite'
+  get 'rankings/follow', to: 'rankings#follow'
   
   # CRUD
   put 'users/:id', to: 'users#update'
   # edit: 更新用のフォームページ
   get 'users/:id/edit', to: 'users#edit'
 
-  resources :posts
+#  resources :posts
 
   resources :users, only: [:index, :show, :new, :create, :edit, :update] do
     member do
@@ -28,12 +28,13 @@ Rails.application.routes.draw do
   end
 
   # ajax
-#  resources :fobitows do
-#    resources :likes, only: [:create, :destroy]
-#  end
+  resources :fobitows do
+    resources :favorites, only: [:create, :destroy]
+  end
+  # 以下コメントアウト
+#  resources :fobitows, only: [:create, :destroy]
+#  resources :favorites, only: [:create, :destroy]
   # ajaxここまで
   
-  resources :fobitows, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :favorites, only: [:create, :destroy]
 end

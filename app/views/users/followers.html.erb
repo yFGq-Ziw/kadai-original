@@ -20,6 +20,7 @@
 
       <div class="panel-body">
         <p id="notice"><%= notice %></p>
+
 <!-- 画像 -->
         <p>
           <div class="thumbnail">
@@ -30,19 +31,18 @@
             <% end %>
           </div>
         </p>
-<!-- 画像 終了 -->
-<!-- 自己紹介コメント -->
-      <div class="panel-heading">
-        <div class="pro-come">
-        
-          
+
+        <!-- 自己紹介コメント -->
+        <div class="panel-heading">
+          <div class="pro-come">
             <p><%= @user.comment %></p>
           </div>
         </div>
+    
+      </div>
       
-  </div>
-    <%= render 'relationships/follow_button', user: @user %>
-  </div>
+      <%= render 'relationships/follow_button', user: @user %>
+    </div>
         <div class="pro-link">
         <% if current_user == @user %>
         <%= link_to 'Edit Profile', edit_user_path(@user) %> | 

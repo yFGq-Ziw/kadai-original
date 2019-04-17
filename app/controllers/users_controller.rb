@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show, :followings, :followers, :edit, :update, :create_image]
+  before_action :user_find, only: [:show, :edit, :update, :followings, :followers, :likes]
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.page(params[:page])#.per(4)
   end
 
   def show
-    @user = User.find(params[:id])
-    @fobitows = @user.fobitows.order('created_at DESC').page(params[:page])
+    @fobitows = @user.fobitows.order('created_at DESC').page(params[:page])#.per(4)
     counts(@user)
   end
 
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
       redirect_to @user
@@ -29,14 +28,12 @@ class UsersController < ApplicationController
   
   #User編集追加
   def edit
-    @user = User.find(params[:id])
     unless current_user == @user
       redirect_to root_url
     end 
   end
 
   def update
-    @user = User.find(params[:id])
     #編集しようとしてるユーザーがログインユーザーとイコールかをチェック
     if current_user == @user
       if @user.update(user_params_without_password)
@@ -54,24 +51,26 @@ class UsersController < ApplicationController
   end    
   
   def followings
-    @user = User.find(params[:id])
-    @followings = @user.followings.page(params[:page])
+    @followings = @user.followings.page(params[:page])#.per(4)
     counts(@user)
   end
   
   def followers
-    @user = User.find(params[:id])
-    @followers = @user.followers.page(params[:page])
+    @followers = @user.followers.page(params[:page])#.per(4)
     counts(@user)
   end
 
   def likes
-    @user = User.find(params[:id])
-    @fobitows = @user.likes.order('created_at DESC').page(params[:page])
+    @fobitows = @user.likes.order('created_at DESC').page(params[:page])#.per(4)
     counts(@user)
   end
 
   private
+
+  def user_find
+    @user = User.find(params[:id])
+  end
+
   #ストロングパラメーター
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :comment, :image, :image_cache, :remove_image)

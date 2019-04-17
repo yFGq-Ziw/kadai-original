@@ -1,6 +1,8 @@
 class RankingsController < ApplicationController
-  def favorite
-    @ranking_counts = Favorite.ranking
-    @fobitows = Fobitow.find(@ranking_counts.keys)
+
+  def follow
+    @ranking_counts = Follow.ranking
+    #@users = User.find(@ranking_counts.keys)
+    @users = User.all.page(params[:page])#.per(4)
   end
 end
