@@ -38,7 +38,10 @@
               <% if @user.image? %>
                 <%= image_tag(@user.image.url, :size => "300x300") %>
               <% else %>
-                <%= image_tag("panda.png", :size => "300x300") %>
+              <span class="gravatar">
+                <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(current_user, size: "300") %>" alt="">
+              </span>
+<%#                <%= image_tag("panda.png", :size => "300x300") %>
               <% end %>
             </div>
             <%= link_to 'Back', user_path(@user) %>

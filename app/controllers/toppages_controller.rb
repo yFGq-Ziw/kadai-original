@@ -7,7 +7,9 @@ class ToppagesController < ApplicationController
 #      @fobitows = current_user.feed_fobitows.order('created_at DESC').page(params[:page])
 #    else
       @fobitow = Fobitow.all
-      @fobitows = Fobitow.all.order('created_at DESC').page(params[:page]).per(10)
+      #@fobitows = Fobitow.all.order('created_at DESC').page(params[:page])#.per(10)
+    @fobitows = Fobitow.all.order('created_at DESC').page(params[:page]).search(params[:search])
+
 #    end
   end
 

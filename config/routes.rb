@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'toppages#index'
   
   get 'categorys/:category', to: 'categorys#show'
@@ -16,8 +17,6 @@ Rails.application.routes.draw do
   put 'users/:id', to: 'users#update'
   # edit: 更新用のフォームページ
   get 'users/:id/edit', to: 'users#edit'
-
-#  resources :posts
 
   resources :users, only: [:index, :show, :new, :create, :edit, :update] do
     member do

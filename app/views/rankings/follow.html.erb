@@ -1,5 +1,13 @@
 <div style="row padding-top:20px;">
   <header>
+
+               <!--  検索拡張機能  -->
+<p>user search</p>
+<%= form_tag(rankings_follow_path, :method => 'get' ) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
     <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
   </header> 
 

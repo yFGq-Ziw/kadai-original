@@ -14,4 +14,10 @@ class Fobitow < ApplicationRecord
     favorites.find_by(user_id: user_id)
   end
 # ajaxここまで
+
+    def self.search(search)
+      return Fobitow.all unless search
+      Fobitow.where(['title LIKE ?', "%#{search}%"])
+#      Fobitow.where(['content LIKE ?', "%#{search}%"])
+    end
 end

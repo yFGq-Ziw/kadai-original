@@ -15,12 +15,14 @@
         <% if fobitow.user.image? %>
           <%= image_tag(fobitow.user.image.url, :size => "40x40") %>
         <% else %>
-          <%= image_tag("panda.png", :size => "40x40") %>
+              <span class="gravatar">
+                <img class="media-object img-rounded" src="<%= gravatar_url(current_user, size: "40") %>" alt="">
+              </span>
+<%#          <%= image_tag("panda.png", :size => "40x40") %>
         <% end %>
         </div>
         <%= link_to 'Forum', user_path(fobitow.user) %>
       </div>
-      
 
       <div class="media-body">
 
@@ -34,36 +36,12 @@
 
             <%# ジャンル %>
             <span class="label label-info"><%= fobitow.category %></span>
-          </div>
-
           <%# いいね %>
           <span class="right" id="ajax<%= fobitow.id %>">
             <!-- ajax -->
             <%= render partial: 'favorites/favorite', locals: { fobitow: fobitow, favorite: @favorite } %>
           </span>
 
-          <div>
-                  <div class="box26">
-            <% unless fobitow.title == @empty %>
-
-                    <!-- url favicon, title -->          
-                    <img src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
-                    <%# scrape-title %>
-                    <%= fobitow.title %>
-                    <!-- スクレイピング -->
-                    <%#<%= render partial: "scrapes/scrape", locals: { fobitow: fobitow } %>
-            <% end %>
-                  </div>
-                  
-                  <p class="says textOverflow">
-                    <a href="<%= fobitow.content %>">
-                      <i class="glyphicon glyphicon-hand-right"></i>
-                    </a>
-                    <%# URL %>
-                    <strong>&nbsp;<%= text_url_to_link(h(fobitow.content)).html_safe %></strong>
-                  </p>
-          </div>
-              
               <%# ゴミ箱 %>
               <span class="right">
                 <% if logged_in? %>
@@ -74,6 +52,44 @@
                    <% end %>
                 <% end %>
               </span>
+
+          </div>
+
+          <div>
+                  <div class="box26">
+            <% unless fobitow.title == @empty %>
+
+                  <p class="says textOverflow">
+                    <%= link_to fobitow.content, target: "_new" do %>
+                      <!-- url favicon, title -->          
+                      <img src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
+                    <% end %>
+
+                    <%= link_to fobitow.content, target: "_new" do %>
+                      <%# scrape-title %>
+                      <strong><%= fobitow.title %></strong>
+                    <% end %>
+                  </p>
+                    
+            <% end %>
+                  </div>
+                  
+                  <div class="box26">
+                  <p class="says textOverflow2">
+                        <%= link_to fobitow.content, target: "_new" do %>
+                          <!-- body_text_h3 -->          
+                          <%= fobitow.likes_count %>
+                    <% end %>
+                  </p>
+                  </div>
+               
+                    <%#<%= link_to fobitow.content, target: "_new" do %>
+                      <!-- hand_icon -->          
+                      <%#<i class="glyphicon glyphicon-hand-right"></i>
+                    <% end %>
+                      <%# URL %>
+                      <%#<strong>&nbsp;<%= text_url_to_link(h(fobitow.content)).html_safe %><%#</strong>%>
+          </div>
 
 <%#        <% rescue => e %>
 

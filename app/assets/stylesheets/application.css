@@ -234,21 +234,6 @@ footer small {
     color: #fff;
 }
 
-.textOverflow{
-    overflow: hidden;
-    border: 0px solid #ccc;
-    padding: 5px;
-    width: 90%;
-    background: #eee;
-    line-height: 1.0;
-    white-space: nowrap;
-}
-.textOverflow{
-    text-overflow: ellipsis;
-    -webkit-text-overflow: ellipsis; /* Safari */
-    -o-text-overflow: ellipsis; /* Opera */
-}
-
 ul { list-style: none;}
 
 #global_navi .current2 a{ color: white;}
@@ -311,11 +296,9 @@ hr {
   position: relative; 
   padding-left: 5px;
   padding-right: 5px;
-  /*max-width: 88.5%;*/
-  /*border-radius: 5px;
-  /*background: linear-gradient(to right, #fef, #fef);
-  */border: 1px solid #956840; /* 枠線 */   
+  border: 1px solid #956840; /* 枠線 */   
 }
+
 .pro-img2 {
   margin-top: 5px;
   margin-right: 5px;
@@ -354,28 +337,6 @@ hr {
   border: 1px solid #956840; /* 枠線 */   
 }
 
-/*以下、②左側のコメント*/
-.says p {
-  margin: 0;
-  padding: 0;
-}
-
-.says {
-  display: inline-block;
-  position: relative; 
-  margin-top: -5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  max-width: 88.5%;
-  border-radius: 5px;
-  background: linear-gradient(to right, #eeefea, #fff);
-  /*border: 1px solid #956840; /* 枠線 */
-}
-
-.box26 {
-    margin-top: 10px;
-    padding-bottom: 10px;
-}
 .table>tbody>tr>th{
     vertical-align: middle;
 }
@@ -421,16 +382,6 @@ hr {
     padding: 4px 9px 4px 14px;
 }
 
-.textOverflow {
-/*    overflow: hidden;
-    /* border: 1px solid #000000;*/
-/*    padding: 0px;*/
-      max-width: 500px;
-    width: 80%;
-/*    background: #f5f5f5;*/
-    line-height: 0;
-    /*white-space: nowrap;*/
-}
 .textOverflow2 {
       height: 20px;
       max-width: 360px;
@@ -457,3 +408,50 @@ margin: 0px;
     width: 984px;
     margin-right: auto;
     margin-left: auto;}
+
+.textOverflow{
+    overflow: hidden;
+    border: 0px solid #ccc;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis; /* Safari */
+    -o-text-overflow: ellipsis; /* Opera */
+    max-width: 580px;
+    max-height: 45px;
+    background: linear-gradient(to right, #eeefea, #fff);
+}
+
+/*以下、②左側のコメント*/
+.says p {
+  margin: 0;
+  padding: 0;
+}
+
+.says {
+  display: inline-block;
+  position: relative; 
+  margin-top: -5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+  /*border: 1px solid #956840; /* 枠線 */
+}
+
+.box26 {
+    margin-top: 10px;
+ }
+
+.textOverflow2{
+    overflow: hidden;
+    margin-top: -20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis; /* Safari */
+    -o-text-overflow: ellipsis; /* Opera */
+    max-width: 580px;
+    max-height: 45px;
+}
+
+.scrape-favicon {
+     vertical-align: middle; 
+}

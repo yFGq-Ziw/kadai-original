@@ -1,8 +1,20 @@
 <div style="row padding-top:20px;">
   
         <header>
-         
-            <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
+
+      <!--検索拡張機能  -->
+      <div class="media-body">
+      <!-- ロゴ -->
+              <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
+      </div>
+      <div class="media-right">
+              content search
+                  <%= form_tag root_path, :method => 'get' do %>
+                    <%= text_field_tag :search, params[:search] %>
+                    <%= submit_tag "Submit", :name => nil %>
+                  <% end %>
+      
+      </div>
             <nav id="global_navi2">
                 
                 <ul>

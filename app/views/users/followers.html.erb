@@ -1,6 +1,9 @@
 <div style="row padding-top:10px;">
         <header>
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
+      <!-- ロゴ -->
+      <div class="media-right">
+          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
+      </div>
         </header> 
         <!--ここからwrapperー-->
         <div id="wrapper" class="clearfix">
@@ -27,7 +30,10 @@
             <% if @user.image? %>
               <%= image_tag(@user.image.url, :size => "300x300") %>
             <% else %>
-              <%= image_tag("panda.png", :size => "300x300") %>
+              <span class="gravatar">
+                <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(current_user, size: "300") %>" alt="">
+              </span>
+<%#              <%= image_tag("panda.png", :size => "300x300") %>
             <% end %>
           </div>
         </p>

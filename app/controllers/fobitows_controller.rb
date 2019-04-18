@@ -8,7 +8,6 @@ class FobitowsController < ApplicationController
 
   def create
     @fobitow = current_user.fobitows.build(fobitow_params)
-
     charset = nil
     begin
       html = open(@fobitow.content) do |f|
@@ -17,33 +16,35 @@ class FobitowsController < ApplicationController
         # f.last_modified
       end
       doc = Nokogiri::HTML.parse(html, nil, charset)
-    
-      @fobitow.title = doc.title
-    
-      num = 0
-      begin
-      #doc.xpath('html').each do |node|
-        num += 0
-        puts num
+      @fobitow.title = doc.title.byteslice(0,128).scrub('')
+      if @fobitow.likes_count = nil
+        @fobitow.likes_count = doc.xpath('//p').inner_text.byteslice(0,128).scrub('')
+      end
 
-          #<%= image_tag node.css('img').attribute('src').value
-          #<%= node.css('h3').inner_text
-          #<%= image_tag node.css('a').attribute('href').value
-        if num == 0 then
-          break
-        end
-      end while num < 0
+      if @fobitow.likes_count = nil
+        @fobitow.likes_count = doc.xpath('//a').inner_text.byteslice(0,128).scrub('')
+      end
+
+#      if @fobitow.likes_count = nil
+#      begin
+#      doc.xpath('//div').each do |node|
+#        num += 0
+#        puts num
+#          @fobitow.likes_count = doc.at(:text).inner_text
+#         if num == 0 then
+#            break
+#          end
+#        end while num < 0
+#      end
 
     rescue => e
-      #puts e 例外メッセージ表示
-      #@fobitow.title = e
-      #render toppages_bookmark_path        
+      puts e #例外メッセージ表示
+      @fobitow.title = e
     end
       if @fobitow.save
         flash[:success] = 'ブックマークを投稿しました。'
         redirect_to url_for(controller: 'categorys', action: 'show', category: @fobitow.category)
         #redirect_to toppages_bookmark_path
-    
       else
         @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
         flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
@@ -57,6 +58,11 @@ class FobitowsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @fobitows = Fobitow.search(params[:search])
+  end
+  
   private
 # ストロング
   def fobitow_params

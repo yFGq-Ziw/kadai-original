@@ -11,7 +11,10 @@
               <% if user.image? %>
                 <%= image_tag(user.image.url, :size => "40x40") %>
               <% else %>
-                <%= image_tag("panda.png", :size => "40x40") %>
+              <span class="gravatar">
+          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 40 }) %>" alt="">
+              </span>
+<%#                <%= image_tag("panda.png", :size => "40x40") %>
               <% end %>
             </div>
           </th>

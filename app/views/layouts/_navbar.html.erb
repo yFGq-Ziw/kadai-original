@@ -19,11 +19,20 @@
                 <% end %>
               </li>
             </ul>
+
         </div>
-        
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
+
+            <li class="chuo <%= "current2" if current_page?(rankings_follow_path) %>">
+              <%= link_to toppages_bookmark_path do %>
+                <span class="glyphicon glyphicon-bookmark" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
+                </span>
+                Bookmark
+              <% end %>
+            </li>
 
             <li class="chuo <%= "current2" if current_page?(rankings_follow_path) %>">
               <%= link_to rankings_follow_path do %>
@@ -53,15 +62,16 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               
               <% if current_user.image? %>
-                <%= image_tag(current_user.image.url, :size => "25x25") %>
+                <%= image_tag(current_user.image.url, :size => "27x27") %>
               <% else %>
-                <%= image_tag("panda.png", :size => "25x25") %>
+              <span class="gravatar">
+<%#                <img class="media-object img-rounded" src="<%= gravatar_url(current_user, size: "25") %><%#" alt="">
+%>                <img src="<%= gravatar_url(current_user, size: 27) %>" alt="" class="img-circle">
+
+              </span>
+<%#                <%= image_tag("panda.png", :size => "25x25") %>
               <% end %>
               
-              <%#<span class="gravatar">
-                <img src="<%= gravatar_url(current_user, size: 30) %><%#" alt="" class="img-circle">
-              </span>%>
-
                 <%= current_user.name %>
                 <span class="caret"></span>
               </a>
