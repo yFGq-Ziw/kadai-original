@@ -1,4 +1,5 @@
 class FobitowsController < ApplicationController
+
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy]
 
@@ -16,16 +17,15 @@ class FobitowsController < ApplicationController
         # f.last_modified
       end
       doc = Nokogiri::HTML.parse(html, nil, charset)
-      @fobitow.title = doc.title.byteslice(0,128).scrub('')
-      if @fobitow.likes_count = nil
-        @fobitow.likes_count = doc.xpath('//p').inner_text.byteslice(0,128).scrub('')
-      end
 
-      if @fobitow.likes_count = nil
-        @fobitow.likes_count = doc.xpath('//a').inner_text.byteslice(0,128).scrub('')
-      end
+        @fobitow.title = doc.title.byteslice(0,512).scrub('')
 
-#      if @fobitow.likes_count = nil
+        @fobitow.likes_count = doc.xpath('h3').inner_text.byteslice(0,512).scrub('')
+        
+        if @fobitow.likes_count = :empty
+          @fobitow.likes_count = doc.xpath('//section/p[1]').inner_text.byteslice(0,512).scrub('')
+        end
+
 #      begin
 #      doc.xpath('//div').each do |node|
 #        num += 0
@@ -35,7 +35,6 @@ class FobitowsController < ApplicationController
 #            break
 #          end
 #        end while num < 0
-#      end
 
     rescue => e
       puts e #例外メッセージ表示
@@ -48,7 +47,7 @@ class FobitowsController < ApplicationController
       else
         @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
         flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
-        render toppages_bookmark_path
+        redirect_to toppages_bookmark_path
       end
   end
 
@@ -62,8 +61,9 @@ class FobitowsController < ApplicationController
     #Viewのformで取得したパラメータをモデルに渡す
     @fobitows = Fobitow.search(params[:search])
   end
-  
+
   private
+  
 # ストロング
   def fobitow_params
     params.require(:fobitow).permit(:content, :title, :category)

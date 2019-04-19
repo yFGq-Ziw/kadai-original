@@ -10,7 +10,7 @@
             <div class="pro-img2">
               <%= link_to user_path(user) do %>
                 <% if user.image? %>
-                  <%= image_tag(user.image.url, :size => "40x40") %>
+                  <%= image_tag(user.image.url(:thumb), :size => "40x40") %>
                 <% else %>
               <span class="gravatar">
           <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 40 }) %>" alt="">
@@ -40,6 +40,7 @@
           </th>
           
           <th>
+            <!-- follower数 -->
             <div class="pro-come">
               <% unless @ranking_counts[user.id] == @empty %>
                 <p><%= @ranking_counts[user.id] %>&nbsp;Followers</p>

@@ -1,13 +1,19 @@
 <div style="row padding-top:20px;">
   
         <header>
+
       <!--検索拡張機能  -->
       <div class="media-body">
-      <!-- ロゴ -->
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
-
+         <!--検索拡張機能  -->
+         <p>content search</p>
+            <%= form_tag '/categorys/'&&params[:category], :method => 'get' do %>
+              <%= text_field_tag :search, params[:search] %>
+              <%= submit_tag "Submit", :name => nil %>
+            <% end %>
       </div>
       <div class="media-right">
+      <!-- ロゴ -->
+          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
       </div>
       
             <nav id="global_navi2">
@@ -35,13 +41,20 @@
                 <section id="point">
                                  
                         <li><h2>Fobitows - <%= params[:category] %> -</h2></li>
-               
 
                     <section class="clearfix">
-                        <figure>
-
-                            <figcaption>人気 | 新着</figcaption>
-                        </figure>
+                    
+                    <figure>
+                        <figcaption>
+                            <div>
+                                <form action="#index" method="get">
+                                    <input type="submit" name="button1" value="人気" />
+                                    <input type="submit" name="button2" value="新着" />
+                                </form>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    
                         <h3><%= params[:category] %> の新着エントリー</h3>
                         <p>
                         <%= render 'fobitows/fobitows', fobitows: @fobitows %>               
@@ -52,7 +65,9 @@
                     <section class="clearfix">
                         <figure>
                             <%= image_tag("topicicon.jpg", :size => "100x100", :alt => "image_topic")%>
+
                             <figcaption></figcaption>
+
                         </figure>
                         <h3>Pick Up</h3>
                         <p>

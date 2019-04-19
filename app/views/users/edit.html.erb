@@ -1,6 +1,14 @@
 <div style="row padding-top:10px;">
         <header>
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
+
+      <!--検索拡張機能  -->
+      <div class="media-body">
+
+      </div>
+      <div class="media-right">
+      <!-- ロゴ -->
+          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
+      </div>
         </header> 
         <!--ここからwrapperー-->
         <div id="wrapper" class="clearfix">
@@ -37,6 +45,7 @@
   
               <% if @user.image? %>
                 <%= image_tag(@user.image.url, :size => "300x300") %>
+
               <% else %>
               <span class="gravatar">
                 <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(current_user, size: "300") %>" alt="">
@@ -53,12 +62,14 @@
 
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
+
       <div class="field">
-        <%= f.label :image, 'プロフィール画像' %>
-        <br>
+        <p><%= f.label :image, 'プロフィール画像' %>&nbsp;<font class='required'>(正方形にトリミングされます)</font></p>
+        
         <%= f.file_field :image %>
         <%= f.hidden_field :image_cache %>
       </div>
+
       <div class="field">
 <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
         <% if @user.persisted? && @user.image? %>
@@ -72,7 +83,7 @@
 <!-- 追加箇所 終了 -->
       <div class="form-group">
         <%= f.label :comment, '自己紹介コメント' %>
-        <%= f.text_area :comment, class: 'form-control', rows: 2 %>
+        <span class="field-img"><%= f.text_area :comment, class: 'form-control', rows: 2 %></span>
       </div>
       <div class="actions">
         <%= f.submit '保存する', class: 'btn btn-primary btn-md' %>

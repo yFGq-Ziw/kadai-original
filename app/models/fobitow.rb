@@ -15,9 +15,29 @@ class Fobitow < ApplicationRecord
   end
 # ajaxここまで
 
-    def self.search(search)
-      return Fobitow.all unless search
-      Fobitow.where(['title LIKE ?', "%#{search}%"])
-#      Fobitow.where(['content LIKE ?', "%#{search}%"])
+  # search機能
+  def self.search(search)
+
+    if search && search != ""
+      words = search.to_s.split(" ")
+      columns = ["title", "likes_count"]
+      query = []
+      result = []
+ 
+      columns.each do |column|
+        query << ["#{column} LIKE ?"]
+      end
+ 
+      words.each_with_index do |w, index|
+        if index == 0
+          result[index] = Fobitow.where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+        else
+          result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+        end
+      end
+      return result[words.length-1]
+    else
+      Fobitow.all
     end
+  end
 end

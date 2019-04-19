@@ -147,12 +147,7 @@ header h1 {
 }
 
 #point figure {
-    float: right;
-    margin-left: 16px;
-    margin-right: 0;
-    padding-top: 5px;
-    padding-bottom: 10px;
-}
+    float: right;}
 
 #point figcaption {
     font-size: 12px;
@@ -382,12 +377,6 @@ hr {
     padding: 4px 9px 4px 14px;
 }
 
-.textOverflow2 {
-      height: 20px;
-      max-width: 360px;
-  overflow: hidden;
-}
-
 .textOverflow3 {
       height: 20px;
       max-width: 150px;
@@ -409,49 +398,72 @@ margin: 0px;
     margin-right: auto;
     margin-left: auto;}
 
-.textOverflow{
-    overflow: hidden;
-    border: 0px solid #ccc;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -webkit-text-overflow: ellipsis; /* Safari */
-    -o-text-overflow: ellipsis; /* Opera */
-    max-width: 580px;
-    max-height: 45px;
-    background: linear-gradient(to right, #eeefea, #fff);
-}
-
-/*以下、②左側のコメント*/
-.says p {
-  margin: 0;
-  padding: 0;
-}
-
-.says {
-  display: inline-block;
-  position: relative; 
-  margin-top: -5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 5px;
-  /*border: 1px solid #956840; /* 枠線 */
-}
-
-.box26 {
-    margin-top: 10px;
- }
-
-.textOverflow2{
-    overflow: hidden;
-    margin-top: -20px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -webkit-text-overflow: ellipsis; /* Safari */
-    -o-text-overflow: ellipsis; /* Opera */
-    max-width: 580px;
-    max-height: 45px;
-}
 
 .scrape-favicon {
      vertical-align: middle; 
 }
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.required{
+  font-size: 11px;
+  color:gray;
+}
+
+button, input, optgroup, select, textarea {
+    margin-left: 0px;
+}
+
+.form-control {
+    margin-top: -4px;}
+    
+.btn {
+    margin-top: 0;}
+
+
+
+.textOverflow {
+    border-radius: 5px;
+    margin: 0px;
+    padding-top: 5px;
+    max-width: 580px;
+    max-height: 67.5px;
+    background: linear-gradient(to right, #eeefea, #fff);
+    border: 0px solid #ccc;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.textOverflow2 {
+    overflow: hidden;
+    max-width: 580px;
+    max-height: 67.5px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.says {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0px;
+    padding-left: 5px;
+    padding-top: 0px;
+    margin-bottom: 5px;
+}
+
+.box26 {
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;  }
+
+.fav-align{vertical-align: middle;}

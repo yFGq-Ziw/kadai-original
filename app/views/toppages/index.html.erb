@@ -4,17 +4,18 @@
 
       <!--検索拡張機能  -->
       <div class="media-body">
-      <!-- ロゴ -->
-              <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1>
+         <!--検索拡張機能  -->
+         <p>content search</p>
+            <%= form_tag root_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search] %>
+              <%= submit_tag "Submit", :name => nil %>
+            <% end %>
       </div>
       <div class="media-right">
-              content search
-                  <%= form_tag root_path, :method => 'get' do %>
-                    <%= text_field_tag :search, params[:search] %>
-                    <%= submit_tag "Submit", :name => nil %>
-                  <% end %>
-      
+      <!-- ロゴ -->
+          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
       </div>
+      
             <nav id="global_navi2">
                 
                 <ul>
@@ -42,7 +43,16 @@
                     <section class="clearfix">
                         <figure>
 
-                            <figcaption>人気 | 新着</figcaption>
+               <figcaption>
+                  <div>
+                     <form action="#index" method="get">
+                       <input type="submit" name="button1" value="人気" />
+                       <input type="submit" name="button2" value="新着" />
+                     </form>
+                  </div>
+               </figcaption>
+                            
+                            
                         </figure>
                         <h3>総合 の新着エントリー</h3>
                         <p>

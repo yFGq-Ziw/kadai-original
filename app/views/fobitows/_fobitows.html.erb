@@ -13,12 +13,13 @@
         <%# イメージ画像 %>
         <div class="pro-img">
         <% if fobitow.user.image? %>
-          <%= image_tag(fobitow.user.image.url, :size => "40x40") %>
+          <%= image_tag(fobitow.user.image.url(:thumb), :size => "40x40") %>
         <% else %>
               <span class="gravatar">
-                <img class="media-object img-rounded" src="<%= gravatar_url(current_user, size: "40") %>" alt="">
+                <img class="media-object img-rounded" src="<%= gravatar_url(fobitow.user, size: "40") %>" alt="">
               </span>
 <%#          <%= image_tag("panda.png", :size => "40x40") %>
+        <%#<% end %>
         <% end %>
         </div>
         <%= link_to 'Forum', user_path(fobitow.user) %>
@@ -62,7 +63,7 @@
                   <p class="says textOverflow">
                     <%= link_to fobitow.content, target: "_new" do %>
                       <!-- url favicon, title -->          
-                      <img src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
+                      <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
                     <% end %>
 
                     <%= link_to fobitow.content, target: "_new" do %>

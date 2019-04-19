@@ -8,8 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @fobitows = @user.fobitows.order('created_at DESC').page(params[:page])#.per(4)
-    # 検索拡張機能として.search(params[:search])を追加    
-    #@fobitows = @user.fobitows.order('created_at DESC').page(params[:page]).search(params[:search])
     counts(@user)
   end
   
@@ -54,18 +52,18 @@ class UsersController < ApplicationController
   
   def followings
     @followings = @user.followings.page(params[:page])#.per(4)
+    @ranking_counts = Follow.ranking
     counts(@user)
   end
   
   def followers
     @followers = @user.followers.page(params[:page])#.per(4)
+    @ranking_counts = Follow.ranking
     counts(@user)
   end
 
   def likes
     @fobitows = @user.likes.order('created_at DESC').page(params[:page])#.per(4)
-    # 検索拡張機能として.search(params[:search])を追加    
-    #@fobitows = @user.likes.order('created_at DESC').page(params[:page]).search(params[:search])
     counts(@user)
   end
 

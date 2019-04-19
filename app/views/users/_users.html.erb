@@ -36,7 +36,17 @@
               </div>
             </li>
           </th>
-          
+
+          <th>
+
+            <!-- follower数 -->
+            <div class="pro-come">
+              <% unless @ranking_counts[user.id] == @empty %>
+                <p><%= @ranking_counts[user.id] %>&nbsp;Followers</p>
+              <% end %>
+            </div>
+          </th>
+
           <th>
             <div class="follow-btn users-follow-btn">
             <% unless current_user == user %>

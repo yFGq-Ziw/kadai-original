@@ -55,4 +55,9 @@ class User < ApplicationRecord
   def likes?(fobitow)
     likes.include?(fobitow)
   end
+  
+    def self.search(search)
+      return User.all unless search
+      User.where(['name LIKE ? or comment LIKE ?', "%#{search}%", "%#{search}%"])
+    end
 end

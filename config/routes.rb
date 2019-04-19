@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'toppages#index'
-  
+
   get 'categorys/:category', to: 'categorys#show'
 
   get "toppages/bookmark" => "toppages#bookmark"
@@ -30,9 +30,6 @@ Rails.application.routes.draw do
   resources :fobitows do
     resources :favorites, only: [:create, :destroy]
   end
-  # 以下コメントアウト
-#  resources :fobitows, only: [:create, :destroy]
-#  resources :favorites, only: [:create, :destroy]
   # ajaxここまで
   
   resources :relationships, only: [:create, :destroy]
