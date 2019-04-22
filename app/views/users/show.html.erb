@@ -6,9 +6,6 @@
             <%= form_tag user_path(current_user), :method => 'get' do %>
               <input type="radio" name="select" value="all" checked>All
               <input type="radio" name="select" value="mine">Mine | Category:
-              <input type="radio" name="category" value="include" checked>Include
-              <input type="radio" name="category" value="exclude">Exclude
-              <input type="radio" name="category" value="only">Only |
               <%= text_field_tag :search, params[:search], :placeholder => "Bookmarkを検索" %>
 
                 <button class="searchForm-submit" type="submit"></button>

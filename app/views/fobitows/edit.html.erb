@@ -71,14 +71,6 @@
           <li class="mark-post"><%= f.text_area :likes_count, :placeholder => "サイトの紹介文など、自由にコメントを加えてください", class: 'form-control', rows: 4 %></li>
         </div>
 
-    <%= f.fields_for :tags do |b| %>
-    <div class="field">
-        <%= b.label(:name, "tag name") %>
-        <%= b.text_area :name, :include_blank => true %><br>
-    </div>
-    <% end %>
-
-          
           <%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
 
       <% end %>
