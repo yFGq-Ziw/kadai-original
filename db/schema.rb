@@ -22,14 +22,6 @@ ActiveRecord::Schema.define(version: 20190422040233) do
     t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
-  create_table "fobitowhashtags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "fobitow_id"
-    t.integer "tag_id"
-    t.index ["fobitow_id", "tag_id"], name: "index_fobitowhashtags_on_fobitow_id_and_tag_id", unique: true, using: :btree
-    t.index ["fobitow_id"], name: "index_fobitowhashtags_on_fobitow_id", using: :btree
-    t.index ["tag_id"], name: "index_fobitowhashtags_on_tag_id", using: :btree
-  end
-
   create_table "fobitows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "content",         limit: 65535
     t.string   "title"
@@ -43,13 +35,6 @@ ActiveRecord::Schema.define(version: 20190422040233) do
     t.index ["user_id"], name: "index_fobitows_on_user_id", using: :btree
   end
 
-  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "fobitow_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "follow_id"
@@ -58,22 +43,6 @@ ActiveRecord::Schema.define(version: 20190422040233) do
     t.index ["follow_id"], name: "index_relationships_on_follow_id", using: :btree
     t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
-  end
-
-  create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "tag_id"
-    t.integer  "fobitow_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tag_id", "fobitow_id"], name: "index_taggings_on_tag_id_and_fobitow_id", unique: true, using: :btree
-    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-  end
-
-  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -88,8 +57,6 @@ ActiveRecord::Schema.define(version: 20190422040233) do
 
   add_foreign_key "favorites", "fobitows"
   add_foreign_key "favorites", "users"
-  add_foreign_key "fobitowhashtags", "fobitows"
-  add_foreign_key "fobitowhashtags", "tags"
   add_foreign_key "fobitows", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
