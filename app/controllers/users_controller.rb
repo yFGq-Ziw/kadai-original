@@ -7,8 +7,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    @fobitows = @user.fobitows.order('created_at DESC').page(params[:page])#.per(4)
-    counts(@user)
+
+#    if params[:select] = 'all'
+#      @fobitows = Fobitow.all.order('favorites_count DESC').page(params[:page]).search(params[:search])#.per(10)
+    if params[:select] == 'all'
+      @fobitows = Fobitow.all.order('favorites_count DESC').page(params[:page]).search(params[:search])#.per(10)
+    else
+      @fobitow = Fobitow.new
+      @fobitows = @user.fobitows.order('created_at DESC').page(params[:page]).search(params[:search])#.per(4)
+      counts(@user)
+    end
+#    end
+
   end
   
   def new

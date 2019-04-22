@@ -1,19 +1,23 @@
-<div style="row padding-top:20px;">
-  
-        <header>
+<header>
 
       <!--検索拡張機能  -->
       <div class="media-body">
          <!--検索拡張機能  -->
-         <p>content search</p>
+          <div class="input-search searchForm">
             <%= form_tag root_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search] %>
-              <%= submit_tag "Submit", :name => nil %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Bookmarkを検索" %>
+                <button class="searchForm-submit" type="submit"></button>
             <% end %>
+          </div>
       </div>
+      
       <div class="media-right">
       <!-- ロゴ -->
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
+            <div class="logo">
+              <%= link_to root_path do %>
+                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+              <% end %>
+            </div>
       </div>
       
             <nav id="global_navi2">
@@ -54,8 +58,11 @@
                             
                             
                         </figure>
-                        <h3>総合 の新着エントリー</h3>
+                        <h3>総合 の
+                           <%= params[:button1] %><%= params[:button2] %>
+                        エントリー</h3>
                         <p>
+                          <hr>
                         <%= render 'fobitows/fobitows', fobitows: @fobitows %>               
                         </p>
                     </section>
@@ -98,24 +105,38 @@
                     <ul>
                     
                         <% if logged_in? %>
-                          <%= current_user.name %> さん<br>
-                          ログイン中
+                          <div class="sign">
+                            <%= current_user.name %> さん<br>
+                            ログイン中
                             <hr>
                             <p>ブックマークを追加する</p>
-                            
+                              
                             <ul>
-                              <li><%= link_to 'Bookmark', toppages_bookmark_path, class: 'btn btn-block btn-primary' %></li>
+                              <li><%= link_to 'Bookmark', fobitows_path, class: 'btn btn-block btn-primary' %></li>
                             </ul>
                             <p>おすすめのブックマークを<br>投稿しましょう！</p>
-                        <% else %>
+                          </div>
+                          <% else %>
+                          <div class="sign">
+
+                            <p> -&nbsp;&nbsp;Cloudでブックマークを収集・管理&nbsp;&nbsp;- </p>
+                            <p> -&nbsp;&nbsp;便利なブックマークをカンタン共有&nbsp;&nbsp;- </p>
+                            <p> -&nbsp;&nbsp;役に立ったら、”いいね！”&nbsp;&nbsp;- </p>
                             <li><%= link_to 'Sign up', signup_path, class: 'btn btn-block btn-primary' %></li>
                             <li><p>or</p></li>
                             <li><%= link_to 'Log in', login_path, class: 'btn btn-block btn-primary' %></li>
-                            <p>さっそく、Fobitows を<br>始めましょう！</p>
+                            <p>さっそく、Bookshare を始めましょう！</p>
+                          </div>
                         <% end %>
                     </ul>
-                    <%= image_tag("logo.png", :alt => "Fobitows") %>
-                    
+
+      <!-- ロゴ -->
+            <div>
+              <%= link_to root_path do %>
+              <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+              <% end %>
+            </div>
+
                 </section>
             </aside>
             <!--サイドここまで-->

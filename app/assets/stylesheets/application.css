@@ -2,21 +2,19 @@
 
 body {
     margin: 0;
-    padding: 0;
     color: #333;
     font-size: 14px;
 }
 
 a {
-    color: #333;
+    color: #9d9d9d;
 }
 
-/*
-a:visited { color: #333;}
-*/
+
+a:visited { color: #9d9d9d;}
 
 a:hover {
-    color: #333;
+    color: #9d9d9d;
     font-weight: 700;
     text-decoration: none;
 }
@@ -24,15 +22,6 @@ a:hover {
 /* チャプター：マージン */
 h1,h2,h3,h4,h5,h6 {
     margin-top: 0;
-}
-
-p {
-    margin-top: 0;
-    line-height: 1.6;
-}
-
-img {
-    vertical-align: bottom;
 }
 
 /* チャプター：見出しの装飾 */
@@ -52,28 +41,11 @@ img {
     padding: 4px 9px 4px 14px;
 }
 
-header {
-    width: 984px;
-    margin: 0 auto;
-}
-
-header h1 {
-    margin: 5px 0 10px;
-}
+header h1 {margin: 5px 0 10px;}
 
 /* header */
-#global_navi {min-height: 35px !important}
-
-#global_navi {
-    height: 35px;
-    padding: 0px 0px;
-}
-
-.navbar-right {
-    font-size: 12px;
-        margin-right: -35px;
-}
-
+.navbar-right {margin-right: -35px;}
+        
 #global_navi2 {
     margin-bottom: 16px;
 }
@@ -119,26 +91,6 @@ header h1 {
     color: white;
 }
 
-#main_visual {
-    width: 984px;
-    height: 440px;
-    margin: 0 auto 25px;
-}
-
-#wrapper {
-    width: 984px;
-    margin: 0 auto;
-}
-
-#main {
-    width: 730px;
-    float: left;
-}
-
-#sidebar {
-    width: 220px;
-    float: right;
-}
 
 .clearfix::after {
     content: '';
@@ -164,16 +116,11 @@ header h1 {
     margin-bottom: 10px;
 }
 
-#news li a {
-    margin-left: 15px;
-}
-
 #side_banner ul li {
     display: inline-block;
     padding: 5px;
-    width: 150px;  
+    width: 50%;
 }
-
 #side_banner ul {
     list-style: none;
     padding: 0;
@@ -181,9 +128,211 @@ header h1 {
 
 #side_banner {
     margin-bottom: 30px;
-    border: 1px solid #956840;
+    padding-top: 35px;
     text-align: center;
 }
+
+.pro-link a {
+  color: blue;
+  /*text-decoration: underline;*/
+      font-weight: 350;
+  margin: 0px;
+  padding: 0px;
+}
+.pro-link a:hover {
+    font-weight: 700;
+
+}
+
+.table>tbody>tr>th{
+    vertical-align: middle;
+}
+
+.follow-btn{
+     width: 80px; 
+     position: relative; 
+     right: 5px;}
+     
+.navbar-header a {
+  font-size: 19px;
+    margin-left: 0px;
+    text-align: middle;
+    vertical-align: middle;
+    list-style: none;
+}
+
+/* チャプター：見出しの装飾 */
+#main2 h2 {
+    background: #fff;
+    font-size: 2px;
+/*    padding: 1px 2px;*/
+    border-radius: 2px;
+    border: 1px solid #d8a375;
+}
+
+#main2 h3 {
+    font-size: 16px;
+    border-left: solid 3px #fa9786;
+    padding: 4px 9px 4px 14px;
+}
+
+.textOverflow3 {
+      height: 20px;
+      max-width: 150px;
+  overflow: hidden;
+padding: 0px;
+margin: 0px;
+}
+
+.nav-tabs a{
+    padding: 5px 5px;
+    height: 30px;
+}
+.yokonarabi ul a{
+    list-style: none;
+}
+
+.scrape-favicon {
+     vertical-align: middle; 
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.required{
+  font-size: 11px;
+  color:gray;
+}
+
+button, input, optgroup, select, textarea {
+    margin-left: 0px;
+}
+
+.form-control {
+    margin-top: -4px;}
+    
+.btn {
+    margin-top: 0;}
+
+.textOverflow {
+    border-radius: 5px;
+    margin: 0px;
+    padding-top: 5px;
+    max-width: 580px;
+    max-height: 67.5px;
+    background: linear-gradient(to right, #eeefea, #fff);
+    border: 0px solid #ccc;
+    /*text-overflow: ellipsis;*/
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.textOverflow2 {
+    overflow: hidden;
+    max-width: 580px;
+    max-height: 67.5px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.says {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0px;
+    padding-left: 5px;
+    padding-top: 0px;
+    margin-bottom: 5px;
+}
+
+.box26 {
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;  }
+
+.logo {
+padding-left: 20px;
+padding-bottom: 20px;
+}
+.logo3 {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.logo-navi img{
+    margin-top: -3px;
+}
+
+.toko {margin-right: 1px;}
+.botan {margin-right: 1px;}
+
+li {list-style: none;}
+
+hr {
+    height: 1px;
+    border: none;
+    border-top: 1px #C0C0C0 solid;
+    margin-top: -1px;
+    padding-top: -1px;    
+    margin-bottom: 20px;
+}
+
+.mark-post {margin-bottom: 5px;}
+
+.right {
+    margin-top: 1px;
+    padding: 0px;
+    text-align: right;
+    float: right;
+    padding-right: 1px;
+    margin-right: 1px;
+}
+
+.pro-img {
+  margin-top: 12px;
+  margin-right: 5px;
+  display: inline-block;
+  position: relative; 
+  padding-left: 5px;
+  padding-right: 5px;
+/*  border: 1px solid #956840; /* 枠線 */   
+}
+
+.pro-img2 {
+  margin-top: 5px;
+  margin-right: 5px;
+  display: inline-block;
+  position: relative; 
+  padding-left: 5px;
+  padding-right: 5px;}
+  
+.navbar-nav {
+     margin: 0px 0px; }
+
+.navbar-toggle {
+    float: right;
+    margin-top: 8px;
+
+}
+
+ul { list-style: none;}
+
+.my-gray {color: gray}
+.fa-ban {color: #9C9689}
+
+
+.chuo {
+    padding-top: 5px !important;
+}
+
+.nav > li> a {
+    position: relative;
+    display: block; }
 
 #side_banner h2 {
     background-color: #956840;
@@ -191,6 +340,7 @@ header h1 {
     padding: 7px;
     font-size: 14px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 footer #footer_navi ul {
@@ -229,241 +379,186 @@ footer small {
     color: #fff;
 }
 
-ul { list-style: none;}
+.fav-align{vertical-align: middle;}
 
 #global_navi .current2 a{ color: white;}
+#global_navi .current2 { color: white;}
+.dropdown-menu{ color: #9d9d9d;}
 
-#global_navi .drop a{ color: black;}
-
-.my-gray {color: gray}
-.fa-ban {color: #9C9689}
-
-/* universal */
-body {padding-top: 0px;}
-
-.chuo {
-    padding-top: 5px !important;
+input[type="text"], input[type="search"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #999;
+    border-radius: 5px;
+    height: 29px;
 }
 
-.navbar-nav > li > a {
-    padding-top: 4px !important;
-    line-height: 23px;
-}
-
-.nav > li> a {
+.searchForm {
     position: relative;
-    display: block;
-    padding: 4px 8px; 
+    max-width: 400px;
+    font-size: 12px;
+    
 }
 
-.logo2 a {
-  background: url("logo2.png") no-repeat left center;
-}
-.toko {margin-right: 1px;}
-.botan {margin-right: 1px;}
-
-li {list-style: none;}
-
-hr {
-    height: 1px;
-    border: none;
-    border-top: 1px #C0C0C0 solid;
-    margin-top: -1px;
-    padding-top: -1px;    
-    margin-bottom: 20px;
+.searchForm-input {
+  width: 100%;}
+  
+.searchForm-submit {
+    position: absolute;
+    width: 29px;
+    height: 29px;
+    top: calc(50% - 15px);
+    right: 0;
+    border-radius: 0 4px 4px 0;
+    background: #999;
 }
 
-.mark-post {margin-bottom: 5px;}
-
-.right {
-    margin-top: 1px;
-    padding: 0px;
-    text-align: right;
-    float: right;
-    padding-right: 1px;
-    margin-right: 1px;
+.searchForm-submit::before {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 15px;
+  top: calc(50% - 9px);
+  left: calc(50% - 9px);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff;
+}
+.searchForm-submit::after {
+  position: absolute;
+  content: '';
+  width: 8px;
+  height: 6px;
+  top: calc(50% + 6px);
+  left: calc(50% + 2px);
+  border-top: solid 2px #fff;
+  transform: rotate(45deg);
 }
 
-.pro-img {
-  margin-top: 12px;
-  margin-right: 5px;
-  display: inline-block;
-  position: relative; 
-  padding-left: 5px;
-  padding-right: 5px;
-  border: 1px solid #956840; /* 枠線 */   
+.box {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 300px;
+  border: 1px solid #9d9d9d;/* 枠線 */
+  margin: auto;}
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /*調整*/
 }
 
-.pro-img2 {
-  margin-top: 5px;
-  margin-right: 5px;
-  display: inline-block;
-  position: relative; 
-  padding-left: 5px;
-  padding-right: 5px;
-  /*max-width: 88.5%;*/
-  /*border-radius: 5px;
-  /*background: linear-gradient(to right, #fef, #fef);
-  */border: 1px solid #956840; /* 枠線 */   
+.box2 {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 80px; 
+  border: 1px solid #9d9d9d; /* 枠線 */
+    margin-right: 10px;}
+.box3 {
+  width: 27px;
+  height: 27px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 27px; 
+  border: 1px solid #9d9d9d; /* 枠線 */
+    margin-right: 0px;}
+
+.col-lg-8 {
+    padding-left: 0;
 }
 
-.pro-link a {
-  color: blue;
-  /*text-decoration: underline;*/
-      font-weight: 350;
-  margin: 0px;
-  padding: 0px;
-}
-.pro-link a:hover {
-    font-weight: 700;
-
-}
 .pro-come {
     vertical-align: middle;
-  color: gray;
-  font-size: 13px;
-  margin: 0px;
-  display: inline-block;
-  position: relative; 
-  padding-top: 5px;
-  padding-left: 10px;
-  border-radius: 5px;
-  /*background: linear-gradient(to right, #fef, #fef);
-  border: 1px solid #956840; /* 枠線 */   
+    color: gray;
+    font-size: 13px;
+    margin: 0px;
+    display: inline-block;
+    position: relative;
+    padding: 30px;
+    border-radius: 5px;
+}
+p {
+    margin-top: 0;
+    line-height: 1.6;
 }
 
-.table>tbody>tr>th{
-    vertical-align: middle;
-}
-
-.follow-btn{
-     width: 80px; 
-     position: relative; 
-     right: 5px;}
-     
-.navbar-header a {
-  font-size: 19px;
-    margin-left: 0px;
-    text-align: middle;
-    vertical-align: middle;
-    list-style: none;
-}
-
-.logo {
-    margin-top: -12px;
-}
-
-#footer {
-  width: 984px;
-    margin: 0 auto;
-}
-
-#main2 {
-    width: 984px;
+.navbar-brand {
     float: left;
-}
-/* チャプター：見出しの装飾 */
-#main2 h2 {
-    background: #fff;
-    font-size: 2px;
-/*    padding: 1px 2px;*/
-    border-radius: 2px;
-    border: 1px solid #d8a375;
+    height: 100%;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
 }
 
-#main2 h3 {
-    font-size: 16px;
-    border-left: solid 3px #fa9786;
-    padding: 4px 9px 4px 14px;
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
-.textOverflow3 {
-      height: 20px;
-      max-width: 150px;
-  overflow: hidden;
-padding: 0px;
-margin: 0px;
+.panel-default {
+    padding: 15px;
+    border: 0;
 }
 
-.nav-tabs a{
-    padding: 5px 5px;
-    height: 30px;
+.mark-back {
+    margin-bottom: 50px;
 }
-.yokonarabi ul a{
-    list-style: none;
+
+@media screen and (min-width: 641px) {
+    .logo-navi {
+        display:none;}
+}
+
+/*@media screen and (min-width: 641px) {
+	.box2 img{
+		width: 80px;
+		height: 80px;
+	}
+}*/
+
+@media screen and (max-width: 640px) {
+    .logo {
+        display:none;}
+
+	.box {
+    width: 150px;
+    height: 150px;
+	}
+    .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    width: 150px;
+    height: 150px;
+	}
+	.box2 img{
+		width: 40px;
+		height: 40px;
+	}
+    .box2 {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+#news li a {
+    margin-right: 15px;
+    margin-left: 0px;}
+    
+@media screen and (max-width: 480px){
+    .media-body, .media-left, .media-right {
+        font-size: 12px;
+    }    
 }
 
 .container {
-    width: 984px;
-    margin-right: auto;
-    margin-left: auto;}
+    padding-right: 15px;
+    padding-left: 15px;}
 
-
-.scrape-favicon {
-     vertical-align: middle; 
+.sign a:visited {
+     color: #fff; 
 }
-
-.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
-    display: block;
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-}
-
-.required{
-  font-size: 11px;
-  color:gray;
-}
-
-button, input, optgroup, select, textarea {
-    margin-left: 0px;
-}
-
-.form-control {
-    margin-top: -4px;}
-    
-.btn {
-    margin-top: 0;}
-
-
-
-.textOverflow {
-    border-radius: 5px;
-    margin: 0px;
-    padding-top: 5px;
-    max-width: 580px;
-    max-height: 67.5px;
-    background: linear-gradient(to right, #eeefea, #fff);
-    border: 0px solid #ccc;
-
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-}
-.textOverflow2 {
-    overflow: hidden;
-    max-width: 580px;
-    max-height: 67.5px;
-
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-}
-
-.says {
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 0px;
-    padding-left: 5px;
-    padding-top: 0px;
-    margin-bottom: 5px;
-}
-
-.box26 {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;  }
-
-.fav-align{vertical-align: middle;}

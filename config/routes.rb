@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   get 'categorys/:category', to: 'categorys#show'
 
-  get "toppages/bookmark" => "toppages#bookmark"
-  
+#  get "toppages/bookmark" => "toppages#bookmark"
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   # edit: 更新用のフォームページ
   get 'users/:id/edit', to: 'users#edit'
 
+#  get '/post/tag/:name', to: "fobitows#tag"
+
+#  resources :tags, only: [:index, :show]
+  
   resources :users, only: [:index, :show, :new, :create, :edit, :update] do
     member do
       get :followings

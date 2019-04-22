@@ -9,14 +9,16 @@
             <!-- 写真 -->
             <div class="pro-img2">
               <%= link_to user_path(user) do %>
+              <p class="box2">
                 <% if user.image? %>
-                  <%= image_tag(user.image.url(:thumb), :size => "40x40") %>
+                  <%= image_tag(user.image.url(:thumb), :size => "80", class: 'image') %>
                 <% else %>
               <span class="gravatar">
-          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 40 }) %>" alt="">
+          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 80 }) %>" alt="">
               </span>
 <%#                  <%= image_tag("panda.png", :size => "40x40") %>
                 <% end %>
+              </p>
               <% end %>
             </div>
           </th>

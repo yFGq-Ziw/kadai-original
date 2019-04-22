@@ -1,0 +1,70 @@
+<header>
+
+      <!--検索拡張機能  -->
+      <div class="media-body">
+
+      </div>
+      
+      <div class="media-right">
+      <!-- ロゴ -->
+            <div class="logo">
+              <%= link_to root_path do %>
+                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+              <% end %>
+            </div>
+      </div>
+
+</header> 
+
+        <!--ここからwrapperー-->
+        <div id="wrapper" class="clearfix">
+            <!--ここからメイン-->
+            <div id="main2">
+                <section id="point">
+                    <h2></h2>
+                    <section class="clearfix">
+                        <figure>
+                            <figcaption></figcaption>
+                        </figure>
+                        <h3>Bookshare にブックマークを追加する</h3>
+                        <p>
+                          
+<hr>
+
+<div class="text-center">
+  <h1>Bookmark&nbsp;&nbsp;</h1>
+</div>
+
+<div>
+  <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+<%= form_for :fobitow do |f| %>
+    <div class="field">
+        <%= f.label(:content,"url") %>
+        <%= f.text_field(:content) %><br>
+    </div>
+
+    <%= f.fields_for :tags do |b| %>
+    <div class="field">
+        <%= b.label(:name, "tag name") %>
+        <%= b.select :name, options_for_select([["1", 1], ["2", 2],["3", 3], ["4", 4],["5", 5], ["6", 6],["7", 7], ["8", 8],["9", 9], ["10", 10]],), :include_blank => true %><br>
+    </div>
+    <% end %>
+
+          <%= f.submit 'Post Bookmark !', class: 'btn btn-primary btn-block' %>
+<% end %>
+
+    <p class="mark-back"><%= link_to 'Back', :back %></p>
+    <%#<%= return_back %>
+    
+  </div>
+</div>
+
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <!--wrapperここまで-->
+        <!--ここからフッター-->
+        <!--フッターここまで--> 

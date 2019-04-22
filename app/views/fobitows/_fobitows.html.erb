@@ -11,18 +11,18 @@
       <div class="media-right media-top">
 
         <%# イメージ画像 %>
-        <div class="pro-img">
+        <p class="box2">
         <% if fobitow.user.image? %>
-          <%= image_tag(fobitow.user.image.url(:thumb), :size => "40x40") %>
+          <%= image_tag(fobitow.user.image.url(:thumb), :size => "80", class: 'image') %>
         <% else %>
               <span class="gravatar">
-                <img class="media-object img-rounded" src="<%= gravatar_url(fobitow.user, size: "40") %>" alt="">
+                <img class="media-object img-rounded" src="<%= gravatar_url(fobitow.user, size: "80") %>" alt="">
               </span>
 <%#          <%= image_tag("panda.png", :size => "40x40") %>
         <%#<% end %>
         <% end %>
-        </div>
-        <%= link_to 'Forum', user_path(fobitow.user) %>
+        </p>
+        <%= link_to 'Forum', fobitow_path(fobitow.id) %>
       </div>
 
       <div class="media-body">
@@ -35,24 +35,31 @@
           <div>
             <span class="text-muted"> posted at: <%= fobitow.created_at %></span>
 
-            <%# ジャンル %>
-            <span class="label label-info"><%= fobitow.category %></span>
-          <%# いいね %>
+                <% if logged_in? %>
+                  <% if current_user == fobitow.user %>
+                    <!-- 編集ページへ -->
+                    <%= link_to edit_fobitow_path(fobitow) do %>
+                      <i class="fas fa-edit"></i>
+                    <% end %>
+                    <%# ゴミ箱 %>
+                 	  <%= link_to fobitow, method: :delete, data: { confirm: "You sure?" } do %>
+                      <i class="fas fa-trash my-gray"></i>
+                    <% end %>
+                   <% end %>
+                <% end %>
+                
+            <!-- tag -->
+<%#            <span class="label label-info"><%= render_with_tags(fobitow.content) %><!--</span>
+-->
+            <!-- category -->
+            
+              <span class="label label-info"><%= fobitow.category %></span>
+            
+          <!-- いいね -->
           <span class="right" id="ajax<%= fobitow.id %>">
             <!-- ajax -->
             <%= render partial: 'favorites/favorite', locals: { fobitow: fobitow, favorite: @favorite } %>
           </span>
-
-              <%# ゴミ箱 %>
-              <span class="right">
-                <% if logged_in? %>
-                  <% if current_user == fobitow.user %>
-                 	  <%= link_to fobitow, method: :delete, data: { confirm: "You sure?" } do %>
-                    <i class="fas fa-trash fa-lg my-gray"></i>
-                    <% end %>
-                   <% end %>
-                <% end %>
-              </span>
 
           </div>
 
@@ -76,12 +83,12 @@
                   </div>
                   
                   <div class="box26">
-                  <p class="says textOverflow2">
-                        <%= link_to fobitow.content, target: "_new" do %>
-                          <!-- body_text_h3 -->          
-                          <%= fobitow.likes_count %>
-                    <% end %>
-                  </p>
+                    <p class="says textOverflow2">
+                      <%= link_to fobitow.content, target: "_new" do %>
+                        <!-- body_text_h3 -->          
+                        <%= fobitow.image %><%= fobitow.likes_count %>
+                      <% end %>
+                    </p>
                   </div>
                
                     <%#<%= link_to fobitow.content, target: "_new" do %>

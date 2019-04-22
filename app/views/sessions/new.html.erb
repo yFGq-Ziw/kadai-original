@@ -1,6 +1,17 @@
-<div style="row padding-top:10px;">
-        <header>
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows", :size => "98x28"), root_path %></h1>
+<header>
+
+      <div class="media-body">
+      </div>
+      
+      <div class="media-right">
+      <!-- ロゴ -->
+            <div class="logo">
+              <%= link_to root_path do %>
+              <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+              <% end %>
+            </div>
+      </div>
+
         </header> 
         <!--ここからwrapperー-->
         <div id="wrapper" class="clearfix">
@@ -12,7 +23,7 @@
                         <figure>
                             <figcaption></figcaption>
                         </figure>
-                        <h3>Fobitows に Log in</h3>
+                        <h3>Bookshare に Log in</h3>
                         <p>
                           
 <hr><%# サインイン %>

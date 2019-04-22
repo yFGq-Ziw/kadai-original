@@ -1,6 +1,4 @@
-<div style="row padding-top:20px;">
-  
-        <header>
+<header>
 
       <!--検索拡張機能  -->
       <div class="media-body">
@@ -13,7 +11,7 @@
       </div>
       <div class="media-right">
       <!-- ロゴ -->
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
+          <h1><%= link_to image_tag("logo.png", :alt => "Bookshare"), root_path %></h1></p>
       </div>
       
             <nav id="global_navi2">
@@ -40,7 +38,7 @@
             <div id="main">
                 <section id="point">
                                  
-                        <li><h2>Fobitows - <%= params[:category] %> -</h2></li>
+                        <li><h2>Bookshare - <%= params[:category] %> -</h2></li>
 
                     <section class="clearfix">
                     
@@ -55,8 +53,11 @@
                         </figcaption>
                     </figure>
                     
-                        <h3><%= params[:category] %> の新着エントリー</h3>
+                        <h3><%= params[:category] %> の
+                            <%= params[:button1] %><%= params[:button2] %>
+                        エントリー</h3>
                         <p>
+                            <hr>
                         <%= render 'fobitows/fobitows', fobitows: @fobitows %>               
                         </p>
                         
@@ -99,7 +100,7 @@
             <!--ここからサイド-->
             <aside id="sidebar">
                 <section id="side_banner">
-                    <h2>Fobitows へようこそ</h2>
+                    <h2>Bookshare へようこそ</h2>
                     <ul>
                     
                         <% if logged_in? %>
@@ -109,17 +110,17 @@
                             <p>ブックマークを追加する</p>
                             
                             <ul>
-                              <li><%= link_to 'Bookmark', toppages_bookmark_path, class: 'btn btn-block btn-primary' %></li>
+                              <li><%= link_to 'Bookmark', fobitows_path, class: 'btn btn-block btn-primary' %></li>
                             </ul>
                             <p>おすすめのブックマークを<br>投稿しましょう！</p>
                         <% else %>
                             <li><%= link_to 'Sign up', signup_path, class: 'btn btn-block btn-primary' %></li>
                             <li><p>or</p></li>
                             <li><%= link_to 'Log in', login_path, class: 'btn btn-block btn-primary' %></li>
-                            <p>さっそく、Fobitows を<br>始めましょう！</p>
+                            <p>さっそく、Bookshare を<br>始めましょう！</p>
                         <% end %>
                     </ul>
-                    <%= image_tag("logo.png", :alt => "Fobitows") %>
+                    <%= image_tag("logo.png", :alt => "Bookshare") %>
                     
                 </section>
             </aside>

@@ -82,11 +82,15 @@
       <br>
 <!-- 追加箇所 終了 -->
       <div class="form-group">
-        <%= f.label :comment, '自己紹介コメント' %>
+        <%= f.label :name, 'Name' %>
+        <span class="field-img"><%= f.text_area :name, class: 'form-control', rows: 1 %></span>
+      </div>
+      <div class="form-group">
+        <%= f.label :comment, 'Comment' %>
         <span class="field-img"><%= f.text_area :comment, class: 'form-control', rows: 2 %></span>
       </div>
       <div class="actions">
-        <%= f.submit '保存する', class: 'btn btn-primary btn-md' %>
+        <%= f.submit 'Update', class: 'btn btn-primary btn-md' %>
       </div>
     </ul>
   </div>
