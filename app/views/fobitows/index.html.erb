@@ -44,13 +44,6 @@
         <%= f.text_field(:content) %><br>
     </div>
 
-    <%= f.fields_for :tags do |b| %>
-    <div class="field">
-        <%= b.label(:name, "tag name") %>
-        <%= b.select :name, options_for_select([["1", 1], ["2", 2],["3", 3], ["4", 4],["5", 5], ["6", 6],["7", 7], ["8", 8],["9", 9], ["10", 10]],), :include_blank => true %><br>
-    </div>
-    <% end %>
-
           <%= f.submit 'Post Bookmark !', class: 'btn btn-primary btn-block' %>
 <% end %>
 
