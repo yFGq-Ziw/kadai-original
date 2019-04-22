@@ -40,8 +40,8 @@
 
 <%= form_for :fobitow do |f| %>
     <div class="field">
-        <%= f.label(:content,"url") %>
-        <%= f.text_field(:content) %><br>
+        <%= f.label(:content, 'ページのURLを入力') %>
+        <%= f.text_field(:content, :placeholder => "おすすめページのURLを入力して下さい https://...") %><br>
     </div>
 
           <%= f.submit 'Post Bookmark !', class: 'btn btn-primary btn-block' %>
