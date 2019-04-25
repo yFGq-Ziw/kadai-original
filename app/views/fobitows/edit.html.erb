@@ -1,104 +1,100 @@
 <!-- Bookmark編集ページ -->
 <header>
-
-      <div class="media-body">
-
-      </div>
-      
-      <div class="media-right">
-      <!-- ロゴ -->
-            <div class="logo">
-              <%= link_to root_path do %>
-                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-              <% end %>
-            </div>
-      </div>
-      
-</header> 
-        <!--ここからwrapperー-->
-        <div id="wrapper" class="clearfix">
-            <!--ここからメイン-->
-            <div id="main2">
-                <section id="point">
-                    <h2></h2>
-                    <section class="clearfix">
-                        <figure>
-                            <figcaption></figcaption>
-                        </figure>
-                        <h3><%= current_user.name %> さんのブックマーク編集ページ</h3>
-                        <p>
-  <hr>
-<%= form_for(@fobitow) do |f| %>      
-  <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-
-          <div class="panel-body">
-            <% if @fobitow.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h2>
-                <ul>
-                  <% @fobitow.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-<!-- 追加箇所 開始 -->
-<div class="text-center">
-  <h1>Bookmark Update&nbsp;&nbsp;</h1>
-</div>
-<div class="row">
-  <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-      <%= form_for :fobitow do |f| %>
-        
-<%#        <%= render 'layouts/error_messages', model: f.object %>
-        
-        <div class="form-group">
-          <%= f.label :title, 'Title' %>
-          <li class="mark-post"><%= f.text_area :title, class: 'form-control', rows: 1 %></li>
-        </div>
-        <div class="form-group">
-          <%= f.label :content, 'URL' %>
-          <li class="mark-post"><%= f.text_area :content, :placeholder => "https://...", class: 'form-control', rows: 1 %></li>
-        </div>
-        <div class="form-group">
-          <%= f.label :category, 'Category' %>
-          <li class="mark-post"><%= f.text_area :category, :placeholder => "あとから検索しやすいタグを付けてください (例)ニュース、ブログ、音楽...", class: 'form-control', rows: 2 %></li>
-        </div>
-        <div class="form-group">
-          <%= f.label :likes_count, 'Content' %>
-          <li class="mark-post"><%= f.text_area :likes_count, :placeholder => "サイトの紹介文など、自由にコメントを加えてください", class: 'form-control', rows: 4 %></li>
-        </div>
-
-          <%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
-
-      <% end %>
-      
-            <div class="pro-link">
-              <%= link_to 'Back', :back %> | 
-              <%= link_to 'Top', root_path %>
-            </div>
-
+  <div class="media-body">
   </div>
-</div>
 
-      </div>
+  <div class="media-right">
+    <!-- ロゴ -->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+      <% end %>
     </div>
-  </aside>
-  <br><br><br>
+  </div>
+    
+</header> 
+<!--ここからwrapperー-->
+<div id="wrapper" class="clearfix">
+  <!--ここからメイン-->
+  <div id="main2">
+    <section id="point">
+      <h2></h2>
+      <section class="clearfix">
+        <figure>
+          <figcaption></figcaption>
+        </figure>
+        <h3><%= current_user.name %> さんのブックマーク編集ページ</h3>
+        <p>
+        <hr>
+          <div class="row">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="panel-body">
+                  <!-- 追加箇所 開始 -->
+                  <div class="text-center">
+                    <h1>Bookmark Update&nbsp;&nbsp;</h1>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+<%= form_for(@fobitow) do |f| %>
 
+<% if @fobitow.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% @fobitow.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
-                        </p>
-                    </section>
-                </section>
+        
+<%#        <%= render 'layouts/error_messages', model: f.object %>
+                        <div class="form-group">
+                          <%= f.label :title, 'Title' %>
+                          <li class="mark-post"><%= f.text_area :title, class: 'form-control', rows: 1 %></li>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :content, 'URL' %>
+                          <li class="mark-post"><%= f.text_area :content, :placeholder => "https://...", class: 'form-control', rows: 1 %></li>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :category, 'Category' %>
+                          <li class="mark-post"><%= f.text_area :category, :placeholder => "あとから検索しやすいタグを付けてください (12文字以内)", class: 'form-control', rows: 2 %></li>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :likes_count, 'Content' %>
+                          <li class="mark-post"><%= f.text_area :likes_count, :placeholder => "サイトの紹介文など、自由にコメントを加えてください (省略可)", class: 'form-control', rows: 4 %></li>
+                        </div>
+<!--
+<%#                        <div class="form-group">
+<%#                          <%= f.label :status, 'Status' %>
+<%#                          <li class="mark-post"><%= f.text_area :status, :placeholder => "status", class: 'form-control', rows: 1 %></li>
+<%#                        </div>
+%>-->
+                        <%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+  
+                      <% end %>
+      
+                      <% if @fobitow.released? %>
+<%#        <%= link_to '非公開にする', nonrelease_fobitows_path(@fobitow), method: :patch %>
+                      <% else %>
+<%#        <%= link_to '公開する', release_fobitows_path(@fobitow), method: :patch %>
+                      <% end %>
+
+                    <div class="pro-link">
+                      <%= link_to 'Back', :back %> | 
+                      <%= link_to 'Top', root_path %>
+                  </div>
+
+                </div>
+              </div>
             </div>
-            
-        </div>
-        <!--wrapperここまで-->
-        <!--ここからフッター-->
-        <!--フッターここまで--> 
-<%#<% end %>
+          </div>
+      </section>
+    </section>
+  </div>
+</div>
+<!--wrapperここまで-->
+<!--ここからフッター-->
+<!--フッターここまで--> 

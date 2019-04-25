@@ -1,15 +1,17 @@
 class SessionsController < ApplicationController
+
   def new
+    @user = User.all
   end
 
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
-      #flash[:success] = 'ログインに成功しました。'
+      flash[:success] = 'ログインしました。'
       redirect_to root_path
     else
-      flash.now[:danger] = 'ログインに失敗しました。'
+      flash.now[:danger] = 'Invalid email/password combination.'
       render 'new'
     end
   end

@@ -38,7 +38,18 @@
 <div>
   <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
-<%= form_for :fobitow do |f| %>
+<%= form_for(@fobitow) do |f| %>
+
+<% if @fobitow.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% @fobitow.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
     <div class="field">
         <%= f.label(:content, 'ページのURLを入力') %>
         <%= f.text_field(:content, :placeholder => "おすすめページのURLを入力して下さい https://...") %><br>
@@ -48,8 +59,7 @@
 <% end %>
 
     <p class="mark-back"><%= link_to 'Back', :back %></p>
-    <%#<%= return_back %>
-    
+
   </div>
 </div>
 

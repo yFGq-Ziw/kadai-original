@@ -3,8 +3,15 @@ class FobitowsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def index
+    @fobitow = Fobitow.new
+  end
+  
   def show
     @fobitow = Fobitow.find(params[:id])
+    @comment = Comment.new
+    @user = User.find_by(id: @fobitow.user_id)    
+#    @fobitows = Fobitow.all
   end
   
   def create
@@ -75,7 +82,7 @@ class FobitowsController < ApplicationController
           num += 0
           puts num
           puts title.text
-            @likes = title.text.byteslice(0,255).scrub('')# + "..."
+            @likes = title.text.byteslice(0,12).scrub('')# + "..."
             if num == 0 then
               break
             end
@@ -89,7 +96,7 @@ class FobitowsController < ApplicationController
           num += 0
           puts num
           puts title.text
-            @likes = title.text.byteslice(0,255).scrub('')# + "..."
+            @likes = title.text.byteslice(0,12).scrub('')# + "..."
             if num == 0 then
               break
             end
@@ -104,7 +111,7 @@ class FobitowsController < ApplicationController
           num += 0
           puts num
           puts title.text
-            @likes = title.text.byteslice(0,255).scrub('')# + "..."
+            @likes = title.text.byteslice(0,12).scrub('')# + "..."
             if num == 0 then
               break
             end
@@ -154,8 +161,8 @@ class FobitowsController < ApplicationController
           end
       end while num < 0
     end    
-      @fobitow.likes_count = @image + ' | ' + @category 
-      @fobitow.category= @likes
+#      @fobitow.likes_count = @image + ' | ' + @category 
+#      @fobitow.category= @likes
 #      @fobitow.image= @image
 
     rescue => e
@@ -170,7 +177,7 @@ class FobitowsController < ApplicationController
       else
         @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
         flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
-        redirect_to toppages_bookmark_path
+        render :index
       end
   end
 
@@ -194,8 +201,8 @@ class FobitowsController < ApplicationController
     @fobitow = Fobitow.find(params[:id])
       if @fobitow.update(fobitow_params)
         flash[:success] = 'Bookmark は正常に更新されました'
-        redirect_to root_path
-        #redirect_to @fobitow
+        #redirect_to root_path
+        redirect_to @fobitow
       else
         flash.now[:danger] = 'Bookmark は更新されませんでした'
         render :edit
@@ -203,16 +210,18 @@ class FobitowsController < ApplicationController
       end
   end
 
+# 公開・非公開
+  def release
+    fobitow =  Fobitow.find(params[:id])
+    fobitow.released! unless fobitow.released?
+    redirect_to edit_fobitow_path, notice: 'この作品を公開しました'
+  end
 
-#  def tag
-#    @user = current_user
-#    @tag = Tag.find_by(name: params[:name])
-#    @fobitows = @tag.fobitows.build
-#    @fobitow  = @tag.fobitows.page(params[:page])
-#    @content    = Content.new
-#    @contents   = @fobitows.contents
-#  end
-  
+  def nonrelease
+    fobitow =  Fobitow.find(params[:id])
+    fobitow.nonreleased! unless fobitow.nonreleased?
+    redirect_to edit_fobitow_path, notice: 'この作品を非公開にしました'
+  end
   
   private
   

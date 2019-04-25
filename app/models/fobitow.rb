@@ -1,15 +1,17 @@
 class Fobitow < ApplicationRecord
   belongs_to :user
-  validates :content, length: { maximum: 300 }#, presence: true
-                      #format: /\A#{URI::regexp(%w(http https))}\z/ 
-                      #uniqueness: true
-#  validates :title, length: { maximum: 150 }
-#  validates :category, length: { maximum: 150 }#, presence: true
-
   has_many :users, through: :favorites
   has_many :favorites, dependent: :destroy
-
+  has_many :comments, dependent: :destroy
 #  has_and_belongs_to_many :tags
+
+  validates :content, length: { maximum: 300 }, presence: true
+                      #format: /\A#{URI::regexp(%w(http https))}\z/,
+                      #uniqueness: true
+#  validates :title, presence: true#, length: { maximum: 150 }
+  validates :category, length: { maximum: 12 }#, presence: true
+
+  enum status:{nonreleased: 0, released: 1}
 
 # ajax
   def favorite_user(user_id)
@@ -44,27 +46,4 @@ class Fobitow < ApplicationRecord
       Fobitow.all
     end
   end
-
-
-  #DBへのコミット直前に実施する
-#  after_create do
-#    fobitow = Fobitow.find_by(id: self.id)
-#    tags  = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-#    tags.uniq.map do |tag|
-      #ハッシュタグは先頭の'#'を外した上で保存
-#      tag = Tag.find_or_create_by(tagname: tag.downcase.delete('#'))
-#      fobitow.tags << tag
-#    end
-#  end
- 
-#  before_update do 
-#    fobitow = Fobitow.find_by(id: self.id)
-#    fobitow.tags.clear
-#    tags = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-#    tags.uniq.map do |tag|
-#      tag = Tag.find_or_create_by(tagname: tag.downcase.delete('#'))
-#      fobitow.tags << tag
-#    end
-#  end
-
 end

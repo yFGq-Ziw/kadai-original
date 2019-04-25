@@ -1,6 +1,9 @@
 class ToppagesController < ApplicationController
 
   def index
+#    @lists = Fobitow.pluck(:category).uniq
+    @co = Fobitow.group(:category).order('count_category desc').count(:category)
+  
     @fobitow = Fobitow.all
     if params[:button1]
       # ボタン1

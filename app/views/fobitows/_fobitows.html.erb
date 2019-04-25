@@ -1,28 +1,28 @@
 <ul class="media-list">
   <% fobitows.each do |fobitow| %>
 
-<!-- open_uri,rescue分岐(重い..) -->
-<%#        <% begin %>
-<%#          <% html = open(fobitow.content) do |f| %>
-<%#        <% end %>
-
     <li class="media">
 
       <div class="media-right media-top">
 
         <%# イメージ画像 %>
         <p class="box2">
-        <% if fobitow.user.image? %>
-          <%= image_tag(fobitow.user.image.url(:thumb), :size => "80", class: 'image') %>
-        <% else %>
+          <%= link_to user_path(fobitow.user) do %>
+            <% if fobitow.user.image? %>
+              <%= image_tag(fobitow.user.image.url(:thumb), :size => "80", class: 'image') %>
+            <% else %>
               <span class="gravatar">
                 <img class="media-object img-rounded" src="<%= gravatar_url(fobitow.user, size: "80") %>" alt="">
               </span>
-<%#          <%= image_tag("panda.png", :size => "40x40") %>
-        <%#<% end %>
-        <% end %>
+            <% end %>
+          <% end %>
         </p>
-        <%= link_to 'Forum', fobitow_path(fobitow.id) %>
+
+        <!-- Commentsへ -->
+        <%= link_to fobitow_comments_path(fobitow.id) do %>
+          <font size="3px"><i class="far fa-comments"></i></font>
+        <% end %>
+        <span class="comments_count"><%= "(#{fobitow.comments.count})"%></span>
       </div>
 
       <div class="media-body">
@@ -33,7 +33,7 @@
           </div>
           <%# 日付 %>
           <div>
-            <span class="text-muted"> posted at: <%= fobitow.created_at %></span>
+            <span class="text-muted"> posted at: <%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %></span>
 
                 <% if logged_in? %>
                   <% if current_user == fobitow.user %>
@@ -48,11 +48,6 @@
                    <% end %>
                 <% end %>
                 
-            <!-- tag -->
-<%#            <span class="label label-info"><%= render_with_tags(fobitow.content) %><!--</span>
--->
-            <!-- category -->
-            
               <span class="label label-info"><%= fobitow.category %></span>
             
           <!-- いいね -->
@@ -91,27 +86,7 @@
                     </p>
                   </div>
                
-                    <%#<%= link_to fobitow.content, target: "_new" do %>
-                      <!-- hand_icon -->          
-                      <%#<i class="glyphicon glyphicon-hand-right"></i>
-                    <% end %>
-                      <%# URL %>
-                      <%#<strong>&nbsp;<%= text_url_to_link(h(fobitow.content)).html_safe %><%#</strong>%>
           </div>
-
-<%#        <% rescue => e %>
-
-<%#          <div>
-<%#            <%#<%= fobitow.title %>
-<%#          </div>
-          <div>
-            <i class="fas fa-ban"></i>
-            <!-- 例外メッセージ表示 -->
-            <span style="color:#9C9689;">
-            Sorry, site can't be reached. Server IP address could not be found.
-            </span>
-          </div>
-      <% end %>
 
     </li>
   <% end %>

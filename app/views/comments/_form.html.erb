@@ -1,0 +1,35 @@
+              <li class="media">
+                <div class="media-right media-top">
+
+<%# イメージ画像 %>
+<p class="box2">
+  <%= link_to user_path(fobitow.user) do %>
+    <% if fobitow.user.image? %>
+      <%= image_tag(fobitow.user.image.url(:thumb), :size => "40", class: 'image') %>
+    <% else %>
+      <span class="gravatar">
+        <img class="media-object img-rounded" src="<%= gravatar_url(fobitow.user, size: "40") %>" alt="">
+      </span>
+    <% end %>
+  <% end %>
+</p>
+
+                </div>
+                <div class="media-body">
+
+<%= form_for([@fobitow , @comment]) do |f| %>
+  <script type="text/javascript">
+    $(function(){
+      $('textarea').bind('keydown keyup keypress change',function(){
+        var thisValueLength = $(this).val().length;
+        $('.count').html(thisValueLength);
+      });
+    });
+  </script>
+  <%= f.text_area :body, :placeholder => "ページについて、コメントを投稿しましょう", class: 'form-control', rows: 2 %>
+  <span class="count">0</span>/120
+  <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+<% end %>
+
+                </div>
+              </li>

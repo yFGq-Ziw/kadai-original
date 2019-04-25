@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190422040233) do
+ActiveRecord::Schema.define(version: 20190424061919) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "fobitow_id"
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["fobitow_id"], name: "index_comments_on_fobitow_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
 
   create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -26,12 +36,13 @@ ActiveRecord::Schema.define(version: 20190422040233) do
     t.text     "content",         limit: 65535
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "category"
     t.string   "image"
     t.string   "likes_count"
     t.integer  "favorites_count"
+    t.integer  "status",          limit: 1,     default: 1, null: false
     t.index ["user_id"], name: "index_fobitows_on_user_id", using: :btree
   end
 
@@ -55,6 +66,8 @@ ActiveRecord::Schema.define(version: 20190422040233) do
     t.string   "comment"
   end
 
+  add_foreign_key "comments", "fobitows"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "fobitows"
   add_foreign_key "favorites", "users"
   add_foreign_key "fobitows", "users"

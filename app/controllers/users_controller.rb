@@ -51,7 +51,7 @@ class UsersController < ApplicationController
         #redirect_back(fallback_location: root_path)
         redirect_to @user
       else
-        flash.now[:danger] = 'プロフィールは更新されませんでした'
+        flash.now[:danger] = 'プロフィールは更新されませんでした。'
         render :edit
         #redirect_to @user
       end

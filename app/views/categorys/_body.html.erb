@@ -1,47 +1,51 @@
-<header>
-  <div class="media-body">
-    <!--検索拡張機能  -->
-    <p>User Search</p>
-    <div class="input-search searchForm">
-      <%= form_tag rankings_follow_path, :method => 'get' do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "User を名前で検索" %>
-        <button class="searchForm-submit" type="submit" name="nil"></button>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="media-right">
-    <!-- ロゴ -->
-    <div class="logo">
-      <%= link_to root_path do %>
-        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-      <% end %>
-    </div>
-  </div>
-</header> 
-
 <!--ここからwrapperー-->
 <div id="wrapper" class="clearfix">
   <div class="container">
     <div class="row">
-      <!--ここからメイン-->
       <div class="col-xs-12 col-lg-8">
-        <div id="main">
+        <!--ここからメイン-->
+        <div id="main_top">
           <section id="point">
-            <h6></h6>
-            <h3>Users</h3>
-            <hr>
-            <section id="news">
-            <!-- _users呼び出し -->
-              <%= render 'users', users: @users %>
+            <section class="clearfix">
+              <figure>
+                <figcaption>
+                  <div>
+                    <form action="#index" method="get">
+                      <input type="submit" name="button1" value="人気" />
+                      <input type="submit" name="button2" value="新着" />
+                    </form>
+                  </div>
+                </figcaption>
+              </figure>
+              <h3>
+                <% if  params[:category] == nil %>
+                  総合
+                <% else %>
+                  <%= params[:category] %>
+                <% end %>
+                &nbsp;の
+                <%= params[:button1] %><%= params[:button2] %>
+                エントリー
+              </h3>
+              <hr>
+              <p>
+                <%= render 'fobitows/fobitows', fobitows: @fobitows %>               
+              </p>
+                      
             </section>
+            <hr>
+
+            <%= render 'toppages/info' %>               
+
+            <hr>
           </section>
         </div>
       </div>
       <!--メインここまで-->
+
       <!--ここからサイド-->
       <div class="col-lg-4 col-xs-12">
-        <!--ここからサイド-->
+ 
         <aside id="sidebar">
           <section id="side_banner">
 
@@ -82,7 +86,8 @@
             </div>
           </section>
         </aside>
-      <!--サイドここまで-->
+        <!--サイドここまで-->
+      </div>
     </div>
   </div>
 </div>

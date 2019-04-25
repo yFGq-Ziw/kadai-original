@@ -3,102 +3,42 @@
       <!--検索拡張機能  -->
       <div class="media-body">
          <!--検索拡張機能  -->
-         <p>content search</p>
-            <%= form_tag '/categorys/'&&params[:category], :method => 'get' do %>
-              <%= text_field_tag :search, params[:search] %>
-              <%= submit_tag "Submit", :name => nil %>
+          <div class="input-search searchForm">
+            <%= form_tag root_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Bookmarkを検索" %>
+                <button class="searchForm-submit" type="submit"></button>
             <% end %>
+          </div>
       </div>
+      
       <div class="media-right">
       <!-- ロゴ -->
-          <h1><%= link_to image_tag("logo.png", :alt => "Bookshare"), root_path %></h1></p>
+            <div class="logo">
+              <%= link_to root_path do %>
+                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+              <% end %>
+            </div>
       </div>
       
             <nav id="global_navi2">
-                
+              <div class="gnav">
                 <ul>
-                    <li class="<%= 'current' if current_page?('root_path') %>"><%= link_to root_path do %>総合<% end %></li>
-                    <li class="<%= 'current' if current_page?('/categorys/ヨガ') %>"><%= link_to '/categorys/ヨガ' do %>ヨガ<% end %></li>  
-                    <li class="<%= 'current' if current_page?('/categorys/スキューバ') %>"><%= link_to '/categorys/スキューバ' do %>スキューバ<% end %></li>
-                    <li class="<%= 'current' if current_page?('/categorys/囲碁・将棋') %>"><%= link_to '/categorys/囲碁・将棋' do %>囲碁・将棋<% end %></li>  
-                    <li class="<%= 'current' if current_page?('/categorys/ダンス') %>"><%= link_to '/categorys/ダンス' do %>ダンス<% end %></li>
-                    <li class="<%= 'current' if current_page?('/categorys/登山') %>"><%= link_to '/categorys/登山' do %>登山<% end %></li>  
-                    <li class="<%= 'current' if current_page?('/categorys/フットサル') %>"><%= link_to '/categorys/フットサル' do %>フットサル<% end %></li>
-                    <li class="<%= 'current' if current_page?('/categorys/格闘技') %>"><%= link_to '/categorys/格闘技' do %>格闘技<% end %></li>  
-                    <li class="<%= 'current' if current_page?('/categorys/プラモデル') %>"><%= link_to '/categorys/プラモデル' do %>プラモデル<% end %></li>
-                    <li class="<%= 'current' if current_page?('/categorys/カメラ') %>"><%= link_to '/categorys/カメラ' do %>カメラ<% end %></li>  
-                    <li class="<%= 'current' if current_page?('/categorys/そのた') %>"><%= link_to '/categorys/そのた' do %>そのた<% end %></li>  
+                  
+                  <li class="<%= 'current' if current_page?(root_path) %>">
+                    <%= link_to root_path do %>
+                      総合
+                      <i class="fas fa-arrow-left"></i>
+                    <% end %>
+                  </li>
+                  
+                  <% @co.each do |c| %>
+                    <li class="<%= 'current' if current_page?("#{c[0]}") %>">
+                      <%= link_to "#{c[0]} (#{c[1]})", "#{c[0]}" %>
+                    </li>
+                  <% end %>
                 </ul>
+              </div>
             </nav>
-        </header> 
+</header>
 
-        <!--ここからwrapperー-->
-        <div id="wrapper" class="clearfix">
-            <!--ここからメイン-->
-            <div id="main">
-                <section id="point">
-                                 
-                        <li><h2>Bookshare - <%= params[:category] %> -</h2></li>
-
-                    <section class="clearfix">
-                    
-                    <figure>
-                        <figcaption>
-                            <div>
-                                <form action="#index" method="get">
-                                    <input type="submit" name="button1" value="人気" />
-                                    <input type="submit" name="button2" value="新着" />
-                                </form>
-                            </div>
-                        </figcaption>
-                    </figure>
-                    
-                        <h3><%= params[:category] %> の
-                            <%= params[:button1] %><%= params[:button2] %>
-                        エントリー</h3>
-                        <p>
-                            <hr>
-                        <%= render 'fobitows/fobitows', fobitows: @fobitows %>               
-                        </p>
-                        
-                    </section>
-                    <hr>
-
-                        <%= render 'toppages/info' %>               
-
-                <hr>
-            </div>
-            <!--メインここまで-->
-            <!--ここからサイド-->
-            <aside id="sidebar">
-                <section id="side_banner">
-                    <h2>Bookshare へようこそ</h2>
-                    <ul>
-                    
-                        <% if logged_in? %>
-                          <%= current_user.name %> さん<br>
-                          ログイン中
-                            <hr>
-                            <p>ブックマークを追加する</p>
-                            
-                            <ul>
-                              <li><%= link_to 'Bookmark', fobitows_path, class: 'btn btn-block btn-primary' %></li>
-                            </ul>
-                            <p>おすすめのブックマークを<br>投稿しましょう！</p>
-                        <% else %>
-                            <li><%= link_to 'Sign up', signup_path, class: 'btn btn-block btn-primary' %></li>
-                            <li><p>or</p></li>
-                            <li><%= link_to 'Log in', login_path, class: 'btn btn-block btn-primary' %></li>
-                            <p>さっそく、Bookshare を<br>始めましょう！</p>
-                        <% end %>
-                    </ul>
-                    <%= image_tag("logo.png", :alt => "Bookshare") %>
-                    
-                </section>
-            </aside>
-            <!--サイドここまで-->
-        </div>
-        <!--wrapperここまで-->
-        
-        <!--ここからフッター-->
-        <!--フッターここまで--> 
+<%= render 'body' %>

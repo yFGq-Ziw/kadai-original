@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
+  validates :comment, length: { maximum: 80 }
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
@@ -21,6 +22,8 @@ class User < ApplicationRecord
   has_many :likes, through: :favorites, source: :fobitow
   has_many :create_images
   
+  has_many :comments
+
   #カラムの名前をmount_uploaderに指定
   #mount_uploader :image, ImageUploader
   
