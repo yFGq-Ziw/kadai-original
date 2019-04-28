@@ -16,7 +16,7 @@
   <!--/H -->
   <nav class="navbar navbar-default">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose Category<b class="caret"></b></a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu cate-menu">
       <li class="<%= 'active' if current_page?(categorys_path) %>"><%= link_to categorys_path do %>総合<% end %></li>
       <% @co.first(10).each do |c| %>
         <li class="<%= 'active' if current_page?("/categorys/#{c[0]}") %>"><%= link_to "#{c[0]} (#{c[1]})", "/categorys/#{c[0]}" %></li>
@@ -135,10 +135,10 @@
         <!--/mt-->
 
         <p class="mt-100">
-          <a href="#"><i class="ion-social-twitter"></i></a>
-          <a href="#"><i class="ion-social-facebook"></i></a>
-          <a href="#"><i class="ion-social-instagram"></i></a>
-          <a href="#"><i class="ion-social-youtube"></i></a>
+          <a href="https://twitter.com/"><i class="ion-social-twitter"></i></a>
+          <a href="https://www.facebook.com/"><i class="ion-social-facebook"></i></a>
+          <a href="https://www.instagram.com//"><i class="ion-social-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="ion-social-youtube"></i></a>
         </p>
       </div>
     </div>

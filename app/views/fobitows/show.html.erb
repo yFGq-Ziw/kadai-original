@@ -55,12 +55,12 @@
                 </div>
                 <div>
                   <%# 日付 %>
-                  <span class="text-muted"> Posted at <%= @fobitow.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+                  <span class="text-muted"> Posted at <%= @fobitow.created_at.strftime("%Y/%m/%d %H:%M") %>&nbsp;</span>
                   <% if logged_in? %>
                     <% if current_user == @fobitow.user %>
                       <!-- 編集ページへ -->
                       <%= link_to edit_fobitow_path(@fobitow) do %>
-                        <i class="fa-comme fas fa-edit"></i>
+                        <i class="fa-comme fas fa-edit">&nbsp;&nbsp;</i>
                       <% end %>
                       <%# ゴミ箱 %>
                    	  <%= link_to @fobitow, method: :delete, data: { confirm: "You sure?" } do %>

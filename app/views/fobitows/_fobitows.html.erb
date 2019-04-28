@@ -36,13 +36,13 @@
           </div>
           <%# 日付 %>
           <div>
-            <span class="text-muted"> Posted at <%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+            <span class="text-muted"> Posted at <%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %>&nbsp;</span>
 
                 <% if logged_in? %>
                   <% if current_user == fobitow.user %>
                     <!-- 編集ページへ -->
                     <%= link_to edit_fobitow_path(fobitow) do %>
-                      <i class="fa-comme fas fa-edit"></i>
+                      <i class="fa-comme fas fa-edit">&nbsp;&nbsp;</i>
                     <% end %>
                     <%# ゴミ箱 %>
                  	  <%= link_to fobitow, method: :delete, data: { confirm: "You sure?" } do %>
@@ -54,10 +54,10 @@
               <span class="label label-info"><%= fobitow.category %></span>
             
           <!-- いいね -->
-          <span class="right" id="ajax<%= fobitow.id %>">
+          <a class="right" id="ajax<%= fobitow.id %>" href="javascript:void(0);">
             <!-- ajax -->
             <%= render partial: 'favorites/favorite', locals: { fobitow: fobitow, favorite: @favorite } %>
-          </span>
+          </a>
 
           </div>
 

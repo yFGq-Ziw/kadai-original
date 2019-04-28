@@ -250,7 +250,7 @@ button, input, optgroup, select, textarea {
     margin: 0px;
     padding-top: 5px;
     max-width: 580px;
-    max-height: 67.5px;
+    max-height: none;
     background: linear-gradient(to right, #eeefea, #fff);
     border: 0px solid #ccc;
     /*text-overflow: ellipsis;*/
@@ -399,7 +399,7 @@ footer small {
 
 #global_navi .current2 a{ color: white;}
 #global_navi .current2 { color: white;}
-.dropdown-menu{ color: #9d9d9d;}
+
 
 .searchForm {
     position: relative;
@@ -698,6 +698,7 @@ button {
     padding-right: 0;
 }
 
+
 /* scroll menu */
 .dropdown-menu {
     position: absolute;
@@ -712,14 +713,18 @@ button {
     font-size: 14px;
     text-align: left;
     list-style: none;
-
+    color: #9d9d9d;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;
     border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
+    border-radius: none;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+/* scroll menu */
+.cate-menu {
+    width: 250px;
 }
 @media (min-width: 768px){
     .navbar-right .dropdown-menu {
@@ -804,7 +809,7 @@ hr {
     color: #777;
 }
 
-.fas{
+.icons .fas{
     font-weight: bold;
     font-size: 35px;
     color:#009688;

@@ -6,6 +6,6 @@ class ContactsController < ApplicationController
   
   def create
     @co = Fobitow.group(:category).order('count_category desc').count(:category)
-          redirect_to root_path
+    redirect_to root_path
   end
 end
