@@ -5,166 +5,32 @@ class FobitowsController < ApplicationController
 
   def index
     @fobitow = Fobitow.new
+    @co = Fobitow.group(:category).order('count_category desc').count(:category)
   end
   
   def show
     @fobitow = Fobitow.find(params[:id])
     @comment = Comment.new
     @user = User.find_by(id: @fobitow.user_id)    
+    @co = Fobitow.group(:category).order('count_category desc').count(:category)
 #    @fobitows = Fobitow.all
   end
   
   def create
+    @co = Fobitow.group(:category).order('count_category desc').count(:category)
   require 'open-uri'
   require 'nokogiri'
   require 'uri'
     @fobitow = current_user.fobitows.build(fobitow_params)
-
     begin
       url = @fobitow.content
-      
       charset = nil
       html = open(url) do |f|
         charset = f.charset # 文字種別を取得
         f.read # htmlを読み込んで変数htmlに渡す
       end
-      
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
-
       @fobitow.title = doc.title.byteslice(0,255).scrub('')
-
-      num = 0
-      begin
-        doc.css("h3").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @image = title.text.byteslice(0,255).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-
-    if @image = ''
-      num = 0
-      begin
-        doc.css("span[2]").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @image = title.text.byteslice(0,255).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-    end
-
-    if @image = ''
-      num = 0
-      begin
-        doc.css("p[3]").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @image = title.text.byteslice(0,255).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-    end
-
-      num = 0
-      begin
-        doc.css("p[2]").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @likes = title.text.byteslice(0,12).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-
-    if @likes = ''
-      num = 0
-      begin
-        doc.css("p").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @likes = title.text.byteslice(0,12).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-    end
-
-    if @likes = ''
-      num = 0
-      begin
-        doc.css("a[2]").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @likes = title.text.byteslice(0,12).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-    end
-      #category
-      num = 0
-      begin
-        doc.css("span").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @category = title.text.byteslice(0,255).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-
-    if @category = ''
-      num = 0
-      begin
-        doc.css("a").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @category = title.text.byteslice(0,255).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-    end
-    
-    if @category = ''
-      num = 0
-      begin
-        doc.css("body[2]").each do |title|
-          num += 0
-          puts num
-          puts title.text
-            @category = title.inner_text.byteslice(0,64).scrub('')# + "..."
-            if num == 0 then
-              break
-            end
-          end
-      end while num < 0
-    end    
-#      @fobitow.likes_count = @image + ' | ' + @category 
-#      @fobitow.category= @likes
-#      @fobitow.image= @image
-
     rescue => e
       puts e #例外メッセージ表示
       @fobitow.likes_count = e
@@ -175,7 +41,7 @@ class FobitowsController < ApplicationController
         #redirect_back(fallback_location: root_path)
         redirect_to edit_fobitow_path(@fobitow)
       else
-        @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page])
+        @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page]).per(15)
         flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
         render :index
       end
@@ -195,9 +61,11 @@ class FobitowsController < ApplicationController
   #編集追加
   def edit
     @fobitow = Fobitow.find(params[:id])
+    @co = Fobitow.group(:category).order('count_category desc').count(:category)
   end
 
   def update
+    @co = Fobitow.group(:category).order('count_category desc').count(:category)
     @fobitow = Fobitow.find(params[:id])
       if @fobitow.update(fobitow_params)
         flash[:success] = 'Bookmark は正常に更新されました'
@@ -214,13 +82,13 @@ class FobitowsController < ApplicationController
   def release
     fobitow =  Fobitow.find(params[:id])
     fobitow.released! unless fobitow.released?
-    redirect_to edit_fobitow_path, notice: 'この作品を公開しました'
+    redirect_to edit_fobitow_path, notice: 'このブックマークを公開しました'
   end
 
   def nonrelease
     fobitow =  Fobitow.find(params[:id])
     fobitow.nonreleased! unless fobitow.nonreleased?
-    redirect_to edit_fobitow_path, notice: 'この作品を非公開にしました'
+    redirect_to edit_fobitow_path, notice: 'このブックマークを非公開にしました'
   end
   
   private

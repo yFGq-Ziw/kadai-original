@@ -1,54 +1,33 @@
 <header>
-
-      <div class="media-body">
-         <!--検索拡張機能  -->
-          <div class="input-search searchForm">
-            <%= form_tag user_path(current_user), :method => 'get' do %>
-              <input type="radio" name="select" value="all" checked>All
-              <input type="radio" name="select" value="mine">Mine | Category:
-              <%= text_field_tag :search, params[:search], :placeholder => "Bookmark を検索" %>
-
-                <button class="searchForm-submit" type="submit"></button>
-            <% end %>
-
-          </div>
+  <!-- ********** HEADER ********** -->
+  <div id="h2">
+    <div class="container">
+      <div class="row">
+  
+        <div class="col-md-5">
+          <%= image_tag("logo.png", :height => '34', :alt => "logo") %>
+        </div>
       </div>
-      
-      <div class="media-right">
-      <!-- ロゴ -->
-            <div class="logo">
-              <%= link_to root_path do %>
-              <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-              <% end %>
-            </div>
-      </div>
-
-</header> 
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/H -->
+</header>
 
 <!--ここからwrapperー-->
 <div id="wrapper" class="clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-lg-8">
+      <div class="col-md-8">
         <!--ここからメイン-->
         <div id="main">
           <section id="point">
+<br>
             <h6></h6>
-              <h3><%= @user.name %> さんのマイページ</h3>
-              <hr>
-            <section class="clearfix">
-              <figure>
-                <figcaption>
-                </figcaption>
-              </figure>
-            </section>
-            <section class="clearfix">
-              <figure>
-                <figcaption>
-                </figcaption>
-                </figure>
-              </section>
-            </section>
+              <h3><%= @user.name %> 's Bookmarks</h3>
+
+
             <section id="news">
               <%= render 'fobitows/fobitows', fobitows: @fobitows %>                         
             </section>
@@ -56,7 +35,7 @@
         </div>
         <!--メインここまで-->
       </div>
-      <div class="col-lg-4 col-xs-12">
+      <div class="col-md-4">
         <!--ここからサイド-->
         <aside id="sidebar">
           <section id="side_banner3">
@@ -69,7 +48,7 @@
                     <%= image_tag(@user.image.url, :size => "300", class: 'image media-object img-rounded img-responsive') %>
                   <% else %>
                     <span class="gravatar">
-                      <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(current_user, size: 300) %>" alt="">
+                      <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, size: 300) %>" alt="">
                     </span>
                   <% end %>
                 </p>
@@ -81,15 +60,15 @@
                 <div class="pro-come">
                   <p><%= @user.comment %></p>
                 </div>
-            <%= render 'relationships/follow_button', user: @user %>
+                <%= render 'relationships/follow_button', user: @user %>
               </li>
-            </ul>
-            <div class="pro-link">
+            </div>
+            <p>
               <% if current_user == @user %>
               <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
               <% end %>
               <%= link_to 'Top', root_path %>
-            </div>
+            </p>
             
           </section>
         </aside>
@@ -99,5 +78,47 @@
     </div>
   </div>
 </div>
-<!--ここからフッター-->
-<!--フッターここまで--> 
+
+
+  <!-- ********** BOTTOM ********** -->
+  <section id="bottomsec"></section>
+  <div id="bottom">
+  <div class="media-body">
+    <!-- ロゴ -->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+      <% end %>
+    </div>
+  </div>
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Bookmark Search</h2>
+        <h5>"All" is search from all bookmarks.<br>"Mine" will narrow down from the bookmark you have registered.</h5>
+
+       <!--検索拡張機能  -->
+        <div class="mtb">
+              <%= form_tag user_path(current_user), :method => 'get' do %>
+          <div>
+
+              <span><input type="radio" name="select" value="all" checked>All</span>
+              <span><input type="radio" name="select" value="mine">Mine</span>
+          </div>          
+              <%= text_field_tag :search, params[:search], :placeholder => "Please enter the keyword...", class: 'subscribe-input'%>
+              
+              <button class="btn btn-conf btn-green" type="submit">Search!</button>
+            <% end %>
+
+        </div>
+        <!--/mt-->
+        
+        <p class="mt-100">
+          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="#"><i class="ion-social-facebook"></i></a>
+          <a href="#"><i class="ion-social-instagram"></i></a>
+          <a href="#"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->

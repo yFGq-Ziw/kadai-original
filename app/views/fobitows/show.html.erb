@@ -1,130 +1,106 @@
 <header>
-
-  <div class="media-body">
-          <p>Bookmark 詳細ページ</p>                              
-  </div>
-      
-  <div class="media-right">
-      <!-- ロゴ -->
-            <div class="logo">
-              <%= link_to root_path do %>
-                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-              <% end %>
-            </div>
-  </div>
+  <div id="h2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <%= image_tag("logo.png", :height => '34', :alt => "logo") %>
+        </div>
+      </div>
+      <!--/row -->
+    </div>
 </header> 
 
-<!--ここからwrapperー-->
-<div id="wrapper" class="clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-lg-8">
-        <!--ここからメイン-->
-        <div id="main">
+<!-- ********** FIRST ********** -->
+  <section id="firstsec"></section>
+  <div id="second2">
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-1">
+        <h3>Forum</h3>                              
+        <div class="hr-small"></div>
 
-          <h6></h6>
-          <section id="point">
-               <%= link_to @fobitow.content, target: "_new" do %>
-                <!-- url favicon, title -->
-                <h3>
-                  <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= @fobitow.content.split('/').first(3).join('/')%>">
-                  <strong><%= @fobitow.title %></strong>
-                </h3>
-              <% end %>
-              <hr>
-            </section>
-            <section class="clearfix">
-              <figure>
-                <figcaption>
-                </figcaption>
-              </figure>
-            </section>
-          </section>
-          <section id="news">
-            <ul class="media-list">
-              <li class="media">
-                <div class="media-right media-top">
-
-                  <%# プロフィール写真 %>
-                  <p class="box2">
-                    <%= link_to user_path(@fobitow.user) do %>
-                      <% if @fobitow.user.image? %>
-                        <%= image_tag(@fobitow.user.image.url(:thumb), :size => "80", class: 'image') %>
-                      <% else %>
-                        <span class="gravatar">
-                          <img class="media-object img-rounded" src="<%= gravatar_url(@fobitow.user, size: "80") %>" alt="">
-                        </span>
-                      <% end %>
+        <%= link_to @fobitow.content, target: "_new" do %>
+          <!-- url favicon, title -->
+          <h3>
+            <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= @fobitow.content.split('/').first(3).join('/')%>">
+            <strong><%= @fobitow.title %></strong>
+          </h3>
+        <% end %>
+        <hr>
+            
+        <section id="news">
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-right media-top">
+                <%# プロフィール写真 %>
+                <p class="box2">
+                  <%= link_to user_path(@fobitow.user) do %>
+                    <% if @fobitow.user.image? %>
+                      <%= image_tag(@fobitow.user.image.url(:thumb), :size => "80", class: 'image') %>
+                    <% else %>
+                      <span class="gravatar">
+                        <img class="media-object img-rounded" src="<%= gravatar_url(@fobitow.user, size: "80") %>" alt="">
+                      </span>
+                    <% end %>
+                  <% end %>
+                </p>
+              </div>
+              <div class="media-body">
+                <!-- 本文 -->
+                <div class="box26">
+                  <p class="says textOverflow2">
+                    <%= link_to @fobitow.content, target: "_new" do %>
+                      <%= @fobitow.likes_count %>
                     <% end %>
                   </p>
-
                 </div>
-                <div class="media-body">
-
+                <div>
+                  <%# 日付 %>
+                  <span class="text-muted"> Posted at <%= @fobitow.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+                  <% if logged_in? %>
+                    <% if current_user == @fobitow.user %>
+                      <!-- 編集ページへ -->
+                      <%= link_to edit_fobitow_path(@fobitow) do %>
+                        <i class="fa-comme fas fa-edit"></i>
+                      <% end %>
+                      <%# ゴミ箱 %>
+                   	  <%= link_to @fobitow, method: :delete, data: { confirm: "You sure?" } do %>
+                        <i class="fa-comme fas fa-trash my-gray"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                      
+                  <!-- カテゴリ -->                
+                  <span class="label label-info"><%= @fobitow.category %></span>
+  
                   <%# ユーザ名 %>
                   <div>
                     <%= link_to @fobitow.user.name, user_path(@fobitow.user) %>
                   </div>
-                  <%# 日付 %>
-                  <div>
-                    <span class="text-muted"> posted at: <%= @fobitow.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-
-                    <% if logged_in? %>
-                      <% if current_user == @fobitow.user %>
-                        <!-- 編集ページへ -->
-                        <%= link_to edit_fobitow_path(@fobitow) do %>
-                          <i class="fas fa-edit"></i>
-                        <% end %>
-                        <%# ゴミ箱 %>
-                     	  <%= link_to @fobitow, method: :delete, data: { confirm: "You sure?" } do %>
-                          <i class="fas fa-trash my-gray"></i>
-                        <% end %>
-                      <% end %>
-                    <% end %>
-                
-                    <span class="label label-info"><%= @fobitow.category %></span>
-                    
-                    <!-- いいね -->
-                    <span class="right" id="ajax<%= @fobitow.id %>">
+  
+                  <!-- いいね -->
+                  <span class="right" id="ajax<%= @fobitow.id %>">
                     <!-- ajax -->
-                      <%= render partial: 'favorites/favorite', locals: { fobitow: @fobitow, favorite: @favorite } %>
-                    </span>
-
-                    <!-- 本文 -->
-                    <div class="box26">
-                      <p class="says textOverflow2">
-                        <%= link_to @fobitow.content, target: "_new" do %>
-                          <%= @fobitow.likes_count %>
-                        <% end %>
-                      </p>
-                    </div>
-
-                  </div>
-                
+                    <%= render partial: 'favorites/favorite', locals: { fobitow: @fobitow, favorite: @favorite } %>
+                  </span>
+  
                 </div>
-                
-                </li>
-
-              </li>
-            </ul>
-
-          </section>
-        </div>
+              </div>
+            </li>
+          </ul>
+        </section>
       </div>
-<!--メインここまで-->
+      <!--メインここまで-->
 
-<!--ここからサイド-->
+      <!--ここからサイド-->
+      <div class="col-md-4">
 
-      <div class="col-lg-4 col-xs-12">
         <aside id="sidebar">
           <section id="side_banner4">
             <div class="row">
               <ul>
                 <div>
-                  <br>
                   <li class="media">
-                    <div class="media-right media-top">
-
+                    <div class="media-right2 media-top">
                       <%# イメージ画像 %>
                       <p class="box4">
                         <% if logged_in? %>
@@ -141,105 +117,93 @@
                           <%= image_tag "panda.png", :size => "50" %>
                         <% end %>
                       </p>
-
                     </div>
-                  <div class="media-body">
-<% if logged_in? %> 
-                    <%= form_for([@fobitow , @comment]) do |f| %>
 
-                      <script type="text/javascript">
-                        $(function(){
-                          $('textarea').bind('keydown keyup keypress change',function(){
-                            var thisValueLength = $(this).val().length;
-                            $('.count').html(thisValueLength);
-                          });
-                        });
-                      </script>
-                      
-                      <%= f.text_area :body, :placeholder => "コメントを投稿しましょう！", class: 'form-control', rows: 7 %>
-                      <span class="count">0</span>/120
-                      <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-                    <% end %>
-
-<% else %>
-                  <%= form_for([@fobitow , @comment]) do |f| %>
-                      <%= f.text_area :body, :placeholder => "Bookshare にログインして、この記事にコメントしてみましょう！", class: 'form-control', readonly: 'true', rows: 7 %>
-                  <% end %>
-                  
-                  <div class="sign_btn">
-                    <center>
-                      <li><%= link_to 'Sign up', signup_path, class: 'btn btn-block btn-primary' %></li>
-                      <li><p>or</p></li>
-                      <li><%= link_to 'Log in', login_path, class: 'btn btn-block btn-primary' %></li>
-                      <p>Let's, Bookshare now!</p>
-                    </center>
-                  </div>
- 
-<% end %>
-
-                  </div>
-
-                </div>
-              </ul>
-            </div>
-          </section>
-        </aside>
-      </div>
-    </aside>
-
-    <div class="comment_col col-xs-12 col-lg-8">
-
-      <p>Comments
-            <!-- comments count -->
-        <span class="comments_count"><%= "(#{@fobitow.comments.count})"%></span>
-      </p>
-<hr>
-
-      <div class="comment_index">
-        <% @fobitow.comments.each do |comment| %>
-          <p>
-                              <div class="media-left">
-                                <li class="col-lg-12 col-xs-12">
-                                  <%# イメージ画像 %>
-                                  <p class="box4">
-                                    <span>
-                          
-                                        <% if comment.user.image? %>
-                                          <%= image_tag(comment.user.image.url(:thumb), :size => "50", class: 'image') %>
-                                        <% else %>
-                                          <span class="gravatar">
-                                            <img class="media-object img-rounded" src="<%= gravatar_url(comment.user, size: "50") %>" alt="">
-                                          </span>
-                                        <% end %>
-                          
-                                    </span>
-                                  </p>
-                                </li>
+                      <div class="media-body mtb3">
+                        <% if logged_in? %> 
+    
+                          <%= form_for([@fobitow , @comment]) do |f| %>
+    
+                            <% if @comment.errors.any? %>
+                              <div class="alert alert-warning">
+                                <ul>
+                                  <% @comment.errors.full_messages.each do |message| %>
+                                    <li><%= message %></li>
+                                  <% end %>
+                                </ul>
                               </div>
-                              
-                              <div class="media-body">
-                                <li class="col-lg-12 col-xs-12">
-
-                                    <%= link_to "#{comment.user.name} : ", @user %>
-                                    <%= comment.body %><br>
-                                    <font color="#777"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
-                                    </font>
-                                    <span class="batu">
-                                      <%= link_to "x", [@fobitow,comment], method: :delete if current_user == (comment.user) %>
-                                    </span>
-
-                                </li>
-                              </div>
-                            </p>
-<hr>
+                            <% end %> 
+  
+                            <script type="text/javascript">
+                              $(function(){
+                                $('textarea').bind('keydown keyup keypress change',function(){
+                                  var thisValueLength = $(this).val().length;
+                                  $('.count').html(thisValueLength);
+                                });
+                              });
+                            </script>
+                        
+                            <%= f.text_area :body, :placeholder => "コメントを投稿しましょう！", class: 'form-control', rows: 7 %>
+                            <p><span class="count">0</span>/120&nbsp;&nbsp;&nbsp;</p>
+    
+                            <%= f.submit 'Post!', class: 'btn-conf btn-green' %>
+    
                           <% end %>
-                        </div>
+  
+                        <% else %>
+                          <%= form_for([@fobitow , @comment]) do |f| %>
+                            <%= f.text_area :body, :placeholder => "Bookshare にログインして、この記事にコメントしてみましょう！", class: 'form-control', readonly: 'true', rows: 7 %>
+                          <% end %>
+                    
+          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+          <hr>
+
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+              <span>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Sign Up', signup_path %>
+                </button>
+                <font color="#777">&nbsp;OR&nbsp;</font>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Log In', login_path %>
+                </button>
+              </span>
+              </div>  
+            <p/>
+          </div>
+
+                        <% end %>
+                      </div>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+            </section>
+          </aside>
         </div>
-        <!--サイドここまで-->
+
       </div>
-    <!--wrapperここまで-->
+      <!--/first-->
+
+      <!-- ********** SECOND ********** -->
+      <section id="secondsec"></section>
+      <div id="second">
+        <div class="row nomargin">
+          <div class="col-md-6 col-md-offset-1">
+            <h3>Comments
+            <!-- comments count -->
+            <span class="comments_count"><font class="minimoji"><%= "(#{@fobitow.comments.count})"%></font></span></h3>
+          <div class="hr-small"></div>
+
+          <%= render 'comments/comments' %>
+
+          <p>
+            <%= link_to :back %> | 
+            <%= link_to 'All Bookmarks', categorys_path %>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!--ここからフッター-->
-<!--フッターここまで--> 

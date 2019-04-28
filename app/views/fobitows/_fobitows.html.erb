@@ -1,5 +1,6 @@
 <ul class="media-list">
   <% fobitows.each do |fobitow| %>
+    <hr>
 
     <li class="media">
 
@@ -19,10 +20,12 @@
         </p>
 
         <!-- Commentsへ -->
+        <p>
         <%= link_to fobitow_comments_path(fobitow.id) do %>
-          <font size="3px"><i class="far fa-comments"></i></font>
+          <i class="fa-comme far fa-comments"></i>
         <% end %>
         <span class="comments_count"><%= "(#{fobitow.comments.count})"%></span>
+        </p>
       </div>
 
       <div class="media-body">
@@ -33,19 +36,19 @@
           </div>
           <%# 日付 %>
           <div>
-            <span class="text-muted"> posted at: <%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+            <span class="text-muted"> Posted at <%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %></span>
 
                 <% if logged_in? %>
                   <% if current_user == fobitow.user %>
                     <!-- 編集ページへ -->
                     <%= link_to edit_fobitow_path(fobitow) do %>
-                      <i class="fas fa-edit"></i>
+                      <i class="fa-comme fas fa-edit"></i>
                     <% end %>
                     <%# ゴミ箱 %>
                  	  <%= link_to fobitow, method: :delete, data: { confirm: "You sure?" } do %>
-                      <i class="fas fa-trash my-gray"></i>
+                      <i class="fa-comme fas fa-trash my-gray"></i>
                     <% end %>
-                   <% end %>
+                  <% end %>
                 <% end %>
                 
               <span class="label label-info"><%= fobitow.category %></span>
@@ -63,14 +66,14 @@
             <% unless fobitow.title == @empty %>
 
                   <p class="says textOverflow">
-                    <%= link_to fobitow.content, target: "_new" do %>
+                    <%= link_to fobitow.content, target: "_blank" do %>
                       <!-- url favicon, title -->          
                       <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
                     <% end %>
 
-                    <%= link_to fobitow.content, target: "_new" do %>
+                    <%= link_to fobitow.content, target: "_blank" do %>
                       <%# scrape-title %>
-                      <strong><%= fobitow.title %></strong>
+                      <%= fobitow.title %>
                     <% end %>
                   </p>
                     
@@ -79,7 +82,7 @@
                   
                   <div class="box26">
                     <p class="says textOverflow2">
-                      <%= link_to fobitow.content, target: "_new" do %>
+                      <%= link_to fobitow.content, target: "_blank" do %>
                         <!-- body_text_h3 -->          
                         <%= fobitow.likes_count %>
                       <% end %>
@@ -90,5 +93,5 @@
 
     </li>
   <% end %>
-  <%= paginate fobitows %>
+  <%= paginate @fobitows, :param_name => 'fobi_page' %>
 </ul>

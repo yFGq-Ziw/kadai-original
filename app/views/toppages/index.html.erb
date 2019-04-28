@@ -1,50 +1,244 @@
-<header>
+<body data-spy="scroll" data-offset="0" data-target="#theMenu">
 
-      <!--検索拡張機能  -->
-      <div class="media-body">
-                  
-         <!--検索拡張機能  -->
-          <div class="input-search searchForm">
-            <%= form_tag root_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search], :placeholder => "Bookmarkを検索" %>
-                <button class="searchForm-submit" type="submit"></button>
-            <% end %>
-          </div>
+  <!-- ********** HEADER ********** -->
+  <section id="home"></section>
+  <div id="h">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <%= image_tag("logo.png", :height => '68', :alt => "logo") %>
+          <h2>さっそく、Bookshareを<br/>始めましょう！</h2><!--the premium experience-->
+          <h5>・Cloud でブックマークを収集・管理<br/><!--Handsome Landing Pages Made With Bootstrap 3-->
+          ・便利なブックマークをカンタン共有<br/>
+          ・役に立ったら、”いいね！”</h5>
+        </div>
       </div>
-      
-      <div class="media-right">
-      <!-- ロゴ -->
-            <div class="logo">
-              <%= link_to root_path do %>
-                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-              <% end %>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/H -->
+
+  <!-- ********** FIRST ********** -->
+  <section id="firstsec"></section>
+  <div id="first">
+    <div class="row nomargin">
+      <div class="col-md-6 nopaddingleft">
+        <%= image_tag("mockup-iPad2.png", class:'img-responsive', :height => '68', :alt => "logo") %>
+      </div>
+      <div class="col-md-5">
+        <h3>Author's greeting</h3>
+        <div class="hr-small"></div>
+        <p>
+          Nice to meet you. I joined the Tech Academy Web Application Course until mid-April 2009. And this is the first time I apply for the contest.</br>
+          </br>
+          Until I went to the Tech Academy, I had little knowledge about web applications and started from scratch. However, thanks to the excellent mentor and support staff, I was able to acquire basic knowledge.</br>
+          </br>
+          I tried to do my best with a desire to challenge the contest and acquire my programming skills, and to create an application that I could use myself.</br>
+          </br>
+          I think it was very good to be able to take the web application course.</br>
+          Thank you for the polite and kind curriculum and mentoring.
+        </p>
+      </div>
+    </div>
+    <!--/row-->
+  </div>
+  <!--/first-->
+
+  <!-- ********** SECOND ********** -->
+  <section id="secondsec"></section>
+  <div id="second">
+    <div class="row nomargin">
+      <div class="col-md-5 col-md-offset-1">
+        <h3>主な機能</h3>
+        <div class="hr-small"></div>
+        <p>
+          ・After registration / login, first copy the URL of the recommended site from the bookmark registration page and register the bookmark.</br>
+          ・You can search for keywords from the search window at the top of the page.</br>
+          ・By pressing the comment button for each bookmark, you can go to the bookmark detail page and add a comment to the bookmark.</br>
+          ・Press the heart mark of your favorite bookmark to add it to your favorites.</br>
+          ・You can delete bookmarks by pressing the trash can.</br>
+          ・You can follow by pressing the follow button of the user you like. Press the unfollow button to cancel.
+        </p><hr>
+        <p><i class="icon-theme ion-ios-eye"></i> BOOKMARKの登録・閲覧</p>
+        <p><i class="icon-theme ion-ios-cloud"></i> クラウドでBOOKMARKを管理</p>
+        <p><i class="icon-theme ion-ios-filing"></i> CATEGORY別にBOOKMARKを仕分け</p>
+        <p><i class="icon-theme ion-ios-settings"></i> BOOKMARKの編集・削除</p>
+        <p><i class="icon-theme ion-ios-chatboxes"></i> BOOKMARKへのコメント・いいね！</p>
+        <p><i class="icon-theme ion-ios-redo"></i> お気に入りUSERへのフォロー</p>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag("iPhone-White.png", class:'img-responsive aligncenter', :alt => "") %>
+      </div>
+    </div>
+  </div>
+
+  <!-- ********** THIRD ********** -->
+  <section id="thirdsec"></section>
+  <div id="third">
+    <div class="row centered nomargin">
+      <h3>HANDSOME CONTENT</h3>
+      <div class="hr-small aligncenter"></div>
+      <div class="ms-wrapper ms-effect-3">
+        <button>toggle view</button>
+        <div class="ms-perspective">
+          <div class="ms-device">
+            <div class="ms-object">
+              <div class="ms-front"></div>
+              <div class="ms-back"></div>
+              <div class="ms-left ms-side"></div>
+              <div class="ms-right ms-side"></div>
+              <div class="ms-top ms-side"></div>
+              <div class="ms-bottom ms-side"></div>
             </div>
+            <!-- /ms-object -->
+            <div class="ms-screens">
+              <a href="#bottom" class="ms-screen-1">
+                <div class="ms-label hidden-xs">Calendar Events</div>
+              </a>
+              <a href="/signup"class="ms-screen-2">
+                <div class="ms-label hidden-xs">Compose</div>
+              </a>
+              <a href="/rankings/follow" class="ms-screen-3">
+                <div class="ms-label hidden-xs">Accounts</div>
+              </a>
+              <a href="/categorys"class="ms-screen-4">
+                <div class="ms-label hidden-xs">Inbox</div>
+              </a>
+              <a href="#home" class="smoothscroll ms-screen-5">
+                <div class="ms-label hidden-xs">Top</div>
+              </a>
+            </div>
+          </div>
+          <!-- /ms-device -->
+        </div>
+        <!-- /ms-perspective -->
       </div>
-      
-            <nav id="global_navi2"> 
-              <div class="gnav">
-                <ul>
+      <!-- /ms-wrapper -->
+    </div>
+  </div>
 
-                  <li class="<%= 'current' if current_page?(root_path) %>">
-                    <%= link_to root_path do %>
-                      総合
-                    <% end %>
-                  </li>
+  <!-- ********** ICONS ********** -->
+  <section id="iconsec"></section>
+  <div class="container ptb">
+    <div class="row centered icons">
 
-<!--
-<%#                  <% for l in @lists %>
-<%#                    <li class="<%= 'current' if current_page?('/categorys/'"#{l}") %>">
-<%#                      <%= link_to "#{l}", "categorys/#{l}" %>
-<%#                    </li>
-<%#                  <% end %>
--->
-                  <% @co.each do |c| %>
-                    <li class="<%= 'current' if current_page?('/categorys/'"#{c[0]}") %>">
-                      <%= link_to "#{c[0]} (#{c[1]})", "categorys/#{c[0]}" %>
-                    </li>
-                  <% end %>
-                </ul>
-            </nav>
-</header>
+      <h3>マイページでお気に入りを整頓</h3>
+      <div class="hr-small aligncenter"></div>
+      <div class="mb-100"></div>
 
-<%= render 'categorys/body' %>
+      <div class="col-md-3">
+        <i class="fas fa-bookmark"></i>
+        <h5>MY BOOKMARKS</h5>
+        <p>You can browse the bookmark list registered by yourself.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-user-plus"></i>
+        <h5>FOLLOWINGS</h5>
+        <p>You can view and manage the list of users you are following.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-users"></i>
+        <h5>FOLLOWERS</h5>
+        <p>You can view and manage your follower list.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-thumbs-up"></i>
+        <h5>FAVORITES</h5>
+        <p>You can edit your profile picture, self-introduction comment etc.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-edit"></i>
+        <h5>EDIT PROFILE</h5>
+        <p>You can add or edit your own profile picture and comments.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ********** BOTTOM ********** -->
+  <section id="bottomsec"></section>
+  <div id="bottom">
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>気になるワードがあれば、検索してみましょう</h2>
+        <h5>登録されたブックマークから、<br/>お気に入りのページが見つかるかも知れません。</h5>
+
+       <!--検索拡張機能  -->
+        <div class="mtb">
+            <%= form_tag categorys_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Please enter words or phrases of interest...", class: 'subscribe-input'%>
+                <button class="btn btn-conf btn-green" type="submit">Search<span class="hidden-xs hidden-sm"> immediately!</span></button>
+            <% end %>
+        </div>
+        <!--/mt-->
+
+        <p class="mt-100">
+          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="#"><i class="ion-social-facebook"></i></a>
+          <a href="#"><i class="ion-social-instagram"></i></a>
+          <a href="#"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+<div id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Welcome to Bookshare!</h3>
+        <div class="hr-small aligncenter"></div>
+        <% if logged_in? %>
+          <p style="text-align:center">
+            <%= current_user.name %> さん<br>
+            ログイン中<br>
+            <hr>
+          </p>
+          <p style="text-align:center">
+            ブックマークを追加する
+          </p>
+            <div class="contact-form php-mail-form">
+              <p style="text-align:center">
+                <div class="form-send">
+                  <span>
+                    <button type="submit" class="btn btn-large">
+                      <%= link_to 'Bookmark!', fobitows_path %>
+                    </button>
+                  </span>
+                </div>  
+              </p>
+            </div>  
+          <p style="text-align:center">
+            おすすめのブックマークを投稿しましょう！
+          </p>
+        <% else %>
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+              <span>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Sign Up', signup_path %>
+                </button>
+                <font color="#777">&nbsp;OR&nbsp;</font>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Log In', login_path %>
+                </button>
+              </span>
+              </div>  
+            <p/>
+          </div>
+          </br>
+          <hr>
+          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / contact -->
+
+</body>
+</html>

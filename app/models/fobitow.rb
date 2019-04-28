@@ -10,8 +10,9 @@ class Fobitow < ApplicationRecord
                       #uniqueness: true
 #  validates :title, presence: true#, length: { maximum: 150 }
   validates :category, length: { maximum: 12 }#, presence: true
+  validates :likes_count, length: { maximum: 250 }
 
-  enum status:{nonreleased: 0, released: 1}
+#  enum status:{nonreleased: 0, released: 1}
 
 # ajax
   def favorite_user(user_id)

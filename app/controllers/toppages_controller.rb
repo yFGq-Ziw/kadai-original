@@ -1,22 +1,22 @@
 class ToppagesController < ApplicationController
 
   def index
-#    @lists = Fobitow.pluck(:category).uniq
     @co = Fobitow.group(:category).order('count_category desc').count(:category)
-  
-    @fobitow = Fobitow.all
-    if params[:button1]
-      # ボタン1
-      @fobitows = Fobitow.all.order('favorites_count DESC').page(params[:page]).search(params[:search])#.per(10)
-    else if params[:button2]
-      # ボタン2
-      @fobitows = Fobitow.all.order('created_at DESC').page(params[:page]).search(params[:search])#.per(10)
-    else
-      params[:button2] = '新着'
-      # ボタン2
-      @fobitows = Fobitow.all.order('created_at DESC').page(params[:page]).search(params[:search])#.per(10)
-    end
-    end
+#    @comments = Comment.all.order('created_at desc').page(params[:comme_page]).per(5)
+#      @fobitow = Fobitow.new
+#      @fobitows = @user.fobitows.order('created_at DESC').page(params[:page]).search(params[:search])
+#    @fobitow = Fobitow.all
+#    if params[:button1]
+#      @fobitows = Fobitow.all.order('favorites_count DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+#      counts(@user)
+#    else if params[:button2]
+#      @fobitows = Fobitow.all.order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+#      counts(@user)
+#    else
+#      params[:button2] = '新着'
+#      @fobitows = Fobitow.all.order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+#    end
+#    end
   end
 
   def bookmark

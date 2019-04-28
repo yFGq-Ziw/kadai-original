@@ -1,0 +1,39 @@
+  <div class="comment_col">
+    <div class="comment_index">
+      <% @comments.each do |comment| %>
+        <hr>
+
+        <div class="media-body">
+          <li class="col-comme2 col-lg-12 col-xs-12">
+            <%# イメージ画像 %>
+            <div class="box4">
+                <% if comment.user.image? %>
+                  <%= image_tag(comment.user.image.url(:thumb), :size => "50", class: 'image') %>
+                <% else %>
+                  <span class="gravatar">
+                    <img class="media-object img-rounded" src="<%= gravatar_url(comment.user, size: "50") %>" alt="">
+                  </span>
+                <% end %>
+            </div>
+
+            <p class="font12"><%= link_to comment.user.name, user_path(comment.user.id) %>:&nbsp; 
+            Posted_at <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+            <p><%= comment.body %></p>
+            <div class="box26">
+              <p class="says textOverflow2">
+                <!-- Commentsへ -->
+                <%= link_to fobitow_comments_path(comment.fobitow.id) do %>
+                  <!-- url favicon, title -->
+                  <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= comment.fobitow.content.split('/').first(3).join('/')%>">
+                  <%= comment.fobitow.title %>
+                  <i class="fa-comme far fa-comments"></i>
+                <% end %>
+                <%= "(#{comment.fobitow.comments.count})" %>
+              </p>
+            </div>
+          </li>
+        </div>
+      <% end %>
+      <%= paginate @comments, :param_name => 'comme_page' %>
+    </div>
+  </div>

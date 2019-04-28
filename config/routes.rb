@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root to: 'toppages#index'
 
   get 'categorys/:category', to: 'categorys#show'
+  get 'categorys', to: 'categorys#index'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'users#new'
@@ -24,16 +26,10 @@ Rails.application.routes.draw do
     end
   end
 
-  # ajax
-  resources :fobitows do
+  resources :fobitows, only: [:index, :show, :create, :destroy, :edit, :update] do
     resources :favorites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy, :index]
+    resources :comments
   end
-  # ajaxここまで
   
   resources :relationships, only: [:create, :destroy]
-
-#  resources :fobitows, only: [:create, :destroy, :show] do
-#    resources :comments
-#  end
 end

@@ -1,82 +1,82 @@
-<div style="row padding-top:10px;">
-        <header>
-
-      <!--検索拡張機能  -->
-      <div class="media-body">
-
-      </div>
-      <div class="media-right">
-      <!-- ロゴ -->
-          <h1><%= link_to image_tag("logo.png", :alt => "Fobitows"), root_path %></h1></p>
-      </div>
-
-        </header> 
-        <!--ここからwrapperー-->
-        <div id="wrapper" class="clearfix">
-            <!--ここからメイン-->
-            <div id="main2">
-                <section id="point">
-                    <h2></h2>
-                    <section class="clearfix">
-                        <figure>
-                            <figcaption></figcaption>
-                        </figure>
-                        <h3><%= @user.name %> さんのお気に入り</h3>
-                        <p>
- 
-<div class="row">
-  <aside class="col-xs-4">
-    <div class="panel panel-default">
-
-      <div class="panel-body">
-        <p id="notice"><%= notice %></p>
-<!-- 画像 -->
-        <p>
-          <div class="thumbnail">
-            <% if @user.image? %>
-              <%= image_tag(@user.image.url, :size => "300x300") %>
-            <% else %>
-              <span class="gravatar">
-                <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(current_user, size: "300") %>" alt="">
-              </span>
-<%#              <%= image_tag("panda.png", :size => "300x300") %>
-            <% end %>
-          </div>
-        </p>
-<!-- 画像 終了 -->
-<!-- 自己紹介コメント追加 -->
-      <div class="panel-heading">
-        <div class="pro-come">
-            <p><%= @user.comment %></p>
+<header>
+  <!-- ********** HEADER ********** -->
+  <div id="h2">
+    <div class="container">
+      <div class="row">
+  
+        <div class="col-md-5">
+          <%= image_tag("logo.png", :height => '34', :alt => "logo") %>
         </div>
       </div>
-      
+      <!--/row -->
+    </div>
+    <!--/container -->
   </div>
-    <%= render 'relationships/follow_button', user: @user %>
-  </div>
-        <div class="pro-link">
-        <% if current_user == @user %>
-        <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
-        <% end %>
-        <%= link_to 'Top', root_path %>
+  <!--/H -->
+</header>
+
+<!--ここからwrapperー-->
+<div id="wrapper" class="clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <!--ここからメイン-->
+        <div id="main">
+          <section id="point">
+<br>
+            <h6></h6>
+              <h3><%= @user.name %> 's Favorites</h3>
+              <hr>
+
+            <section id="news">
+              <%= render 'fobitows/fobitows', fobitows: @fobitows %>                         
+            </section>
+          </section>
         </div>
-  </aside>
-  <div class="col-xs-8">
-    <ul class="nav nav-tabs nav-justified">
-      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>Bookmarks <span class="badge"><%= @count_fobitows %></span><% end %></li>
-      <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <span class="badge"><%= @count_followings %></span><% end %></li>
-      <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
-      <li class="<%= 'active' if current_page?(likes_user_path(@user)) %>"><%= link_to likes_user_path(@user) do %>Favorites <span class="badge"><%= @count_likes %></span><% end %></li>
-    </ul>
-    <%= render 'fobitows/fobitows', fobitows: @fobitows %>
+        <!--メインここまで-->
+      </div>
+      <div class="col-lg-4 col-xs-12">
+        <!--ここからサイド-->
+        <aside id="sidebar">
+          <section id="side_banner3">
+
+            <div class="row">
+              <li class="col-lg-12 col-xs-12">
+                <!-- 画像 -->
+                <p class="box">
+                  <% if @user.image? %>
+                    <%= image_tag(@user.image.url, :size => "300", class: 'image media-object img-rounded img-responsive') %>
+                  <% else %>
+                    <span class="gravatar">
+                      <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, size: 300) %>" alt="">
+                    </span>
+                  <% end %>
+                </p>
+                <!-- 画像 終了 -->
+              </li>
+
+              <li class="col-lg-12 col-xs-12">
+                <!-- 自己紹介コメント -->
+                <div class="pro-come">
+                  <p><%= @user.comment %></p>
+                </div>
+            <%= render 'relationships/follow_button', user: @user %>
+              </li>
+            </ul>
+            <p>
+              <% if current_user == @user %>
+              <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
+              <% end %>
+              <%= link_to 'Top', root_path %>
+            </p>
+            
+          </section>
+        </aside>
+        <!--サイドここまで-->
+      </div>
+      <!--wrapperここまで-->
+    </div>
   </div>
 </div>
-                        </p>
-                    </section>
-                </section>
-            </div>
-        </div>
-        <!--wrapperここまで-->
-        <!--ここからフッター-->
-
-        <!--フッターここまで--> 
+<!--ここからフッター-->
+<!--フッターここまで--> 

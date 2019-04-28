@@ -1,73 +1,60 @@
 <header>
 
-      <!--検索拡張機能  -->
-      <div class="media-body">
-
+  <div id="h2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <%= image_tag("logo.png", :height => '34', :alt => "logo") %>
+        </div>
       </div>
-      
-      <div class="media-right">
-      <!-- ロゴ -->
-            <div class="logo">
-              <%= link_to root_path do %>
-                <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-              <% end %>
-            </div>
-      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
 
 </header> 
 
-        <!--ここからwrapperー-->
-        <div id="wrapper" class="clearfix">
-            <!--ここからメイン-->
-            <div id="main2">
-                <section id="point">
-                    <h2></h2>
-                    <section class="clearfix">
-                        <figure>
-                            <figcaption></figcaption>
-                        </figure>
-                        <h3>Bookshare にブックマークを追加する</h3>
-                        <p>
-                          
-<hr>
 
-<div class="text-center">
-  <h1>Bookmark&nbsp;&nbsp;</h1>
-</div>
 
-<div>
-  <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-
-<%= form_for(@fobitow) do |f| %>
-
-<% if @fobitow.errors.any? %>
-  <div class="alert alert-warning">
-    <ul>
-      <% @fobitow.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div id="bottom">
+  <div class="media-body">
+    <!-- ロゴ -->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
       <% end %>
-    </ul>
-  </div>
-<% end %>
-
-    <div class="field">
-        <%= f.label(:content, 'ページのURLを入力') %>
-        <%= f.text_field(:content, :placeholder => "おすすめページのURLを入力して下さい https://...") %><br>
     </div>
-
-          <%= f.submit 'Post Bookmark !', class: 'btn btn-primary btn-block' %>
-<% end %>
-
-    <p class="mark-back"><%= link_to 'Back', :back %></p>
-
   </div>
-</div>
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Bookshare にブックマークを追加する</h2>
+        <h5>Please enter the URL of the recommended page.</h5>
 
-                        </p>
-                    </section>
-                </section>
-            </div>
+
+        <div class="mtb">
+            <%= form_for(@fobitow) do |f| %>
+              <% if @fobitow.errors.any? %>
+                <div class="alert alert-warning">
+                  <ul>
+                    <% @fobitow.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <%= f.text_field(:content, :placeholder => "https://...", class: 'bm subscribe-input') %>
+              <button class="btn btn-conf btn-green" type="submit">Bookmark!</button>
+            <% end %>
         </div>
-        <!--wrapperここまで-->
-        <!--ここからフッター-->
-        <!--フッターここまで--> 
+        <!--/mt-->
+    <p class="mark-back"><%= link_to :back %>&nbsp;&nbsp;&nbsp;</p>
+
+        <p class="mt-100">
+          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="#"><i class="ion-social-facebook"></i></a>
+          <a href="#"><i class="ion-social-instagram"></i></a>
+          <a href="#"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->

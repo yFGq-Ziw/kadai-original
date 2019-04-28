@@ -1,22 +1,22 @@
 <% if logged_in? %>
   <% if fobitow.favorite_user(current_user.id) %>
       <%= button_to fobitow_favorite_path(Favorite.find_by(user_id: current_user.id, fobitow_id: fobitow.id), fobitow_id: fobitow.id), method: :delete, id: "favorite-button", remote: true do %>
-      <span>
-        <%= fobitow.favorites_count %>
-      </span>
-      <%= image_tag("icon_red_heart.svg", :size => 20) %>
+      <p><% if fobitow.favorites_count.present? %>
+            (<%= fobitow.favorites_count %>)
+          <% end %>
+      <%= image_tag("icon_red_heart.svg", :size => 20) %></P>
     <% end %>
   <% else %>
       <%= button_to fobitow_favorites_path(fobitow), id: "favorite-button", remote: true do %>
-      <span>
-        <%= fobitow.favorites_count %>
-      </span>
-      <%= image_tag("icon_heart.svg", :size => 20) %>
+      <p><% if fobitow.favorites_count.present? %>
+            (<%= fobitow.favorites_count %>)
+          <% end %>
+      <%= image_tag("icon_heart.svg", :size => 20) %></P>
     <% end %>
   <% end %>
 <% else %>
-    <span>
-      <%= fobitow.favorites_count %>
-    </span>
-  <%= image_tag("icon_heart.svg", :size => 20) %>
+  <P><% if fobitow.favorites_count.present? %>
+       (<%= fobitow.favorites_count %>)
+     <% end %>
+  <%= image_tag("icon_heart.svg", :size => 20) %></P>
 <% end %>

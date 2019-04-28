@@ -1,18 +1,36 @@
-         <footer id="footer">
-            <div id="footer_navi">
-                <ul>
-                    <li><%= link_to root_path do %>総合<% end %></li>
-                    <li><%= link_to '/categorys/ヨガ' do %>ヨガ<% end %></li>  
-                    <li><%= link_to '/categorys/スキューバ' do %>スキューバ<% end %></li>
-                    <li><%= link_to '/categorys/囲碁・将棋' do %>囲碁・将棋<% end %></li>  
-                    <li><%= link_to '/categorys/ダンス' do %>ダンス<% end %></li>
-                    <li><%= link_to '/categorys/登山' do %>登山<% end %></li>  
-                    <li><%= link_to '/categorys/フットサル' do %>フットサル<% end %></li>
-                    <li><%= link_to '/categorys/格闘技' do %>格闘技<% end %></li>  
-                    <li><%= link_to '/categorys/プラモデル' do %>プラモデル<% end %></li>
-                    <li><%= link_to '/categorys/カメラ' do %>カメラ<% end %></li>  
-                    <li><%= link_to '/categorys/そのた' do %>そのた<% end %></li>  
-                </ul>
-            </div>
-            <small>Copyright&nbsp;&nbsp;&copy; 2019 Bookshare.</small>
-        </footer>
+<footer id="footer">
+
+<div id="copyrights">
+
+    <div id="footer_navi" class="foot-navi">
+        <span>
+          <%= link_to categorys_path do %>
+                <font color="#666">&nbsp;|&nbsp;</font> 
+                総合
+            <% end %>
+        </span>
+        
+        <span>
+          <% @co.first(10).each do |c| %>
+                <font color="#666">&nbsp;|&nbsp;</font> 
+                <%= link_to "#{c[0]} (#{c[1]})", "/categorys/#{c[0]}" %>
+          <% end %>
+        </span>
+        
+        <span><font color="#666">&nbsp;|&nbsp;</font></span> 
+    </div>
+
+  <div class="container">
+    <p>
+      Copyright &copy; 2019 <strong>Bookshare</strong>, All Rights Reserved.
+    </p>
+    <div class="credits">
+
+      Created with DoLanding template by <a href="https://templatemag.com/">TemplateMag</a>
+    </div>
+  </div>
+</div>
+<!-- / copyrights -->
+
+</footer>
+

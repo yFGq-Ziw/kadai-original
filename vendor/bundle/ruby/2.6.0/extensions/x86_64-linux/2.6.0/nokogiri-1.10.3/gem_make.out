@@ -1,0 +1,95 @@
+current directory: /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ext/nokogiri
+/home/ec2-user/.rvm/rubies/ruby-2.6.0/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-2.6.0/lib/ruby/2.6.0 -r ./siteconf20190426-32644-1soy2ac.rb extconf.rb
+checking if the C compiler accepts ... yes
+Building nokogiri using packaged libraries.
+Using mini_portile version 2.4.0
+checking for gzdopen() in -lz... yes
+checking for iconv... yes
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxml2-2.9.9
+with the following patches applied:
+	- 0001-Revert-Do-not-URI-escape-in-server-side-includes.patch
+	- 0002-Remove-script-macro-support.patch
+	- 0003-Update-entities-to-remove-handling-of-ssi.patch
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+
+Note, however, that nokogiri is not fully compatible with arbitrary
+versions of libxml2 provided by OS/package vendors.
+************************************************************************
+Extracting libxml2-2.9.9.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.9... OK
+Running git apply with /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/patches/libxml2/0001-Revert-Do-not-URI-escape-in-server-side-includes.patch... OK
+Running git apply with /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/patches/libxml2/0002-Remove-script-macro-support.patch... OK
+Running git apply with /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/patches/libxml2/0003-Update-entities-to-remove-handling-of-ssi.patch... OK
+Running 'configure' for libxml2 2.9.9... OK
+Running 'compile' for libxml2 2.9.9... OK
+Running 'install' for libxml2 2.9.9... OK
+Activating libxml2 2.9.9 (from /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxml2/2.9.9)...
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxslt-1.1.33
+with the following patches applied:
+	- 0001-Fix-security-framework-bypass.patch
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+************************************************************************
+Extracting libxslt-1.1.33.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.33... OK
+Running git apply with /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/patches/libxslt/0001-Fix-security-framework-bypass.patch... OK
+Running 'configure' for libxslt 1.1.33... OK
+Running 'compile' for libxslt 1.1.33... OK
+Running 'install' for libxslt 1.1.33... ERROR, review '/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.33/install.log' to see what happened. Last lines are:
+========================================================================
+make[1]: [xsltproc.1] Error 5 (ignored)
+make[2]: Entering directory `/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.33/libxslt-1.1.33/doc'
+make[2]: Nothing to be done for `install-exec-am'.
+/bin/mkdir -p /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html
+/usr/bin/install -c -m 0644 ./*.html /home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIchunk8.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIchunk8.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIchunk9.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIchunk9.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIconstructors.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIconstructors.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIfiles.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIfiles.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIfunctions.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIfunctions.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/API.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/API.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIsymbols.html’: No space left on device
+/usr/bin/install: failed to extend ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.3/ports/x86_64-pc-linux-gnu/libxslt/1.1.33/share/doc/libxslt-1.1.33/html/APIsymbols.html’: No space left on device
+/usr/bin/install: error writing ‘/home/ec2-user/environment/fobitows/vendor/bundle/ruby/2
+========================================================================
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configurat

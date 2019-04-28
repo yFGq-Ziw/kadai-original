@@ -1,16 +1,51 @@
 <header>
-  <div class="media-body">
-    <!--検索拡張機能  -->
-    <p>User Search</p>
-    <div class="input-search searchForm">
-      <%= form_tag rankings_follow_path, :method => 'get' do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "User を名前で検索" %>
-        <button class="searchForm-submit" type="submit" name="nil"></button>
-      <% end %>
+
+  <!-- ********** HEADER ********** -->
+  <section id="home"></section>
+  <div id="h2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <%= image_tag("logo.png", :height => '34', :alt => "logo") %>
+        </div>
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+
+  <!--/H -->
+</header> 
+
+
+  <!-- ********** SECOND ********** -->
+  <section id="secondsec"></section>
+  <div id="second2">
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-1">
+            <h3>Users</h3>
+        <div class="hr-small"></div>
+
+              <%= render 'users', users: @users %>
+
+      </div>
+      
+      
+      
+      <div class="col-md-5">
+        <%= image_tag("chair.png", class:'chair img-responsive aligncenter', :size => "300", :alt => "") %>
+      </div>
+
+
     </div>
   </div>
 
-  <div class="media-right">
+
+
+  <!-- ********** BOTTOM ********** -->
+  <section id="bottomsec"></section>
+  <div id="bottom">
+  <div class="media-body">
     <!-- ロゴ -->
     <div class="logo">
       <%= link_to root_path do %>
@@ -18,74 +53,85 @@
       <% end %>
     </div>
   </div>
-</header> 
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>User Search</h2>
+        <h5>探したい人がいますか？こちらで検索してみて下さい。</h5>
 
-<!--ここからwrapperー-->
-<div id="wrapper" class="clearfix">
+       <!--検索拡張機能  -->
+        <div class="mtb">
+            <%= form_tag rankings_follow_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Please enter the name of the person you want to find....", class: 'subscribe-input' %>
+                <button class="btn btn-conf btn-green" type="submit" name="nil">Search!</button>
+            <% end %>
+        </div>
+        <!--/mt-->
+
+        <p class="mt-100">
+          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="#"><i class="ion-social-facebook"></i></a>
+          <a href="#"><i class="ion-social-instagram"></i></a>
+          <a href="#"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->
+
+
+<!-- ○○さん ログイン中 -->
+<div id="contact">
   <div class="container">
     <div class="row">
-      <!--ここからメイン-->
-      <div class="col-xs-12 col-lg-8">
-        <div id="main">
-          <section id="point">
-            <h6></h6>
-            <h3>Users</h3>
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Welcome to Bookshare!</h3>
+        <div class="hr-small aligncenter"></div>
+        <% if logged_in? %>
+          <p style="text-align:center">
+            <%= current_user.name %> さん<br>
+            ログイン中<br>
             <hr>
-            <section id="news">
-            <!-- _users呼び出し -->
-              <%= render 'users', users: @users %>
-            </section>
-          </section>
-        </div>
+          </p>
+          <p style="text-align:center">
+            ブックマークを追加する
+          </p>
+            <div class="contact-form php-mail-form">
+              <p style="text-align:center">
+                <div class="form-send">
+                  <span>
+                    <button type="submit" class="btn btn-large">
+                      <%= link_to 'Bookmark!', fobitows_path %>
+                    </button>
+                  </span>
+                </div>  
+              </p>
+            </div>  
+          <p style="text-align:center">
+            おすすめのブックマークを投稿しましょう！
+          </p>
+        <% else %>
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+              <span>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Sign Up', signup_path %>
+                </button>
+                &nbsp;OR&nbsp;
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Log In', login_path %>
+                </button>
+              </span>
+              </div>  
+            <p/>
+          </div>
+          </br>
+          <hr>
+          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+        <% end %>
+        
       </div>
-      <!--メインここまで-->
-      <!--ここからサイド-->
-      <div class="col-lg-4 col-xs-12">
-        <!--ここからサイド-->
-        <aside id="sidebar">
-          <section id="side_banner">
-
-            <div class="row">
-              <li class="col-lg-12 col-xs-12">
-                <h2>Bookshare へようこそ</h2>
-                <% if logged_in? %>
-                  <div class="sign">
-                    <%= current_user.name %> さん<br>
-                    ログイン中
-                    <hr>
-                    <p>ブックマークを追加する</p>
-                    <ul>
-                      <li><%= link_to 'Bookmark!', fobitows_path, class: 'btn btn-block btn-primary' %></li>
-                    </ul>
-                    <p>おすすめのブックマークを<br>投稿しましょう！</p>
-                  </div>
-                <% else %>
-                  <div class="sign">
-                    <p> -&nbsp;&nbsp;Cloudでブックマークを収集・管理&nbsp;&nbsp;- </p>
-                    <p> -&nbsp;&nbsp;便利なブックマークをカンタン共有&nbsp;&nbsp;- </p>
-                    <p> -&nbsp;&nbsp;役に立ったら、”いいね！”&nbsp;&nbsp;- </p>
-                    <ul>
-                      <li><%= link_to 'Sign up', signup_path, class: 'btn btn-block btn-primary' %></li>
-                      <li><p>or</p></li>
-                      <li><%= link_to 'Log in', login_path, class: 'btn btn-block btn-primary' %></li>
-                      <p>さっそく、Bookshare を始めましょう！</p>
-                    </ul>
-                  </div>
-                <% end %>
-              </li>
-              <!-- ロゴ -->
-              <div>
-                <%= link_to root_path do %>
-                  <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-                <% end %>
-              </div>
-            </div>
-          </section>
-        </aside>
-      <!--サイドここまで-->
     </div>
   </div>
 </div>
-<!--wrapperここまで-->
-<!--ここからフッター-->
-<!--フッターここまで--> 
+<!-- / contact -->

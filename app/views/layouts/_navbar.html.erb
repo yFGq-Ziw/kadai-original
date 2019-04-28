@@ -1,116 +1,81 @@
-<header>
-  <nav id="global_navi" class="navbar navbar-inverse">
-    <div class="container">
+  <!-- Menu -->
+  <nav class="menu" id="theMenu">
+    <div class="menu-wrap">
+      <h1 class="logo"><a href="#home" class="smoothscroll">Bookshare</a></h1>
+      <i class="ion-android-close menu-close"></i>
+
+        <% unless current_page?(root_path) %><%= link_to 'Top', root_path %><% end %>
+        <% unless current_page?("/categorys") %><%= link_to 'All bookmarks', "/categorys" %><% end %>
+
+      <% if current_page?(root_path) %>
+        <nav class="navbar navbar-default">
+        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+        
+          <a href="#firstsec" class="smoothscroll">greeting</a>
+          <a href="#secondsec" class="smoothscroll">function</a>
+          <a href="#thirdsec" class="smoothscroll">info</a>
+          <a href="#iconsec" class="smoothscroll">about my page</a>
+          <a href="#bottomsec" class="smoothscroll">search</a>
+          </ul>
+        </li>  
+        </nav>
+
+      <% else if current_page?(:controller => 'categorys', :action => 'index') %>
+
+        <nav class="navbar navbar-default">
+        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+        
+          <a href="#firstsec" class="smoothscroll">Bookmarks</a>
+          <a href="#secondsec" class="smoothscroll">comments</a>
+          <a href="#thirdsec" class="smoothscroll">notice</a>
+          <a href="#bottomsec" class="smoothscroll">search</a>
+          </ul>
+        </li>  
+        </nav>
       
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-          
-        <li class="navbar-nav navbar-brand">
-          <span class="logo-navi">
-            <%= link_to root_path do %>
-              <%= image_tag("icon.svg", :size => '35', :alt => "Bookshare") %> 
-            <% end %>
-          </span>
-          <span class="logo3 <%= "current2" if current_page?(root_path) %>">
-            <%= link_to root_path do %> 
-              <font size="5" face="Times New Roman">Bookshare</font>
-            <% end %>
-          </span>
-        </li>
-      </div>
+      <% end %>
+      <% end %>
+
+      <% if logged_in? %>
+
+        <%= link_to 'Bookmark!', fobitows_path %>
+        <%= link_to 'Users', rankings_follow_path %>
+  
+      <nav class="navbar navbar-default">
+      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+        <%= link_to user_path(current_user) do %>
+          My Bookmarks <span class="badge"><%= @count_fobitows %></span>
+        <% end %>
+        <%= link_to followings_user_path(current_user) do %>
+          Followings <span class="badge"><%= @count_followings %></span>
+        <% end %>
+        <%= link_to followers_user_path(current_user) do %>
+          Followers <span class="badge"><%= @count_followers %></span>
+        <% end %>
+        <%= link_to likes_user_path(current_user) do %>
+          Favorites <span class="badge"><%= @count_likes %></span>
+        <% end %>
+        <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+      </li>  
+      </nav>
+
+        <hr>
+        <%= link_to 'Logout', logout_path, method: :delete %>
       
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          
-          <% if logged_in? %>
-            
-            <li class="chuo">
-              <%= link_to fobitows_path do %>
-                <span class="glyphicon glyphicon-bookmark" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                </span>
-                Bookmark!
-              <% end %>
-            </li>
-            
-            <li class="chuo <%= "current2" if current_page?(rankings_follow_path) %>">
-              <%= link_to rankings_follow_path do %>
-                <span class="glyphicon glyphicon-user" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                </span>
-                Users
-              <% end %>
-            </li>
-            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <% if current_user.image? %>
-                  <%= image_tag(current_user.image.url(:thumb), :size => "33x33", class: "box3") %>
-                <% else %>
-                
-                  <span class="gravatar">
-                    <img src="<%= gravatar_url(current_user, size: 33) %>" alt="" class="img-circle">
-                  </span>
-                <% end %>
-                <span class="<%= "current2" if current_page?(user_path(current_user)) %>">
-                  <%= current_user.name %>
-                </span>
-                <span class="caret"></span>
-              </a>
-              <ul class="drop dropdown-menu">
-                <li>
-                  <%= link_to user_path(current_user) do %>
-                    <span  style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                    </span>
-                    My Bookmarks <span class="badge"><%= @count_fobitows %></span>
-                  <% end %>
-                </li>
-              
-                <li>
-                  <%= link_to followings_user_path(current_user) do %>
-                    <span  style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                    </span>
-                    Followings <span class="badge"><%= @count_followings %></span>
-                  <% end %>
-                </li>
-              
-                <li>
-                  <%= link_to followers_user_path(current_user) do %>
-                    <span style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                    </span>
-                    Followers <span class="badge"><%= @count_followers %></span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to likes_user_path(current_user) do %>
-                    <i class="far fa-thumbs-up"></i>
-                    <span style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                    </span>
-                    Favorites <span class="badge"><%= @count_likes %></span>
-                  <% end %>
-                </li>
-                <li role="separator" class="divider"></li>
-            
-                <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-              </ul>
-            </li>
-                
-          <% else %>
-            <li class="chuo">
-              <%= link_to rankings_follow_path do %>
-                <span class="glyphicon glyphicon-user" style="font-size: 14px" aria-hidden="true" style="font-size: 15px">
-                </span>
-                Users
-              <% end %>
-            </li>
-            <li class="chuo"><%= link_to 'Signup', signup_path %></li>
-            <li class="chuo"><%= link_to 'Login', login_path %></li>
-          <% end %>
-        </ul>
-      </div>
+      <% else %>
+
+        <%= link_to 'Users', rankings_follow_path %>
+        <%= link_to 'Signup', signup_path %>
+        <%= link_to 'Login', login_path %>
+
+      <% end %>
+
     </div>
+
+    <!-- Menu button -->
+    <div id="menuToggle"><i class="ion-navicon"></i></div>
+
   </nav>
-</header>
