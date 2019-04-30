@@ -1,11 +1,30 @@
 <ul class="media-list">
   <% fobitows.each do |fobitow| %>
-    <hr>
-
-    <li class="media">
-
-      <div class="media-right media-top">
-
+  <li>
+    <div id="main"><h6></h6></div>
+    <div class="media">
+      <div class="box27">
+        <% unless fobitow.title == @empty %>
+          <div class="says">
+            <div style="display:inline-flex">
+              <!-- url favicon, title -->          
+              <%= form_tag categorys_path, :method => 'get' do %>
+                <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
+                <span class="hidden-input"><%= text_field_tag :search, URI.parse(fobitow.content).host %></span>
+                <button type="submit">
+                  <a><%= URI.parse(fobitow.content).host %></a>
+                </button>
+              <% end %>
+            </div>
+            <%= link_to fobitow.content, target: "_blank" do %>
+              <%# scrape-title %>
+              <div class="font-title"><%= fobitow.title %></div>
+            <% end %>
+          </div>
+        <% end %>
+        <hr>
+      </div>
+      <div class="media-right3">
         <%# イメージ画像 %>
         <p class="box2">
           <%= link_to user_path(fobitow.user) do %>
@@ -18,80 +37,57 @@
             <% end %>
           <% end %>
         </p>
-
-        <!-- Commentsへ -->
-        <p>
-        <%= link_to fobitow_comments_path(fobitow.id) do %>
-          <i class="fa-comme far fa-comments"></i>
-        <% end %>
-        <span class="comments_count"><%= "(#{fobitow.comments.count})"%></span>
-        </p>
       </div>
-
-      <div class="media-body">
-
-          <%# ユーザ名 %>
-          <div>
-            <%= link_to fobitow.user.name, user_path(fobitow.user) %>
-          </div>
+      <div class="media-body2">
+        <%# ユーザ名 %>
+        <div>
+          <%= link_to fobitow.user.name, user_path(fobitow.user) %>
+        </div>
+        <div>
           <%# 日付 %>
-          <div>
-            <span class="text-muted"> Posted at <%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %>&nbsp;</span>
-
-                <% if logged_in? %>
-                  <% if current_user == fobitow.user %>
-                    <!-- 編集ページへ -->
-                    <%= link_to edit_fobitow_path(fobitow) do %>
-                      <i class="fa-comme fas fa-edit">&nbsp;&nbsp;</i>
-                    <% end %>
-                    <%# ゴミ箱 %>
-                 	  <%= link_to fobitow, method: :delete, data: { confirm: "You sure?" } do %>
-                      <i class="fa-comme fas fa-trash my-gray"></i>
-                    <% end %>
-                  <% end %>
-                <% end %>
-                
-              <span class="label label-info"><%= fobitow.category %></span>
+          <span class="text-muted"><%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %>&nbsp;</span>
+          <!-- カテゴリ -->
+          <span class="textOverflow4"><%= fobitow.category %></span>
+        </div>
             
+        <div class="icon-narabi" style="display:inline-flex">
           <!-- いいね -->
-          <a class="right" id="ajax<%= fobitow.id %>" href="javascript:void(0);">
+          <span id="ajax<%= fobitow.id %>" href="javascript:void(0);">
             <!-- ajax -->
             <%= render partial: 'favorites/favorite', locals: { fobitow: fobitow, favorite: @favorite } %>
-          </a>
-
-          </div>
-
-          <div>
-                  <div class="box26">
-            <% unless fobitow.title == @empty %>
-
-                  <p class="says textOverflow">
-                    <%= link_to fobitow.content, target: "_blank" do %>
-                      <!-- url favicon, title -->          
-                      <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
-                    <% end %>
-
-                    <%= link_to fobitow.content, target: "_blank" do %>
-                      <%# scrape-title %>
-                      <%= fobitow.title %>
-                    <% end %>
-                  </p>
-                    
+          </span>
+          <!-- Commentsへ -->
+          <%= link_to fobitow_comments_path(fobitow.id) do %>
+            &nbsp;&nbsp;<i class="fa-comme far fa-comments">&nbsp;</i>
+          <% end %>
+          <font color="#777">
+            <span class="comments_count"><%= "(#{fobitow.comments.count})"%>&nbsp;&nbsp;</span>
+          </font>
+          <% if logged_in? %>
+            <% if current_user == fobitow.user %>
+              <!-- 編集ページへ -->
+              <%= link_to edit_fobitow_path(fobitow) do %>
+                <i class="fa-comme fas fa-edit">&nbsp;&nbsp;</i>
+              <% end %>
+              <%# ゴミ箱 %>
+           	  <%= link_to fobitow, method: :delete, data: { confirm: "You sure?" } do %>
+                <i class="fa-comme fas fa-trash my-gray"></i>
+              <% end %>
             <% end %>
-                  </div>
-                  
-                  <div class="box26">
-                    <p class="says textOverflow2">
-                      <%= link_to fobitow.content, target: "_blank" do %>
-                        <!-- body_text_h3 -->          
-                        <%= fobitow.likes_count %>
-                      <% end %>
-                    </p>
-                  </div>
-               
-          </div>
+          <% end %>
+        </div>     
+      </div>
 
-    </li>
+      <div class="box27">
+        <div class="says textOverflow2">
+          <%= link_to fobitow.content, target: "_blank" do %>
+            <!-- body_text_h3 -->          
+            <font color="#777"><%= fobitow.likes_count %></font>
+          <% end %>
+        </div>
+      </div>
+  </li>  
+
   <% end %>
-  <%= paginate @fobitows, :param_name => 'fobi_page' %>
 </ul>
+  

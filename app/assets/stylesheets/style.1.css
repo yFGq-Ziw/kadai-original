@@ -62,7 +62,12 @@ body {
 .mtb {margin-top: 50px; margin-bottom: 50px;}
 .mtb2 { margin-top: 100px; margin-bottom: 100px;}
 
-.mtb3 {margin-top: 50px; margin-bottom: 50px; padding-top: 20px}
+.mtb3 {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding-top: 20px;
+  max-width: 350px;
+}
 
 .ptb {padding-top: 60px; padding-bottom: 60px;}
 
@@ -86,7 +91,11 @@ body {
 	border-bottom: 4px solid #009688;
 	margin-bottom: 40px;
 }
-
+.hr-small2 {
+	width: 60px;
+	border-bottom: 4px solid #009688;
+	margin-bottom: 15px;
+}
 .clear {
 	clear: both;
 	display: block;
@@ -143,7 +152,10 @@ a:focus {
 	width: 260px;
 	height: 100%;
 	top: 0;
+
+/* navibar重なり順序 */
 	z-index: 10;
+
 	text-align: left;
 }
 
@@ -712,3 +724,10 @@ input.gazo {
 
 .contact-form input, .gazo {
      padding: 0; }
+     
+#sort {
+    padding: 3px 2px 3px 2px;
+    font-size: 14px;
+    width: 95px;
+    margin: 0px 0px 0px -20px;
+}

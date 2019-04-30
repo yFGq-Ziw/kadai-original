@@ -1,1 +1,209 @@
-<%= render 'body' %>
+<body data-spy="scroll" data-offset="0" data-target="#theMenu">
+
+  <!-- ********** HEADER ********** -->
+  <section id="home"></section>
+  <div id="h2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <%= image_tag("logo.png", :height => '34', :alt => "logo") %>
+        </div>
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/H -->
+ 
+  
+    <div id="footer_navi" class="foot-navi">
+        <span>
+          <%= link_to categorys_path do %>
+                <font color="#666">&nbsp;|&nbsp;</font> 
+                ALL
+            <% end %>
+        </span>
+        <span>
+          <% @co.each do |c| %>
+                <font color="#666">&nbsp;|&nbsp;</font> 
+                <%= link_to "#{c[0]} (#{c[1]})", "/categorys/#{c[0]}" %>
+          <% end %>
+        </span>
+        <span><font color="#666">&nbsp;|&nbsp;</font></span> 
+    </div> 
+
+  <!-- ********** FIRST ********** -->
+  <section id="firstsec"></section>
+  <div id="second2">
+    <div class="row nomargin">
+<!--      <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-md-10 col-md-offset-1">
+        <h3>Bookmarks</h3>
+        <div class="hr-small2"></div>
+        <div style="display:inline-flex">
+          <div class="font-title">
+            <% if params[:category] == nil %>
+              <!-- searchがnilでない場合 --> 
+              <% unless params[:search] == nil %>
+                " <font color="#03c9a9"><%= params[:search] %></font> "
+              <% else %>
+                
+              <% end %>
+            <% else %>
+              <span class="textOverflow5"><%= params[:category] %></span>
+              
+            <% end %>
+            <span class="abcd">
+                &nbsp;
+                <font color="#777">
+                  <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                  <% unless params[:button1] == nil %>
+                    <span><%= params[:button1] %></span>
+                  <% else %>
+                    <span>LIKE</span>
+                  <% end %>
+                </font>
+
+            </span>
+          </div>
+        </div>
+
+            <!-- searchがnilの場合 -->
+            <% if params[:search] == nil %>
+              <div class="contact-form php-mail-form">
+                  <div class="form-send">
+                    <form action="#index" method="get" align="right">
+                    <button type="submit" id="sort" class="btn btn-large" name="button1" value="LIKE" >
+                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                    <span>LIKE</span>
+                    </button>
+                    &nbsp;OR&nbsp;
+                    <button type="submit" id="sort" class="btn btn-large" name="button1" value="NEW" >
+                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                    <span>NEW</span>
+                    </button>
+                    </form>
+                  </div>  
+              </div>
+            <% end %>
+          
+    <div id="global_navi2">
+
+                  <%= render 'fobitows/fobitows', fobitows: @fobitows %> 
+
+    </div> 
+    <%= paginate @fobitows, :param_name => 'fobi_page' %>
+              
+
+    </div>
+    <!--/row-->
+  </div>
+  <!--/first-->
+
+  
+  
+  <% if current_page?(categorys_path) and params[:search] == nil %>
+    <%= render 'body' %>
+  <% end %>
+
+
+
+  <!-- ********** BOTTOM ********** -->
+  <section id="bottomsec"></section>
+  <div id="bottom">
+  <div class="media-body">
+    <!-- ロゴ -->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+      <% end %>
+    </div>
+  </div>
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>気になるワードがあれば、検索してみましょう</h2>
+        <h5>登録されたブックマークから、<br/>お気に入りのページが見つかるかも知れません。</h5>
+
+       <!--検索拡張機能  -->
+        <div class="mtb">
+          <%= form_tag categorys_path, :method => 'get' do %>
+            <div>
+              <span><input type="radio" name="button1" value="LIKE" checked>LIKE</span>
+              <span><input type="radio" name="button1" value="NEW" >NEW</span>
+            </div>          
+          <%= text_field_tag :search, params[:search], :placeholder => "Please enter words or phrases of interest...", class: 'subscribe-input'%>
+              <button class="btn btn-conf btn-green" type="submit">Search<span class="hidden-xs hidden-sm"> immediately!</span></button>
+          <% end %>
+        </div>
+        <!--/mt-->
+
+        <p class="mt-100">
+          <a href="https://twitter.com/"><i class="ion-social-twitter"></i></a>
+          <a href="https://www.facebook.com/"><i class="ion-social-facebook"></i></a>
+          <a href="https://www.instagram.com//"><i class="ion-social-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->
+
+
+<div id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Welcome to Bookshare!</h3>
+        <div class="hr-small aligncenter"></div>
+        <% if logged_in? %>
+          <p style="text-align:center">
+            <%= current_user.name %> さん<br>
+            ログイン中<br>
+            <hr>
+          </p>
+          <p style="text-align:center">
+            ブックマークを追加する
+          </p>
+            <div class="contact-form php-mail-form">
+              <p style="text-align:center">
+                <div class="form-send">
+                  <span>
+                    <button type="submit" class="btn btn-large">
+                      <%= link_to 'Bookmark!', fobitows_path %>
+                    </button>
+                  </span>
+                </div>  
+              </p>
+            </div>  
+          <p style="text-align:center">
+            おすすめのブックマークを投稿しましょう！
+          </p>
+        <% else %>
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+              <span>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Sign Up', signup_path %>
+                </button>
+                <font color="#777">&nbsp;OR&nbsp;</font>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Log In', login_path %>
+                </button>
+              </span>
+              </div>  
+            <p/>
+          </div>
+          </br>
+          <hr>
+          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / contact -->
+
+</body>
+</html>

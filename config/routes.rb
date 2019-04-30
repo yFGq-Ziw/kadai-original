@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'toppages#index'
 
-  get 'categorys/:category', to: 'categorys#show'
   get 'categorys', to: 'categorys#index'
+  get 'categorys/:category', to: 'categorys#show'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

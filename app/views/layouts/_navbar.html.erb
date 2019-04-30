@@ -4,7 +4,6 @@
       <h1 class="logo"><a href="#home" class="smoothscroll">Bookshare</a></h1>
       <i class="ion-android-close menu-close"></i>
 
-        <% unless current_page?(root_path) %><%= link_to 'Top', root_path %><% end %>
         <% unless current_page?("/categorys") %><%= link_to 'All bookmarks', "/categorys" %><% end %>
 
       <% if current_page?(root_path) %>
@@ -61,6 +60,8 @@
         <%= link_to 'Edit Profile', edit_user_path(current_user) %>
       </li>  
       </nav>
+
+        <% unless current_page?(root_path) %><%= link_to 'Top', root_path %><% end %>
 
         <hr>
         <%= link_to 'Logout', logout_path, method: :delete %>

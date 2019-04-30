@@ -43,6 +43,14 @@
                     <% end %>
                   <% end %>
                 </p>
+                  <!-- いいね -->
+                  <span id="ajax<%= @fobitow.id %>">
+                    <font color="#777">
+                    <!-- ajax -->
+                    <%= render partial: 'favorites/favorite', locals: { fobitow: @fobitow, favorite: @favorite } %>
+                    </font>
+                  </span>
+
               </div>
               <div class="media-body">
                 <!-- 本文 -->
@@ -77,11 +85,6 @@
                     <%= link_to @fobitow.user.name, user_path(@fobitow.user) %>
                   </div>
   
-                  <!-- いいね -->
-                  <span class="right" id="ajax<%= @fobitow.id %>">
-                    <!-- ajax -->
-                    <%= render partial: 'favorites/favorite', locals: { fobitow: @fobitow, favorite: @favorite } %>
-                  </span>
   
                 </div>
               </div>
@@ -96,9 +99,8 @@
 
         <aside id="sidebar">
           <section id="side_banner4">
-            <div class="row">
-              <ul>
-                <div>
+
+
                   <li class="media">
                     <div class="media-right2 media-top">
                       <%# イメージ画像 %>
@@ -155,8 +157,8 @@
                             <%= f.text_area :body, :placeholder => "Bookshare にログインして、この記事にコメントしてみましょう！", class: 'form-control', readonly: 'true', rows: 7 %>
                           <% end %>
                     
-          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
-          <hr>
+                <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+                <hr>
 
           <div class="contact-form php-mail-form">
             <p style="text-align:center">
@@ -177,9 +179,7 @@
                         <% end %>
                       </div>
                     </li>
-                  </div>
-                </ul>
-              </div>
+
             </section>
           </aside>
         </div>

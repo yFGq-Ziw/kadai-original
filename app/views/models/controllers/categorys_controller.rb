@@ -3,12 +3,16 @@ class CategorysController < ApplicationController
   def index
     @comments = Comment.all.order('created_at desc').page(params[:comme_page]).per(5)
     @co = Fobitow.group(:category).order('count_category desc').count(:category)
+  
     @fobitow = Fobitow.all
-
-    if params[:button1] == 'NEW'
-        @fobitows = Fobitow.all.order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+    if params[:button1]
+      @fobitows = Fobitow.all.order('favorites_count DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+    else if params[:button2]
+      @fobitows = Fobitow.all.order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
     else
-        @fobitows = Fobitow.all.order('favorites_count DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+      params[:button2] = '新着'
+      @fobitows = Fobitow.all.order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
+    end
     end
   end
   
@@ -18,7 +22,6 @@ class CategorysController < ApplicationController
     @user = User.all    
 
     @comments = Comment.all.order('created_at desc').page(params[:comme_page]).per(5)
-#    @comments = Comment.find_by(id: @fobitow.user_id).order('created_at desc').page(params[:comme_page]).per(5)
     @co = Fobitow.group(:category).order('count_category desc').count(:category)
 
     if params[:button1]
@@ -26,7 +29,7 @@ class CategorysController < ApplicationController
     else if params[:button2]
       @fobitows = Fobitow.where(category: params[:category]).order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
     else
-      params[:button2] = 'NEW'
+      params[:button2] = '新着'
       fobitow = Fobitow.all
       @fobitows = Fobitow.where(category: params[:category]).order('created_at DESC').search(params[:search]).page(params[:fobi_page]).per(15)
     end

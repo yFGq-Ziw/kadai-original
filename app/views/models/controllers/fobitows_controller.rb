@@ -80,13 +80,13 @@ class FobitowsController < ApplicationController
 
 # 公開・非公開
   def release
-    fobitow = Fobitow.find(params[:id])
+    fobitow =  Fobitow.find(params[:id])
     fobitow.released! unless fobitow.released?
     redirect_to edit_fobitow_path, notice: 'このブックマークを公開しました'
   end
 
   def nonrelease
-    fobitow = Fobitow.find(params[:id])
+    fobitow =  Fobitow.find(params[:id])
     fobitow.nonreleased! unless fobitow.nonreleased?
     redirect_to edit_fobitow_path, notice: 'このブックマークを非公開にしました'
   end

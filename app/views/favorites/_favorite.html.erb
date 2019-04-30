@@ -1,22 +1,36 @@
 <% if logged_in? %>
+
   <% if fobitow.favorite_user(current_user.id) %>
-      <%= button_to fobitow_favorite_path(Favorite.find_by(user_id: current_user.id, fobitow_id: fobitow.id), fobitow_id: fobitow.id), method: :delete, id: "favorite-button", remote: true do %>
-      <p><% if fobitow.favorites_count.present? %>
-            (<%= fobitow.favorites_count %>)
-          <% end %>
-      <%= image_tag("icon_red_heart.svg", :size => 20) %></P>
+
+    <%= button_to fobitow_favorite_path(Favorite.find_by(user_id: current_user.id, fobitow_id: fobitow.id), fobitow_id: fobitow.id), method: :delete, id: "favorite-button", remote: true do %>
+      <%= image_tag("icon_red_heart.svg", :size => 18) %>
+
+    <% if fobitow.favorites_count.present? %>
+      <font color="#777">(<%= fobitow.favorites_count %>)</font>
     <% end %>
+
+    <% end %>
+
+
   <% else %>
-      <%= button_to fobitow_favorites_path(fobitow), id: "favorite-button", remote: true do %>
-      <p><% if fobitow.favorites_count.present? %>
-            (<%= fobitow.favorites_count %>)
-          <% end %>
-      <%= image_tag("icon_heart.svg", :size => 20) %></P>
+
+    <%= button_to fobitow_favorites_path(fobitow), id: "favorite-button", remote: true do %>
+      <%= image_tag("icon_heart.svg", :size => 18) %>
+
+    <% if fobitow.favorites_count.present? %>
+      <font color="#777">(<%= fobitow.favorites_count %>)</font>
     <% end %>
+
+    <% end %>
+
   <% end %>
+
 <% else %>
-  <P><% if fobitow.favorites_count.present? %>
-       (<%= fobitow.favorites_count %>)
-     <% end %>
-  <%= image_tag("icon_heart.svg", :size => 20) %></P>
+
+  <%= image_tag("icon_heart.svg", :size => 18) %>
+
+  <% if fobitow.favorites_count.present? %>
+    <font color="#777">(<%= fobitow.favorites_count %>)</font>
+  <% end %>
+
 <% end %>
