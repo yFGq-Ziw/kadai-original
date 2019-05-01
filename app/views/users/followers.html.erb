@@ -43,7 +43,6 @@
                   <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-right"></span></font>
                   <font size="2px"><a href="#bottomsec">&nbsp;&nbsp;Search</a></font>
                 <% end %>
-
               </div>
             </div>
             <section id="news">
@@ -94,43 +93,41 @@
 <!-- /wrapper -->
 
 
-  <!-- ********** BOTTOM ********** -->
-  <section id="bottomsec"></section>
-  <div id="bottom">
+<!-- ********** BOTTOM ********** -->
+<section id="bottomsec"></section>
+<div id="bottom">
   <div class="media-body">
-    <!-- ロゴ -->
-    <div class="logo">
-      <%= link_to root_path do %>
-        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
-      <% end %>
+      <!-- ロゴ -->
+      <div class="logo">
+        <%= link_to root_path do %>
+          <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+        <% end %>
+      </div>
     </div>
-  </div>
-    <div class="row nomargin">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>User Search</h2>
-        <h5><%= @user.name %>さんのフォロワーの中から名前、コメントで検索します。</h5>
-                <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-up"></span></font>
-                <font size="2px"><a href="#home">&nbsp;&nbsp;Page top</a></font>
-
-       <!--検索拡張機能  -->
-        <div class="mtb">
+  <div class="row nomargin">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>User Search</h2>
+      <h5><%= @user.name %>さんのフォロワーの中から名前、コメントで検索します。</h5>
+      <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-up"></span></font>
+      <font size="2px"><a href="#home">&nbsp;&nbsp;Page top</a></font>
+      <!--検索拡張機能  -->
+      <div class="mtb">
             <%= form_tag followers_user_path, :method => 'get' do %>
               <%= text_field_tag :search, params[:search], :placeholder => "Please enter the name of the person you want to find....", class: 'subscribe-input' %>
               <button class="btn btn-conf btn-green" type="submit" name="nil">Search!</button>
             <% end %>
-        </div>
-        <!--/mt-->
-
-        <p class="mt-100">
-          <a href="#"><i class="ion-social-twitter"></i></a>
-          <a href="#"><i class="ion-social-facebook"></i></a>
-          <a href="#"><i class="ion-social-instagram"></i></a>
-          <a href="#"><i class="ion-social-youtube"></i></a>
-        </p>
-      </div>
+          </div>
+      <!--/mt-->
+      <p class="mt-100">
+            <a href="#"><i class="ion-social-twitter"></i></a>
+            <a href="#"><i class="ion-social-facebook"></i></a>
+            <a href="#"><i class="ion-social-instagram"></i></a>
+            <a href="#"><i class="ion-social-youtube"></i></a>
+          </p>
     </div>
   </div>
-  <!--</div>-->
+</div>
+<!--</div>-->
 
 
 <!-- ○○さん ログイン中 -->
@@ -149,17 +146,17 @@
           <p style="text-align:center">
             ブックマークを追加する
           </p>
-            <div class="contact-form php-mail-form">
-              <p style="text-align:center">
-                <div class="form-send">
-                  <span>
-                    <button type="submit" class="btn btn-large">
-                      <%= link_to 'Bookmark!', fobitows_path %>
-                    </button>
-                  </span>
-                </div>  
-              </p>
-            </div>  
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+                <span>
+                  <button type="submit" class="btn btn-large">
+                    <%= link_to 'Bookmark!', fobitows_path %>
+                  </button>
+                </span>
+              </div>  
+            </p>
+          </div>  
           <p style="text-align:center">
             おすすめのブックマークを投稿しましょう！
           </p>
@@ -167,15 +164,15 @@
           <div class="contact-form php-mail-form">
             <p style="text-align:center">
               <div class="form-send">
-              <span>
-                <button type="submit" class="btn btn-large">
-                <%= link_to 'Sign Up', signup_path %>
-                </button>
-                &nbsp;OR&nbsp;
-                <button type="submit" class="btn btn-large">
-                <%= link_to 'Log In', login_path %>
-                </button>
-              </span>
+                <span>
+                  <button type="submit" class="btn btn-large">
+                    <%= link_to 'Sign Up', signup_path %>
+                  </button>
+                  &nbsp;OR&nbsp;
+                  <button type="submit" class="btn btn-large">
+                    <%= link_to 'Log In', login_path %>
+                  </button>
+                </span>
               </div>  
             <p/>
           </div>
