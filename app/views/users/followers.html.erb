@@ -1,5 +1,7 @@
 <header>
+
   <!-- ********** HEADER ********** -->
+  <section id="home"></section>
   <div id="h2">
     <div class="container">
       <div class="row">
@@ -15,34 +17,47 @@
   <!--/H -->
 </header>
 
-<!--ここからwrapperー-->
+
+<!--ここからwrapper / -->
 <div id="wrapper" class="clearfix">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-
         <div id="main">
           <section id="point">
             <br>
             <h6></h6>
-
-            <h3><%= @user.name %> 's Followers</h3>
+            <h3><%= @user.name %> 's Followers <span class="badge"><%= @count_followers %></span></h3>
             <hr>
+            <div style="display:inline-flex">
+              <div class="font-title2">
+                <!-- searchがnilでない場合 --> 
+                <% unless params[:search] == "" or params[:search] == nil %>
+                  " <font color="#03c9a9"><%= params[:search] %></font> "
+                  <span>
+                    &nbsp;
+                    <font color="#777"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></font>
+                    <font size="2px">&nbsp;&nbsp;&nbsp;<%= link_to 'Reset!', followers_user_path %></font>
+                  </span>
+                <% else %>
+                  <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-right"></span></font>
+                  <font size="2px"><a href="#bottomsec">&nbsp;&nbsp;Search</a></font>
+                <% end %>
 
+              </div>
+            </div>
             <section id="news">
-
               <%= render 'rankings/users', users: @followers %>
-
             </section>
           </section>
         </div>
-        <!--メインここまで-->
       </div>
-      <div class="col-lg-4 col-xs-12">
+      <!--メインここまで-->
+    
+      <div class="col-md-4 col-xs-12">
         <!--ここからサイド-->
         <aside id="sidebar">
           <section id="side_banner3">
-
             <div class="row">
               <li class="col-lg-12 col-xs-12">
                 <!-- 画像 -->
@@ -57,7 +72,6 @@
                 </p>
                 <!-- 画像 終了 -->
               </li>
-
               <li class="col-lg-12 col-xs-12">
                 <!-- 自己紹介コメント -->
                 <div class="pro-come">
@@ -65,21 +79,113 @@
                 </div>
                 <%= render 'relationships/follow_button', user: @user %>
               </li>
-
+            </div>
             <p>
               <% if current_user == @user %>
-              <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
+                <%= link_to 'Edit Profile', edit_user_path(@user) %>
               <% end %>
-              <%= link_to 'Top', root_path %>
             </p>
-            
           </section>
         </aside>
-        <!--サイドここまで-->
       </div>
-      <!--wrapperここまで-->
     </div>
   </div>
 </div>
-<!--ここからフッター-->
-<!--フッターここまで--> 
+<!-- /wrapper -->
+
+
+  <!-- ********** BOTTOM ********** -->
+  <section id="bottomsec"></section>
+  <div id="bottom">
+  <div class="media-body">
+    <!-- ロゴ -->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+      <% end %>
+    </div>
+  </div>
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>User Search</h2>
+        <h5><%= @user.name %>さんのフォロワーの中から名前、コメントで検索します。</h5>
+                <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-up"></span></font>
+                <font size="2px"><a href="#home">&nbsp;&nbsp;Page top</a></font>
+
+       <!--検索拡張機能  -->
+        <div class="mtb">
+            <%= form_tag followers_user_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Please enter the name of the person you want to find....", class: 'subscribe-input' %>
+              <button class="btn btn-conf btn-green" type="submit" name="nil">Search!</button>
+            <% end %>
+        </div>
+        <!--/mt-->
+
+        <p class="mt-100">
+          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="#"><i class="ion-social-facebook"></i></a>
+          <a href="#"><i class="ion-social-instagram"></i></a>
+          <a href="#"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->
+
+
+<!-- ○○さん ログイン中 -->
+<div id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Welcome to Bookshare!</h3>
+        <div class="hr-small aligncenter"></div>
+        <% if logged_in? %>
+          <p style="text-align:center">
+            <%= current_user.name %> さん<br>
+            ログイン中<br>
+            <hr>
+          </p>
+          <p style="text-align:center">
+            ブックマークを追加する
+          </p>
+            <div class="contact-form php-mail-form">
+              <p style="text-align:center">
+                <div class="form-send">
+                  <span>
+                    <button type="submit" class="btn btn-large">
+                      <%= link_to 'Bookmark!', fobitows_path %>
+                    </button>
+                  </span>
+                </div>  
+              </p>
+            </div>  
+          <p style="text-align:center">
+            おすすめのブックマークを投稿しましょう！
+          </p>
+        <% else %>
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+              <span>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Sign Up', signup_path %>
+                </button>
+                &nbsp;OR&nbsp;
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Log In', login_path %>
+                </button>
+              </span>
+              </div>  
+            <p/>
+          </div>
+          </br>
+          <hr>
+          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / contact -->

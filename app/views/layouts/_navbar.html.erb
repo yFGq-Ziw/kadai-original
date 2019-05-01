@@ -4,7 +4,9 @@
       <h1 class="logo"><a href="#home" class="smoothscroll">Bookshare</a></h1>
       <i class="ion-android-close menu-close"></i>
 
-        <% unless current_page?("/categorys") %><%= link_to 'All bookmarks', "/categorys" %><% end %>
+        <%= link_to 'Top', root_path %>
+        <%= link_to 'All bookmarks', "/categorys" %>
+        <%= link_to 'Users', rankings_follow_path %>
 
       <% if current_page?(root_path) %>
         <nav class="navbar navbar-default">
@@ -40,35 +42,24 @@
       <% if logged_in? %>
 
         <%= link_to 'Bookmark!', fobitows_path %>
-        <%= link_to 'Users', rankings_follow_path %>
-  
+
       <nav class="navbar navbar-default">
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page<b class="caret"></b></a>
         <ul class="dropdown-menu">
-        <%= link_to user_path(current_user) do %>
-          My Bookmarks <span class="badge"><%= @count_fobitows %></span>
-        <% end %>
-        <%= link_to followings_user_path(current_user) do %>
-          Followings <span class="badge"><%= @count_followings %></span>
-        <% end %>
-        <%= link_to followers_user_path(current_user) do %>
-          Followers <span class="badge"><%= @count_followers %></span>
-        <% end %>
-        <%= link_to likes_user_path(current_user) do %>
-          Favorites <span class="badge"><%= @count_likes %></span>
-        <% end %>
+          
+        <%= link_to 'Bookmarks', user_path(current_user) %>
+        <%= link_to 'Followings', followings_user_path(current_user) %>
+        <%= link_to 'Followers', followers_user_path(current_user) %>
+        <%= link_to 'Favorites', likes_user_path(current_user) %>
         <%= link_to 'Edit Profile', edit_user_path(current_user) %>
       </li>  
       </nav>
-
-        <% unless current_page?(root_path) %><%= link_to 'Top', root_path %><% end %>
 
         <hr>
         <%= link_to 'Logout', logout_path, method: :delete %>
       
       <% else %>
 
-        <%= link_to 'Users', rankings_follow_path %>
         <%= link_to 'Signup', signup_path %>
         <%= link_to 'Login', login_path %>
 

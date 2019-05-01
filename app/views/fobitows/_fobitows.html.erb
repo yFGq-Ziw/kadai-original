@@ -6,8 +6,9 @@
       <div class="box27">
         <% unless fobitow.title == @empty %>
           <div class="says">
+ 
             <div style="display:inline-flex">
-              <!-- url favicon, title -->          
+               <!-- url favicon, title -->          
               <%= form_tag categorys_path, :method => 'get' do %>
                 <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= fobitow.content.split('/').first(3).join('/')%>">
                 <span class="hidden-input"><%= text_field_tag :search, URI.parse(fobitow.content).host %></span>
@@ -16,6 +17,7 @@
                 </button>
               <% end %>
             </div>
+
             <%= link_to fobitow.content, target: "_blank" do %>
               <%# scrape-title %>
               <div class="font-title"><%= fobitow.title %></div>
@@ -47,7 +49,9 @@
           <%# 日付 %>
           <span class="text-muted"><%= fobitow.created_at.strftime("%Y-%m-%d %H:%M") %>&nbsp;</span>
           <!-- カテゴリ -->
-          <span class="textOverflow4"><%= fobitow.category %></span>
+          <% unless fobitow.category == "" or fobitow.category == nil %>
+            <span class="textOverflow4"><%= fobitow.category %></span>
+          <% end %>
         </div>
             
         <div class="icon-narabi" style="display:inline-flex">
@@ -56,6 +60,7 @@
             <!-- ajax -->
             <%= render partial: 'favorites/favorite', locals: { fobitow: fobitow, favorite: @favorite } %>
           </span>
+
           <!-- Commentsへ -->
           <%= link_to fobitow_comments_path(fobitow.id) do %>
             &nbsp;&nbsp;<i class="fa-comme far fa-comments">&nbsp;</i>
@@ -63,6 +68,7 @@
           <font color="#777">
             <span class="comments_count"><%= "(#{fobitow.comments.count})"%>&nbsp;&nbsp;</span>
           </font>
+
           <% if logged_in? %>
             <% if current_user == fobitow.user %>
               <!-- 編集ページへ -->
@@ -87,7 +93,6 @@
         </div>
       </div>
   </li>  
-
   <% end %>
 </ul>
   

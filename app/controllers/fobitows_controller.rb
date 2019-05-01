@@ -33,7 +33,7 @@ class FobitowsController < ApplicationController
       @fobitow.title = doc.title.byteslice(0,255).scrub('')
     rescue => e
       puts e #例外メッセージ表示
-      @fobitow.likes_count = e
+#      @fobitow.likes_count = e
     end
       if @fobitow.save
         flash[:success] = '下記の内容でブックマークを投稿しました。追加・修正があれば、編集してUpdateボタンを押してください。'
@@ -41,7 +41,7 @@ class FobitowsController < ApplicationController
         #redirect_back(fallback_location: root_path)
         redirect_to edit_fobitow_path(@fobitow)
       else
-        @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page]).per(15)
+        @fobitows = current_user.fobitows.order('created_at DESC').page(params[:page]).per(24)
         flash.now[:danger] = 'ブックマークの投稿に失敗しました。'
         render :index
       end

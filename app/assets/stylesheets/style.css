@@ -96,6 +96,10 @@ body {
 	border-bottom: 4px solid #009688;
 	margin-bottom: 15px;
 }
+.hr-small3 {
+	margin-bottom: 25px;
+}
+
 .clear {
 	clear: both;
 	display: block;
@@ -488,15 +492,16 @@ input.gazo {
 	background-color: #f3f3f3; 
 }
 #second2 {
-	width: 100%;
-	padding-top: 50px;
-	padding-bottom: 50px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 #second h3 {
 	font-weight: 700;
 	color: #030303;
 	text-transform: uppercase;
+	margin-bottom: 15px;
 }
 #second2 h3 {
 	font-weight: 700;
@@ -559,7 +564,7 @@ input.gazo {
 
 #bottom h5 {
 	letter-spacing: 1px;
-	text-transform: uppercase;
+/*	text-transform: uppercase;*/
 	font-weight: 300;
 }
 
@@ -710,6 +715,10 @@ input.gazo {
   font-size: 16px;
 }
 
+#copyrights .active2 a {
+  color: #fff;
+}
+
 #copyrights a {
   color: #03C9A9;
 }
@@ -727,7 +736,24 @@ input.gazo {
      
 #sort {
     padding: 3px 2px 3px 2px;
-    font-size: 14px;
+    font-size: 12px;
+    width: 70px;
+    margin: 0 0 0 -10px;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.btn a { color: #fff;}
+
+#sort2 {
+    padding: 3px 2px 3px 2px;
+    font-size: 11px;
     width: 95px;
     margin: 0px 0px 0px -20px;
+}
+
+.btn-reset {
+    padding: 0 27px 0 0;
 }

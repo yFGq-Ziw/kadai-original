@@ -1,0 +1,38 @@
+<body>
+
+	<a href="#navi" class="navi-trigger">
+		<span class="navi-icon">
+		</span>
+	</a>
+
+	<!-- Hidden Navi Menu -->
+	<div id="navi" class="navi">
+		<div class="navigation-wrapper">
+			<div class="half-block">
+				<h3>CATEGORYS</h3>
+        
+				<nav>
+					<ul class="primary-navi">
+
+            
+              <%= link_to categorys_path do %>
+              All&nbsp;&nbsp;
+              <% end %>
+            
+            
+              
+              <% @co.each do |c| %>
+                <% unless "#{c[0]}" == "" %>
+                <%= link_to "#{c[0]}(#{c[1]})", "/categorys/#{c[0]}" %>
+                &nbsp;
+                <% end %>
+              <% end %>
+              
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

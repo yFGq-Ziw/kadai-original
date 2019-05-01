@@ -18,15 +18,55 @@
 <!--ここからwrapperー-->
 <div id="wrapper" class="clearfix">
   <div class="container">
-    <div class="row">
+    <div class="row mar-bot">
       <div class="col-md-9">
         <!--ここからメイン-->
         <div id="main">
           <section id="point">
 <br>
             <h6></h6>
-              <h3><%= @user.name %> 's Favorites</h3>
+              <h3><%= @user.name %> 's Favorites <span class="badge"><%= @count_likes %></span></h3>
               <hr>
+
+        <div style="display:inline-flex">
+          <div class="font-title3">
+            <% if params[:category] == nil %>
+              <!-- searchがnilでない場合 --> 
+              <% unless params[:search] == nil %>
+                <font color="#222633">" </font>
+                <font color="#03c9a9"><%= params[:search] %></font>
+                <font color="#222633"> "</font>
+              <% else %>
+                <div align="right">
+                  <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-right"></font></span>
+                  <font size="2px"><a href="#bottomsec">&nbsp;&nbsp;Search</a></font>
+                </div>
+              <% end %>
+            <% else %>
+              <span class="textOverflow5"><%= params[:category] %></span>
+            <% end %>
+            &nbsp;
+              <% unless params[:select] == nil %>
+                <font color="#777">
+                  <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                  <span><%= params[:select] %></span>
+                </font>
+              <% end %>
+          </div>
+        </div>
+
+              <% unless params[:search] == nil %>
+              <span class="contact-form php-mail-form">
+                  <span class="form-send">
+                    <form action="#show" method="get" align="right" class="btn-reset">
+                      <button type="submit" id="sort2" class="btn btn-large">
+                      <span>RESET SEARCH</span>
+                      </button>
+                    </form>
+                  </span>  
+              </span>
+              <% end %>
+
             <div id="global_navi2">
 
               <%= render 'fobitows/fobitows', fobitows: @fobitows %> 
@@ -63,9 +103,9 @@
             </ul>
             <p>
               <% if current_user == @user %>
-              <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
+              <%= link_to 'Edit Profile', edit_user_path(@user) %>
               <% end %>
-              <%= link_to 'Top', root_path %>
+
             </p>
             
           </section>
@@ -75,5 +115,102 @@
     </div>
   </div>
 </div>
-<!--ここからフッター-->
-<!--フッターここまで--> 
+
+
+  <!-- ********** BOTTOM ********** -->
+  <section id="bottomsec"></section>
+  <div id="bottom">
+  <div class="media-body">
+    <!-- ロゴ -->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag("logo.png", :size => '200x40', :alt => "Bookshare") %> 
+      <% end %>
+    </div>
+  </div>
+    <div class="row nomargin">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Bookmark Search</h2>
+        <h5>"All" は全てのブックマークから、<br>"Mine" は自分の Favorites の中から検索します。</h5>
+
+       <!--検索拡張機能  -->
+        <div class="mtb">
+              <%= form_tag likes_user_path(current_user), :method => 'get' do %>
+          <div class="align-left">
+              <span><input type="radio" name="select" value="All" id="input-radio" checked>All</span>
+              <span><input type="radio" name="select" value="Mine" id="input-radio">Mine</span>
+          </div>          
+              <%= text_field_tag :search, params[:search], :placeholder => "Please enter the keyword...", class: 'subscribe-input'%>
+              <button class="btn btn-conf btn-green" type="submit">Search!</button>
+            <% end %>
+        </div>
+        <!--/mt-->
+        
+        <p class="mt-100">
+          <a href="https://twitter.com/"><i class="ion-social-twitter"></i></a>
+          <a href="https://www.facebook.com/"><i class="ion-social-facebook"></i></a>
+          <a href="https://www.instagram.com//"><i class="ion-social-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="ion-social-youtube"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->
+  
+  
+<!-- ○○さん ログイン中 -->
+<div id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Welcome to Bookshare!</h3>
+        <div class="hr-small aligncenter"></div>
+        <% if logged_in? %>
+          <p style="text-align:center">
+            <%= current_user.name %> さん<br>
+            ログイン中<br>
+            <hr>
+          </p>
+          <p style="text-align:center">
+            ブックマークを追加する
+          </p>
+            <div class="contact-form php-mail-form">
+              <p style="text-align:center">
+                <div class="form-send">
+                  <span>
+                    <button type="submit" class="btn btn-large">
+                      <%= link_to 'Bookmark!', fobitows_path %>
+                    </button>
+                  </span>
+                </div>  
+              </p>
+            </div>  
+          <p style="text-align:center">
+            おすすめのブックマークを投稿しましょう！
+          </p>
+        <% else %>
+          <div class="contact-form php-mail-form">
+            <p style="text-align:center">
+              <div class="form-send">
+              <span>
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Sign Up', signup_path %>
+                </button>
+                &nbsp;OR&nbsp;
+                <button type="submit" class="btn btn-large">
+                <%= link_to 'Log In', login_path %>
+                </button>
+              </span>
+              </div>  
+            <p/>
+          </div>
+          </br>
+          <hr>
+          <p style="text-align:center">さっそく、Bookshare を始めましょう！</p>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / contact -->

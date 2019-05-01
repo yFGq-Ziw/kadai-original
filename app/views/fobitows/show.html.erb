@@ -8,6 +8,7 @@
       </div>
       <!--/row -->
     </div>
+
 </header> 
 
 <!-- ********** FIRST ********** -->
@@ -55,7 +56,7 @@
               <div class="media-body">
                 <!-- 本文 -->
                 <div class="box26">
-                  <p class="says textOverflow2">
+                  <p class="says textOverflow2-2">
                     <%= link_to @fobitow.content, target: "_new" do %>
                       <%= @fobitow.likes_count %>
                     <% end %>
@@ -200,7 +201,7 @@
           <%= render 'comments/comments' %>
 
           <p>
-            <%= link_to :back %> | 
+            <%= link_to 'back', request.referer %> | 
             <%= link_to 'All Bookmarks', categorys_path %>
           </p>
         </div>

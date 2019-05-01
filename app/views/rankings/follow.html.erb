@@ -23,20 +23,31 @@
   <div id="second2">
     <div class="row nomargin">
       <div class="col-md-6 col-md-offset-1">
-            <h3>Users</h3>
-        <div class="hr-small"></div>
+            <h3>Users <span class="badge"><%= @u_kazu %></h3>
+        <div class="hr-small2"></div>
+        <div style="display:inline-flex">
+          <div class="font-title2">
+              <!-- searchがnilでない場合 --> 
+              <% unless params[:search] == "" or params[:search] == nil %>
+                " <font color="#03c9a9"><%= params[:search] %></font> "
+                <span>
+                  &nbsp;
+                    <font color="#777"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></font>
+                    <font size="2px">&nbsp;&nbsp;&nbsp;<%= link_to 'Reset!', rankings_follow_path %></font>
+                </span>
+              <% else %>
+                <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-right"></span></font>
+                <font size="2px"><a href="#bottomsec">&nbsp;&nbsp;Search</a></font>
+              <% end %>
+          </div>
+        </div>
 
-              <%= render 'users', users: @users %>
+        <%= render 'users', users: @users %>
 
       </div>
-      
-      
-      
       <div class="col-md-5">
         <%= image_tag("chair.png", class:'chair img-responsive aligncenter', :size => "300", :alt => "") %>
       </div>
-
-
     </div>
   </div>
 
@@ -57,6 +68,8 @@
       <div class="col-md-6 col-md-offset-3">
         <h2>User Search</h2>
         <h5>探したい人がいますか？こちらで検索してみて下さい。</h5>
+                <font color="#777" size="2px"><span class="glyphicon glyphicon-arrow-up"></span></font>
+                <font size="2px"><a href="#home">&nbsp;&nbsp;Page top</a></font>
 
        <!--検索拡張機能  -->
         <div class="mtb">

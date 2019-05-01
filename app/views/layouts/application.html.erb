@@ -42,6 +42,46 @@
     <!-- Template Main Javascript File -->
     <script src="/assets/main.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(function(){
+    var $setText = $('.font-title');
+    var cutFigure = '40'; // 表示する文字数の設定
+    var afterText = ' …'; // 省略した末尾に追加するテキスト
+
+    $setText.each(function(){
+        var textLength = $(this).text().length;
+        var textTrim = $(this).text().substr(0,(cutFigure))
+
+        if(cutFigure < textLength) {
+            $(this).html(textTrim + afterText).css({visibility:'visible'});
+        } else if(cutFigure >= textLength) {
+            $(this).css({visibility:'visible'});
+        }
+    });
+});
+</script>
+
+<script>
+$(function(){
+    var $setText = $('.textOverflow2');
+    var cutFigure = '140'; // 表示する文字数の設定
+    var afterText = ' …'; // 省略した末尾に追加するテキスト
+
+    $setText.each(function(){
+        var textLength = $(this).text().length;
+        var textTrim = $(this).text().substr(0,(cutFigure))
+
+        if(cutFigure < textLength) {
+            $(this).html(textTrim + afterText).css({visibility:'visible'});
+        } else if(cutFigure >= textLength) {
+            $(this).css({visibility:'visible'});
+        }
+    });
+});
+</script>
+
+
   </head>
 
   <body>

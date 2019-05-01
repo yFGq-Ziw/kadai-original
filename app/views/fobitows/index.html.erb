@@ -14,7 +14,7 @@
 </header> 
 
 
-
+<!-- search -->
   <div id="bottom">
   <div class="media-body">
     <!-- ロゴ -->
@@ -27,7 +27,7 @@
     <div class="row nomargin">
       <div class="col-md-6 col-md-offset-3">
         <h2>Bookshare にブックマークを追加する</h2>
-        <h5>Please enter the URL of the recommended page.</h5>
+        <h5>お気に入り、おすすめページなどの URL を入力してください。</h5>
 
 
         <div class="mtb">
@@ -46,7 +46,7 @@
             <% end %>
         </div>
         <!--/mt-->
-    <p class="mark-back"><%= link_to :back %>&nbsp;&nbsp;&nbsp;</p>
+    <p class="mark-back"><%= link_to 'back', request.referer %>&nbsp;&nbsp;&nbsp;</p>
 
         <p class="mt-100">
           <a href="https://twitter.com/"><i class="ion-social-twitter"></i></a>

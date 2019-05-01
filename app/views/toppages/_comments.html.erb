@@ -16,20 +16,39 @@
                 <% end %>
             </div>
 
-            <p class="font12"><%= link_to comment.user.name, user_path(comment.user.id) %>:&nbsp; 
-            Posted_at <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></p>
-            <p><%= comment.body %></p>
+            <p class="font12">
+              <%= link_to comment.user.name, user_path(comment.user.id) %> 
+              :&nbsp;Posted_at <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
+            </p>
+            <!-- Comments -->
+            <div class="comment-index"><%= comment.body %></div>
             <div class="box26">
-              <p class="says textOverflow2">
-                <!-- Commentsへ -->
-                <%= link_to fobitow_comments_path(comment.fobitow.id) do %>
-                  <!-- url favicon, title -->
+
+              <div style="display:inline-flex">
+                 <!-- url favicon, title -->          
+                <%= form_tag categorys_path, :method => 'get' do %>
                   <img class="fav-align" src="http://www.google.com/s2/favicons?domain=<%= comment.fobitow.content.split('/').first(3).join('/')%>">
-                  <%= comment.fobitow.title %>
-                  <i class="fa-comme far fa-comments"></i>
+                  <span class="hidden-input"><%= text_field_tag :search, URI.parse(comment.fobitow.content).host %></span>
+                  <button type="submit" class="dom-back">
+                    <a><%= URI.parse(comment.fobitow.content).host %></a>
+                  </button>
                 <% end %>
-                <%= "(#{comment.fobitow.comments.count})" %>
-              </p>
+              </div>
+
+          <!-- Commentsへ -->
+            <%= link_to fobitow_comments_path(comment.fobitow.id) do %>
+              &nbsp;&nbsp;<i class="fa-comme far fa-comments"></i>
+            <% end %>
+              <font color="#777"><%= "(#{comment.fobitow.comments.count})" %></font>
+
+
+            <%= link_to comment.fobitow.content, target: "_blank" do %>
+              <div class="textOverflow2">
+              <%# scrape-title %>
+                <%= comment.fobitow.title %>
+              </div>
+            <% end %>
+
             </div>
           </li>
         </div>
