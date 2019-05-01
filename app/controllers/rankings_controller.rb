@@ -1,7 +1,9 @@
 class RankingsController < ApplicationController
   def follow
     @co = Fobitow.group(:category).order('count_category desc').count(:category)
+    @users = User.all.search(params[:search])
+    @kazu = @users.count
+    @users = User.all.all.search(params[:search]).order('created_at desc').page(params[:page]).per(24)
     @ranking_counts = Follow.ranking
-    @users = User.all.order('@ranking_counts desc').search(params[:search]).page(params[:page]).per(24)
   end
 end
