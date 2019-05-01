@@ -3,15 +3,15 @@ class UsersController < ApplicationController
   before_action :user_find, only: [:show, :edit, :update, :followings, :followers, :likes]
 
   def index
-    @users = User.all.page(params[:page]).per(15)
+    @users = User.all.page(params[:page]).per(24)
   end
 
   def show
-    if params[:select] == 'all'
-      @fobitows = Fobitow.all.order('favorites_count DESC').page(params[:page]).search(params[:search]).per(15)
+    if params[:select] == 'All'
+      @fobitows = Fobitow.all.search(params[:search]).order('favorites_count DESC').page(params[:page]).per(24)
     else
       @fobitow = Fobitow.new
-      @fobitows = @user.fobitows.order('created_at DESC').page(params[:page]).search(params[:search]).per(15)
+      @fobitows = @user.fobitows.search(params[:search]).order('created_at DESC').page(params[:page]).per(24)
       counts(@user)
     end
 #    end
@@ -59,20 +59,24 @@ class UsersController < ApplicationController
   end    
   
   def followings
-    @followings = @user.followings.page(params[:page]).per(15)
     @ranking_counts = Follow.ranking
+    @followings = @user.followings.search(params[:search]).page(params[:page]).per(24)
     counts(@user)
   end
   
   def followers
-    @followers = @user.followers.page(params[:page]).per(15)
     @ranking_counts = Follow.ranking
+    @followers = @user.followers.search(params[:search]).page(params[:page]).per(24)
     counts(@user)
   end
 
   def likes
-    @fobitows = @user.likes.order('created_at DESC').page(params[:page]).per(15)
-    counts(@user)
+    if params[:select] == 'All'
+      @fobitows = Fobitow.all.search(params[:search]).order('favorites_count DESC').page(params[:page]).per(24)
+    else
+      @fobitows = @user.likes.search(params[:search]).order('created_at DESC').page(params[:page]).per(24)
+      counts(@user)
+    end
   end
 
   private
