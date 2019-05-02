@@ -4,6 +4,7 @@
       <% users.each_with_index do |user, index| %>
         <table class="table table-striped table-hover">
           <tr>
+            <!-- 写真 --><!-- follow,unfollow button -->
             <th>
               <!-- 写真 -->
               <div class="pro-img2">
@@ -16,60 +17,38 @@
                         <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 80 }) %>" alt="">
                       </span>
                     <% end %>
-
                   </p>
                 <% end %>
               </div>
+              <!-- follow,unfollow button -->
+              <%= render partial: 'relationships/follow', locals: { user: user } %>
             </th>
-          
+            
+            <!-- 名前 --><!-- コメント --><!-- follower数 -->
             <th>
               <li class="media-body">
-
                 <!-- 名前 -->
-                  <%= link_to user_path(user) do %>
-                    <p><%= user.name %>: 
-                  <% end %>
-
-                    <!-- コメント -->
-                  <%= user.comment %><br>
-                  
-              <!-- follower数 -->
-              
-                <% unless @ranking_counts[user.id] == @empty %>
-                  (<%= @ranking_counts[user.id] %>)&nbsp;Followers
+                <%= link_to user_path(user) do %>
+                  <p><%= user.name %>: 
                 <% end %>
-              
-
-                  </p>
+                <!-- コメント -->
+                <%= user.comment %><br>
+                <!-- follower数 -->
+                <% if @ranking_counts[user.id].present? %>
+                  Follower:&nbsp;<%= @ranking_counts[user.id] %>&nbsp;&nbsp;
+                <% end %>
+                <% if @ranking_counts[user.id].present? and user.fobitows.count > 0 %>
+                  |
+                <% end %>
+                <% if user.fobitows.count > 0 %>
+                  Bookmark:&nbsp;<%= user.fobitows.count %></p>
+                <% end %>
               </li>
             </th>
-          
-            <th>
-
-              <span class="follow-btn users-follow-btn">
-
-                <% if logged_in? %>
-                  <% unless current_user == user %>
-                    <% if current_user.following?(user) %>
-                      <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
-                        <%= hidden_field_tag :follow_id, user.id %>
-                        <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
-                      <% end %>
-                    <% else %>
-                      <%= form_for(current_user.relationships.build) do |f| %>
-                        <%= hidden_field_tag :follow_id, user.id %>
-                        <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </span>
-              </p>
-            </th>
+            
           </tr>
         </table>
       <% end %>
       <%= paginate users %>  
     <% end %>
-
 </div>
