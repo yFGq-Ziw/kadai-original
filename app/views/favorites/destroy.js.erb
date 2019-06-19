@@ -1,2 +1,3 @@
 
-$("#ajax<%= @fobitow.id %>").html("<%= j(render partial: 'favorite', locals: { fobitow: @fobitow }) %>");
+$("#ajax<%= @fobitow.id %>")
+.html("<%= j(render partial: 'favorite', locals: { fobitow: @fobitow }) %>");
